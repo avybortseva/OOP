@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"ru.nsu.g.a.vybortseva.Task_1_1_1","c":"Sort","l":"Sort()","u":"%3Cinit%3E()"},{"p":"ru.nsu.g.a.vybortseva.Task_1_1_1","c":"Sort","l":"sort(int[])"}];updateSearchResults();
+memberSearchIndex = [{"p":"ru.nsu.g.a.vybortseva.sort","c":"Sort","l":"Sort()","u":"%3Cinit%3E()"},{"p":"ru.nsu.g.a.vybortseva.sort","c":"Sort","l":"sort(int[])"}];updateSearchResults();
