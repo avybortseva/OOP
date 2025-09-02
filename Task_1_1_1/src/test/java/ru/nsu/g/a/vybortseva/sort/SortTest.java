@@ -1,4 +1,4 @@
-package ru.nsu.g.a.vybortseva.Task_1_1_1;
+package ru.nsu.g.a.vybortseva.sort;
 
 import org.junit.jupiter.api.Test;
 
