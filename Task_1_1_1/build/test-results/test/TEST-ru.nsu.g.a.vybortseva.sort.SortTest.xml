@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.g.a.vybortseva.sort.SortTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-09-03T08:26:18.983Z" hostname="MSI_KATANA" time="0.035">
+  <properties/>
+  <testcase name="test10()" classname="ru.nsu.g.a.vybortseva.sort.SortTest" time="0.035"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
