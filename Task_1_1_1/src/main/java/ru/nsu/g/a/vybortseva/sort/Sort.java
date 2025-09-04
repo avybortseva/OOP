@@ -1,17 +1,21 @@
 package ru.nsu.g.a.vybortseva.sort;
 
 /**
- * Описание класса.
+ * Heapsort
+ * The Sort class contains two methods for
+ * pyramid sorting of an array of integers.
+ * accepts: an array of integers
+ * returns: sorted array
  */
 public class Sort {
     /**
-     * Описание.
+     * Sorting the created heap from the array.
      */
-    public static int[] heapsort(int[] array) {
+    public static void heapsort(int[] array) {
         int len = array.length;
 
         if (len <= 1) {
-            return array;
+            return;
         }
 
         for (int i = len / 2 - 1; i >= 0; i--) {
@@ -25,12 +29,11 @@ public class Sort {
 
             heapify(array, 0, i);
         }
-
-        return array;
     }
 
     /**
-     * Описание.
+     * Converting an array to a heap, the root
+     * of which is the maximum element.
      */
     private static void heapify(int[] array, int root, int len) {
         int maxim = root;
