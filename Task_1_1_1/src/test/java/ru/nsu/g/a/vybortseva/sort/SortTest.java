@@ -88,4 +88,105 @@ class SortTest {
         assertArrayEquals(expected, array);
     }
 
+    @Test
+    void complexityAnalysis() {
+        System.out.println("\n=== Анализ сложности алгоритма ===");
+        System.out.println("Теоретическая сложность: O(n log n)");
+        System.out.println("Размер массива | Время (нс) | n log n | Отношение (Время / n log n)");
+        System.out.println("---------------------------------------------------------------");
+
+        int[] sizes = {100, 500, 1000, 5000, 10000, 50000, 100000};
+
+        for (int size : sizes) {
+            int[] array = generateRandomArray(size);
+
+            long startTime = System.nanoTime();
+            Sort.heapsort(array);
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+
+            double nLogN = size * Math.log(size);
+            double ratio = duration / nLogN;
+
+            System.out.printf("%12d | %10d | %8.2f | %8.4f%n",
+                    size, duration, nLogN, ratio);
+        }
+
+        System.out.println("---------------------------------------------------------------");
+    }
+
+    @Test
+    void complexityAnalysisBestCase() {
+        System.out.println("\n=== Анализ сложности ===");
+        System.out.println("Размер массива | Время (нс) | n log n | Отношение");
+        System.out.println("---------------------------------------------------------------");
+
+        int[] sizes = {100, 500, 1000, 5000, 10000, 50000, 100000};
+
+        for (int size : sizes) {
+            int[] array = generateSortedArray(size);
+
+            long startTime = System.nanoTime();
+            Sort.heapsort(array);
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+
+
+            double nLogN = size * Math.log(size);
+            double ratio = duration / nLogN;
+
+            System.out.printf("%12d | %10d | %8.2f | %8.4f%n",
+                    size, duration, nLogN, ratio);
+        }
+    }
+
+    @Test
+    void complexityAnalysisWorstCase() {
+        System.out.println("\n=== Анализ сложности ===");
+        System.out.println("Размер массива | Время (нс) | n log n | Отношение");
+        System.out.println("---------------------------------------------------------------");
+
+        int[] sizes = {100, 500, 1000, 5000, 10000, 50000, 100000};
+
+        for (int size : sizes) {
+            int[] array = generateReverseSortedArray(size);
+
+            long startTime = System.nanoTime();
+            Sort.heapsort(array);
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+
+            double nLogN = size * Math.log(size);
+            double ratio = duration / nLogN;
+
+            System.out.printf("%12d | %10d | %8.2f | %8.4f%n",
+                    size, duration, nLogN, ratio);
+        }
+    }
+
+    private int[] generateRandomArray(int size) {
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = (int) (Math.random() * size * 10);
+        }
+        return array;
+    }
+
+    private int[] generateSortedArray(int size) {
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = i;
+        }
+        return array;
+    }
+
+    private int[] generateReverseSortedArray(int size) {
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = size - i;
+        }
+        return array;
+    }
+
+
 }
