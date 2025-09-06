@@ -105,11 +105,11 @@ class SortTest {
             long endTime = System.nanoTime();
             long duration = endTime - startTime;
 
-            double nLogN = size * Math.log(size);
-            double ratio = duration / nLogN;
+            double complexity = size * Math.log(size);
+            double ratio = duration / complexity;
 
             System.out.printf("%12d | %10d | %8.2f | %8.4f%n",
-                    size, duration, nLogN, ratio);
+                    size, duration, complexity, ratio);
         }
 
         System.out.println("---------------------------------------------------------------");
@@ -132,11 +132,11 @@ class SortTest {
             long duration = endTime - startTime;
 
 
-            double nLogN = size * Math.log(size);
-            double ratio = duration / nLogN;
+            double complexity = size * Math.log(size);
+            double ratio = duration / complexity;
 
             System.out.printf("%12d | %10d | %8.2f | %8.4f%n",
-                    size, duration, nLogN, ratio);
+                    size, duration, complexity, ratio);
         }
     }
 
@@ -156,11 +156,11 @@ class SortTest {
             long endTime = System.nanoTime();
             long duration = endTime - startTime;
 
-            double nLogN = size * Math.log(size);
-            double ratio = duration / nLogN;
+            double complexity = size * Math.log(size);
+            double ratio = duration / complexity;
 
             System.out.printf("%12d | %10d | %8.2f | %8.4f%n",
-                    size, duration, nLogN, ratio);
+                    size, duration, complexity, ratio);
         }
     }
 
