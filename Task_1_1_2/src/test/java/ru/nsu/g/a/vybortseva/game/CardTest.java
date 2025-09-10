@@ -1,4 +1,4 @@
-package ru.nsu.g.a.vybortseva.blackjack;
+package ru.nsu.g.a.vybortseva.game;
 
 import org.junit.jupiter.api.Test;
 

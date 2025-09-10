@@ -1,4 +1,4 @@
-package ru.nsu.g.a.vybortseva.blackjack;
+package ru.nsu.g.a.vybortseva.game;
 
 import java.util.ArrayList;
 import java.util.Collections;
