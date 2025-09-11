@@ -91,7 +91,7 @@ public class BlackJackGame {
 
         if (player.hasBlackJack()) {
             System.out.println("Блэкджек! Ход переходит к дилеру.");
-        }else {
+        } else {
             playerTurn();
         }
 
@@ -188,7 +188,7 @@ public class BlackJackGame {
             String input = scanner.nextLine().trim();
             if (input.equals("0") || input.equals("1")) {
                 return Integer.parseInt(input);
-            }else {
+            } else {
                 System.out.println("Некорректный ввод. Пожалуйста, "
                         + "введите '0' или '1'");
             }
