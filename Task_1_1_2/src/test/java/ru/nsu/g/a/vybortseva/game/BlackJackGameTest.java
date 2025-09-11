@@ -1,7 +1,7 @@
 package ru.nsu.g.a.vybortseva.game;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 class BlackJackGameTest {
@@ -167,8 +168,12 @@ class BlackJackGameTest {
     void testPrintScore() {
         game.initializeGame();
 
-        for (int i = 0; i < 3; i++) game.getPlayer().incrementScore();
-        for (int i = 0; i < 2; i++) game.getDealer().incrementScore();
+        for (int i = 0; i < 3; i++) {
+            game.getPlayer().incrementScore();
+        }
+        for (int i = 0; i < 2; i++) {
+            game.getDealer().incrementScore();
+        }
 
         game.printScore();
 

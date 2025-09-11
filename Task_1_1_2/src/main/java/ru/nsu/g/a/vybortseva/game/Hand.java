@@ -76,7 +76,9 @@ public class Hand {
     public String toString(boolean showAll) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < cards.size(); i++) {
-            if (i > 0) sb.append(", ");
+            if (i > 0) {
+                sb.append(", ");
+            }
             if (showAll || !cards.get(i).isHidden()) {
                 sb.append(cards.get(i).toString());
             } else {
