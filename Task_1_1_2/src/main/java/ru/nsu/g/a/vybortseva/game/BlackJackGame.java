@@ -250,11 +250,11 @@ public class BlackJackGame {
     private void endGame() {
         System.out.println("\n=== ИГРА ОКОНЧЕНА ===");
         if (player.getScore() >= 3) {
-            System.out.println("Поздравляем! Вы выиграли игру со счетом " +
-                    player.getScore() + ":" + dealer.getScore());
+            System.out.println("Поздравляем! Вы выиграли игру со счетом "
+                    + player.getScore() + ":" + dealer.getScore());
         } else {
-            System.out.println("Дилер выиграл игру со счетом " +
-                    dealer.getScore() + ":" + player.getScore());
+            System.out.println("Дилер выиграл игру со счетом "
+                    + dealer.getScore() + ":" + player.getScore());
         }
 
         scanner.close();

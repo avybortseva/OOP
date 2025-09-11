@@ -2,11 +2,12 @@ package ru.nsu.g.a.vybortseva.game;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class BlackJackGameTest {
     private BlackJackGame game;
@@ -25,7 +26,8 @@ class BlackJackGameTest {
         assertNotNull(game.getDeck(), "Колода должна быть создана.");
         assertNotNull(game.getPlayer(), "Игрок должен быть создан.");
         assertNotNull(game.getDealer(), "Дилер должен быть создан.");
-        assertEquals(0, game.getRoundNumber(), "Номер раунда должен начинаться с нуля.");
+        assertEquals(0, game.getRoundNumber(),
+                "Номер раунда должен начинаться с нуля.");
     }
 
     @Test
@@ -50,7 +52,8 @@ class BlackJackGameTest {
         assertEquals(0, choice, "Должен вернуть 0 после некорректного ввода.");
 
         String output = outputStream.toString();
-        assertTrue(output.contains("Некорректный ввод"), "Должно отображаться сообщение об ошибке при некорректном вводе.");
+        assertTrue(output.contains("Некорректный ввод"),
+                "Должно отображаться сообщение об ошибке при некорректном вводе.");
     }
 
     @Test
@@ -124,7 +127,8 @@ class BlackJackGameTest {
         game.playerTurn();
 
         String output = outputStream.toString();
-        assertTrue(output.contains("Вы остановились"), "Нужно показывать сообщение об остановке");
+        assertTrue(output.contains("Вы остановились"),
+                "Нужно показывать сообщение об остановке");
     }
 
     @Test
