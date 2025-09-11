@@ -52,10 +52,12 @@ public class BlackJackGame {
 
     private void startGame() {
 
-        System.out.println("Добро пожаловать в Блэкджек!\nИграем до трех побед!");
+        System.out.println("Добро пожаловать в Блэкджек!");
+        System.out.println("Играем до трех побед!");
         initializeGame();
 
-        while (player.getScore() < neededScore && dealer.getScore() < neededScore){
+        while (player.getScore() < neededScore
+                && dealer.getScore() < neededScore){
             playRound();
         }
         endGame();
@@ -119,7 +121,8 @@ public class BlackJackGame {
         System.out.println("-------");
 
         while (true){
-            System.out.println("Введите \"1\", чтобы взять карту, и \"0\", чтобы остановиться.");
+            System.out.println("Введите \"1\", чтобы взять карту, "
+                    + "и \"0\", чтобы остановиться.");
             int choice = getPlayerChoice();
 
             if (choice == 1){
@@ -151,8 +154,8 @@ public class BlackJackGame {
         System.out.println("-------");
 
         dealer.revealHiddenCard();
-        System.out.println("Дилер открывает закрытую карту " +
-                dealer.getHand().getCards().get(1).toString());
+        System.out.println("Дилер открывает закрытую карту "
+                + dealer.getHand().getCards().get(1).toString());
         printGameState(true);
 
         if (dealer.hasBlackJack()) {
@@ -169,9 +172,11 @@ public class BlackJackGame {
         }
 
         if (dealer.isBusted()) {
-            System.out.println("Дилер перебрал! Сумма очков: " + dealer.getHandValue());
+            System.out.println("Дилер перебрал! Сумма очков: "
+                    + dealer.getHandValue());
         } else {
-            System.out.println("Дилер остановился. Сумма очков: " + dealer.getHandValue());
+            System.out.println("Дилер остановился. Сумма очков: "
+                    + dealer.getHandValue());
         }
     }
 
@@ -184,16 +189,18 @@ public class BlackJackGame {
             if (input.equals("0") || input.equals("1")){
                 return Integer.parseInt(input);
             }else {
-                System.out.println("Некорректный ввод. Пожалуйста, введите '0' или '1'");
+                System.out.println("Некорректный ввод. Пожалуйста, "
+                        + "введите '0' или '1'");
             }
         }
     }
 
     private void printGameState(boolean showAllDealerCards) {
-        System.out.println("Ваши карты: " + player.showHand(true) + " ==> " + player.getHandValue());
+        System.out.println("Ваши карты: " + player.showHand(true)
+                + " ==> " + player.getHandValue());
 
-        System.out.println("Карты дилера: " + dealer.showHand(showAllDealerCards) +
-                (showAllDealerCards ? " ==> " + dealer.getHandValue() : ""));
+        System.out.println("Карты дилера: " + dealer.showHand(showAllDealerCards)
+                + (showAllDealerCards ? " ==> " + dealer.getHandValue() : ""));
         System.out.println();
     }
 
@@ -201,9 +208,9 @@ public class BlackJackGame {
      * The method for printing of the score.
      */
     public void printScore() {
-        System.out.println("\nСчет " + player.getScore() + ":" + dealer.getScore() +
-                (player.getScore() > dealer.getScore() ? " в вашу пользу." :
-                        player.getScore() < dealer.getScore() ? " в пользу дилера." : " ничья."));
+        System.out.println("\nСчет " + player.getScore() + ":" + dealer.getScore()
+                + (player.getScore() > dealer.getScore() ? " в вашу пользу."
+                : player.getScore() < dealer.getScore() ? " в пользу дилера." : " ничья."));
     }
 
     /**
@@ -215,7 +222,7 @@ public class BlackJackGame {
 
         if (player.hasBlackJack() && dealer.hasBlackJack()) {
             System.out.println("Блэкджек у обоих! Ничья!");
-        }else if (player.hasBlackJack() && !dealer.hasBlackJack()) {
+        } else if (player.hasBlackJack() && !dealer.hasBlackJack()) {
             System.out.println("Блэкджек! Вы выиграли раунд!");
             player.incrementScore();
         } else if (dealer.hasBlackJack() && !player.hasBlackJack()) {
@@ -235,7 +242,7 @@ public class BlackJackGame {
         } else if (dealerPoints > playerPoints) {
             System.out.println("Дилер выиграл раунд!");
             dealer.incrementScore();
-        }else {
+        } else {
             System.out.println("Ничья!");
         }
     }

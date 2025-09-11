@@ -1,9 +1,9 @@
 package ru.nsu.g.a.vybortseva.game;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
@@ -27,6 +27,6 @@ class PlayerTest {
         assertFalse(card.isHidden());
 
         assertEquals(1, player.getHand().getCountCards());
-        assertEquals(card, player.getHand().getCards().getFirst());
+        assertEquals(card, player.getHand().getCards().get(0));
     }
 }

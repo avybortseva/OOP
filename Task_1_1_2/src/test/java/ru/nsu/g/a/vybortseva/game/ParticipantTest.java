@@ -28,7 +28,7 @@ class ParticipantTest {
         participant.addCard(card);
 
         assertEquals(1, participant.getHand().getCountCards());
-        assertEquals(card, participant.getHand().getCards().getFirst());
+        assertEquals(card, participant.getHand().getCards().get(0));
     }
 
     @Test
@@ -81,15 +81,16 @@ class ParticipantTest {
     @Test
     void getHandValueWithAces() {
         Card ace1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card ace2 = new Card(Card.Suit.SPADES, Card.Rank.ACE);
         Card nine = new Card(Card.Suit.DIAMONDS, Card.Rank.NINE);
 
         participant.addCard(ace1);
         participant.addCard(nine);
-        assertEquals(20, participant.getHandValue()); // 11 + 9 = 20
+        assertEquals(20, participant.getHandValue());
 
+
+        Card ace2 = new Card(Card.Suit.SPADES, Card.Rank.ACE);
         participant.addCard(ace2);
-        assertEquals(21, participant.getHandValue()); // 11 + 9 + 1 = 21 (второй туз становится 1)
+        assertEquals(21, participant.getHandValue());
     }
 
     @Test

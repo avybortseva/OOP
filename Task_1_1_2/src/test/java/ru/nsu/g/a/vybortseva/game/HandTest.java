@@ -2,10 +2,10 @@ package ru.nsu.g.a.vybortseva.game;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class HandTest {
 
@@ -14,7 +14,7 @@ class HandTest {
         Card card = new Card(Card.Suit.HEARTS, Card.Rank.THREE);
         Hand hand = new Hand();
         hand.addCard(card);
-        assertEquals("Тройка Червы ♡ (3)", hand.getCards().getLast().toString());
+        assertEquals("Тройка Червы ♡ (3)", hand.getCards().get(hand.getCountCards() - 1).toString());
     }
 
     @Test
