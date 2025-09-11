@@ -1,17 +1,29 @@
 package ru.nsu.g.a.vybortseva.game;
 
-public class Dealer extends Participant{
+/**
+ * The class for dealer.
+ */
+public class Dealer extends Participant {
 
+    /**
+     * The method for revealing hiddenCard.
+     */
     public void revealHiddenCard(){
         for (Card card : getHand().getCards()){
             card.setHidden(false);
         }
     }
 
-    public boolean shouldHit(){
+    /**
+     * The method for dealer if he should hit.
+     */
+    public boolean shouldHit() {
         return getHandValue() < 17;
     }
 
+    /**
+     * The method for adding card.
+     */
     @Override
     public void addCard(Card card) {
         int currentHandSize = getHand().getCountCards();

@@ -2,6 +2,9 @@ package ru.nsu.g.a.vybortseva.game;
 
 import java.util.Scanner;
 
+/**
+ * The main class for the play.
+ */
 public class BlackJackGame {
 
     private Deck deck;
@@ -11,22 +14,37 @@ public class BlackJackGame {
     private Scanner scanner;
     private int neededScore = 3;
 
+    /**
+     * The method for getting of the player.
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * The method for getting of the current deck.
+     */
     public Deck getDeck() {
         return deck;
     }
 
+    /**
+     * The method for getting of the dealer.
+     */
     public Dealer getDealer() {
         return dealer;
     }
 
+    /**
+     * The method for the getting of the roundNumber.
+     */
     public int getRoundNumber() {
         return roundNumber;
     }
 
+    /**
+     * The method of game logic.
+     */
     public static void main(String[] args){
         BlackJackGame game = new BlackJackGame();
         game.startGame();
@@ -43,7 +61,10 @@ public class BlackJackGame {
         endGame();
     }
 
-    void initializeGame() {
+    /**
+     * The method of initializing of the play.
+     */
+    public void initializeGame() {
         deck = new Deck();
         player = new Player();
         dealer = new Dealer();
@@ -51,7 +72,10 @@ public class BlackJackGame {
         scanner = new Scanner(System.in);
     }
 
-    void playRound() {
+    /**
+     * The method of playing round.
+     */
+    public void playRound() {
         roundNumber++;
         System.out.println("\nРаунд " + roundNumber);
 
@@ -87,7 +111,10 @@ public class BlackJackGame {
         printGameState(false);
     }
 
-    void playerTurn() {
+    /**
+     * The method for the player's turn.
+     */
+    public void playerTurn() {
         System.out.println("Ваш ход");
         System.out.println("-------");
 
@@ -116,7 +143,10 @@ public class BlackJackGame {
         }
     }
 
-    void dealerTurn() {
+    /**
+     * The method for the dealer's turn.
+     */
+    public void dealerTurn() {
         System.out.println("\nХод дилера");
         System.out.println("-------");
 
@@ -145,7 +175,10 @@ public class BlackJackGame {
         }
     }
 
-    int getPlayerChoice() {
+    /**
+     * The method for getting of player's turn.
+     */
+    public int getPlayerChoice() {
         while (true){
             String input = scanner.nextLine().trim();
             if (input.equals("0") || input.equals("1")){
@@ -156,7 +189,6 @@ public class BlackJackGame {
         }
     }
 
-
     private void printGameState(boolean showAllDealerCards) {
         System.out.println("Ваши карты: " + player.showHand(true) + " ==> " + player.getHandValue());
 
@@ -165,12 +197,18 @@ public class BlackJackGame {
         System.out.println();
     }
 
-    void printScore() {
+    /**
+     * The method for printing of the score.
+     */
+    public void printScore() {
         System.out.println("\nСчет " + player.getScore() + ":" + dealer.getScore() +
                 (player.getScore() > dealer.getScore() ? " в вашу пользу." :
                         player.getScore() < dealer.getScore() ? " в пользу дилера." : " ничья."));
     }
 
+    /**
+     * The method for determining of round winner.
+     */
     void determineRoundWinner() {
         int playerPoints = player.getHand().getPoints();
         int dealerPoints = dealer.getHand().getPoints();

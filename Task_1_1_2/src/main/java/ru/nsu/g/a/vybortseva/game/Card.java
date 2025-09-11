@@ -1,13 +1,15 @@
 package ru.nsu.g.a.vybortseva.game;
 
+/**
+ * The class for cards.
+ */
 public class Card {
 
-    public Suit getSuit() {
-        return suit;
-    }
-
+    /**
+     * The enum of suits.
+     */
     public enum Suit {
-        DIAMONDS ("Бубны ♢"),
+        DIAMONDS("Бубны ♢"),
         HEARTS("Червы ♡"),
         CLUBS("Трефы ♧"),
         SPADES("Пики ♤");
@@ -18,17 +20,26 @@ public class Card {
             this.rusName = rusName;
         }
 
+        /**
+         * The method for getting rusName.
+         */
         public String getRusName() {
             return rusName;
         }
 
+        /**
+         * The method for formatting of rusName.
+         */
         @Override
         public String toString() {
             return rusName;
         }
     }
 
-    public enum Rank{
+    /**
+     * The enum of ranks.
+     */
+    public enum Rank {
         TWO("Двойка", 2),
         THREE("Тройка", 3),
         FOUR("Четверка", 4),
@@ -52,14 +63,23 @@ public class Card {
             this.baseValue = baseValue;
         }
 
+        /**
+         * The method for getting rusName.
+         */
         public String getRusName() {
             return rusName;
         }
 
+        /**
+         * The method for getting baseValue.
+         */
         public int getBaseValue() {
             return baseValue;
         }
 
+        /**
+         * The method for formating of rusName.
+         */
         @Override
         public String toString() {
             return rusName;
@@ -70,27 +90,53 @@ public class Card {
     private final Rank rank;
     private boolean isHidden;
 
+    /**
+     * The constructor for card.
+     */
     public Card(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
         this.isHidden = false;
     }
 
+    /**
+     * The method for getting rank.
+     */
     public Rank getRank() {
         return rank;
     }
 
+    /**
+     * The method for getting suit.
+     */
+    public Suit getSuit() {
+        return suit;
+    }
+
+    /**
+     * The method for checking if card is hidden.
+     */
     public boolean isHidden() {
         return isHidden;
     }
+
+    /**
+     * The method for setting hidden.
+     */
     public void setHidden(boolean hidden) {
         isHidden = hidden;
     }
 
-    public int getBaseValue(){
+    /**
+     * The method for getting baseValue.
+     */
+    public int getBaseValue() {
         return rank.getBaseValue();
     }
 
+    /**
+     * The method for formating card.
+     */
     @Override
     public String toString() {
         if (isHidden) {
