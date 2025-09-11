@@ -101,7 +101,7 @@ public class BlackJackGame {
         printScore();
     }
 
-    private void initialDeal() {
+    void initialDeal() {
         System.out.println("Дилер раздал карты");
 
         player.addCard(deck.drawCard());
@@ -195,7 +195,7 @@ public class BlackJackGame {
         }
     }
 
-    private void printGameState(boolean showAllDealerCards) {
+    void printGameState(boolean showAllDealerCards) {
         System.out.println("Ваши карты: " + player.showHand(true)
                 + " ==> " + player.getHandValue());
 
@@ -247,7 +247,7 @@ public class BlackJackGame {
         }
     }
 
-    private void endGame() {
+    void endGame() {
         System.out.println("\n=== ИГРА ОКОНЧЕНА ===");
         if (player.getScore() >= 3) {
             System.out.println("Поздравляем! Вы выиграли игру со счетом "
