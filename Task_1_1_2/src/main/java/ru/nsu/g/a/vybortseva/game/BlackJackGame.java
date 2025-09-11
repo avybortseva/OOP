@@ -45,7 +45,7 @@ public class BlackJackGame {
     /**
      * The method of game logic.
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         BlackJackGame game = new BlackJackGame();
         game.startGame();
     }
@@ -57,7 +57,7 @@ public class BlackJackGame {
         initializeGame();
 
         while (player.getScore() < neededScore
-                && dealer.getScore() < neededScore){
+                && dealer.getScore() < neededScore) {
             playRound();
         }
         endGame();
@@ -89,7 +89,7 @@ public class BlackJackGame {
 
         initialDeal();
 
-        if (player.hasBlackJack()){
+        if (player.hasBlackJack()) {
             System.out.println("Блэкджек! Ход переходит к дилеру.");
         }else {
             playerTurn();
@@ -120,12 +120,12 @@ public class BlackJackGame {
         System.out.println("Ваш ход");
         System.out.println("-------");
 
-        while (true){
+        while (true) {
             System.out.println("Введите \"1\", чтобы взять карту, "
                     + "и \"0\", чтобы остановиться.");
             int choice = getPlayerChoice();
 
-            if (choice == 1){
+            if (choice == 1) {
                 Card newCard = deck.drawCard();
                 player.addCard(newCard);
                 System.out.println("Вы открыли карту " + newCard.toString());
@@ -163,7 +163,7 @@ public class BlackJackGame {
             return;
         }
 
-        while (dealer.shouldHit() && !dealer.isBusted()){
+        while (dealer.shouldHit() && !dealer.isBusted()) {
             Card newCard = deck.drawCard();
             dealer.addCard(newCard);
             System.out.println("Дилер открывает карту " + newCard.toString());
@@ -184,9 +184,9 @@ public class BlackJackGame {
      * The method for getting of player's turn.
      */
     public int getPlayerChoice() {
-        while (true){
+        while (true) {
             String input = scanner.nextLine().trim();
-            if (input.equals("0") || input.equals("1")){
+            if (input.equals("0") || input.equals("1")) {
                 return Integer.parseInt(input);
             }else {
                 System.out.println("Некорректный ввод. Пожалуйста, "

@@ -44,7 +44,7 @@ public class Deck {
      * The method for drawing a new card.
      */
     public Card drawCard() {
-        if (cards.isEmpty()){
+        if (cards.isEmpty()) {
             initializeDeck();
             shuffle();
         }

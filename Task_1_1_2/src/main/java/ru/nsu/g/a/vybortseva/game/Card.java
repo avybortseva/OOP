@@ -16,7 +16,7 @@ public class Card {
 
         private final String rusName;
 
-        Suit(String rusName){
+        Suit(String rusName) {
             this.rusName = rusName;
         }
 
