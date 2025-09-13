@@ -22,7 +22,7 @@ public class Deck {
     /**
      * The method for initializing deck.
      */
-    public void initializeDeck() {
+    private void initializeDeck() {
         cards = new ArrayList<Card>();
         for (int i = 0; i < countDecks; i++) {
             for (Card.Suit suit : Card.Suit.values()) {
@@ -36,7 +36,7 @@ public class Deck {
     /**
      * The method for shuffling.
      */
-    public void shuffle() {
+    private void shuffle() {
         Collections.shuffle(cards);
     }
 
@@ -57,4 +57,6 @@ public class Deck {
     public int remainingCards() {
         return cards.size();
     }
+
+
 }

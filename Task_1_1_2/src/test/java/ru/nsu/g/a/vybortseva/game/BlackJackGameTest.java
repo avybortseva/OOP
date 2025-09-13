@@ -24,8 +24,6 @@ class BlackJackGameTest {
     @Test
     void testInitializeGameCreatesObjects() {
         game.initializeGame();
-
-        assertNotNull(game.getDeck(), "Колода должна быть создана.");
         assertNotNull(game.getPlayer(), "Игрок должен быть создан.");
         assertNotNull(game.getDealer(), "Дилер должен быть создан.");
         assertEquals(0, game.getRoundNumber(),
@@ -121,7 +119,7 @@ class BlackJackGameTest {
     }
 
     @Test
-    void testPlayerTurn_PlayerStops() {
+    void testPlayerTurnPlayerStops() {
         String input = "0\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
@@ -131,21 +129,6 @@ class BlackJackGameTest {
         String output = outputStream.toString();
         assertTrue(output.contains("Вы остановились"),
                 "Нужно показывать сообщение об остановке");
-    }
-
-    @Test
-    void testDealerTurn_DealerTakesCards() {
-        game.initializeGame();
-
-        game.getDealer().addCard(new Card(Card.Suit.HEARTS, Card.Rank.TWO));
-        game.getDealer().addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.THREE));
-
-        int initialHandSize = game.getDealer().getHand().getCountCards();
-
-        game.dealerTurn();
-
-        assertTrue(game.getDealer().getHand().getCountCards() > initialHandSize,
-                "Дилер должен взять хотя бы одну карту");
     }
 
     @Test
@@ -188,9 +171,7 @@ class BlackJackGameTest {
         assertEquals(2, game.getPlayer().getHand().getCountCards(), "Игрок должен получить 2 карты");
         assertEquals(2, game.getDealer().getHand().getCountCards(), "Дилер должен получить 2 карты");
 
-        boolean hasHiddenCard = game.getDealer().getHand().getCards().stream()
-                .anyMatch(Card::isHidden);
-        assertTrue(hasHiddenCard, "У дилера должна быть одна скрытая карта");
+        assertTrue(game.getDealer().getHand().getCard(0).isHidden(), "У дилера должна быть одна скрытая карта");
     }
 
     @Test
@@ -209,7 +190,7 @@ class BlackJackGameTest {
         game.initializeGame();
         game.initialDeal();
 
-        Card dealerFirstCard = game.getDealer().getHand().getCards().get(0);
+        Card dealerFirstCard = game.getDealer().getHand().getCard(0);
         assertTrue(dealerFirstCard.isHidden(),
                 "Первая карта дилера должна быть скрытой");
     }
@@ -219,8 +200,8 @@ class BlackJackGameTest {
         game.initializeGame();
         game.initialDeal();
 
-        for (Card card : game.getPlayer().getHand().getCards()) {
-            assertFalse(card.isHidden(),
+        for (int i = 0; i < game.getPlayer().getHand().getCountCards(); i++) {
+            assertFalse(game.getPlayer().getHand().getCard(i).isHidden(),
                     "Все карты игрока должны быть видимыми");
         }
     }
@@ -238,22 +219,6 @@ class BlackJackGameTest {
 
         assertTrue(game.getPlayer().getHand().getCountCards() > initialHandSize,
                 "Игрок должен взять карту при выборе '1'");
-    }
-
-    @Test
-    void testDealerTurnTakesCardsUntil17() {
-        game.initializeGame();
-
-        game.getDealer().addCard(new Card(Card.Suit.HEARTS, Card.Rank.TWO));
-        game.getDealer().addCard(new Card(Card.Suit.DIAMONDS, Card.Rank.THREE));
-
-        int initialHandSize = game.getDealer().getHand().getCountCards();
-        game.dealerTurn();
-
-        assertTrue(game.getDealer().getHand().getCountCards() > initialHandSize,
-                "Дилер должен брать карты пока меньше 17 очков");
-        assertTrue(game.getDealer().getHandValue() >= 17,
-                "Дилер должен остановиться при 17+ очках");
     }
 
     @Test

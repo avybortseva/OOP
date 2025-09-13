@@ -9,7 +9,8 @@ public class Dealer extends Participant {
      * The method for revealing hiddenCard.
      */
     public void revealHiddenCard() {
-        for (Card card : getHand().getCards()) {
+        for (int i = 0; i < getHand().getCountCards(); i++) {
+            Card card = getHand().getCard(i);
             card.setHidden(false);
         }
     }

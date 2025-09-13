@@ -41,7 +41,7 @@ public class Participant {
      * The method for checking if a participant has blackjack.
      */
     public boolean hasBlackJack() {
-        return hand.getCountCards() == 2 && getHandValue() == 21;
+        return hand.getCountCards() == 2 && getHandValue() == Hand.blackjackEnd;
     }
 
     /**
@@ -76,7 +76,7 @@ public class Participant {
      * The method for checking if a participant is busted.
      */
     public boolean isBusted() {
-        return hand.getPoints() > 21;
+        return hand.getPoints() > Hand.blackjackEnd;
     }
 
 

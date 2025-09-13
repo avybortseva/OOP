@@ -12,26 +12,26 @@ public class BlackJackGame {
     private Dealer dealer;
     private int roundNumber;
     private Scanner scanner;
-    private int neededScore = 3;
+    private final int neededScore = 3;
 
     /**
      * The method for getting of the player.
      */
-    public Player getPlayer() {
+    Player getPlayer() {
         return player;
     }
 
     /**
      * The method for getting of the current deck.
      */
-    public Deck getDeck() {
+    Deck getDeck() {
         return deck;
     }
 
     /**
      * The method for getting of the dealer.
      */
-    public Dealer getDealer() {
+    Dealer getDealer() {
         return dealer;
     }
 
@@ -67,7 +67,6 @@ public class BlackJackGame {
      * The method of initializing of the play.
      */
     public void initializeGame() {
-        deck = new Deck();
         player = new Player();
         dealer = new Dealer();
         roundNumber = 0;
@@ -84,9 +83,6 @@ public class BlackJackGame {
         player.clearHand();
         dealer.clearHand();
 
-        deck.initializeDeck();
-        deck.shuffle();
-
         initialDeal();
 
         if (player.hasBlackJack()) {
@@ -102,6 +98,7 @@ public class BlackJackGame {
     }
 
     void initialDeal() {
+        deck = new Deck();
         System.out.println("Дилер раздал карты");
 
         player.addCard(deck.drawCard());
@@ -135,7 +132,7 @@ public class BlackJackGame {
                 if (player.isBusted()) {
                     System.out.println("Перебор! Сумма очков: " + player.getHandValue());
                     break;
-                } else if (player.getHandValue() == 21) {
+                } else if (player.getHandValue() == Hand.blackjackEnd) {
                     System.out.println("У вас 21 очко!");
                     break;
                 }
@@ -155,7 +152,7 @@ public class BlackJackGame {
 
         dealer.revealHiddenCard();
         System.out.println("Дилер открывает закрытую карту "
-                + dealer.getHand().getCards().get(1).toString());
+                + dealer.getHand().getCard(0));
         printGameState(true);
 
         if (dealer.hasBlackJack()) {
@@ -216,7 +213,7 @@ public class BlackJackGame {
     /**
      * The method for determining of round winner.
      */
-    void determineRoundWinner() {
+    public void determineRoundWinner() {
         int playerPoints = player.getHand().getPoints();
         int dealerPoints = dealer.getHand().getPoints();
 
@@ -247,9 +244,12 @@ public class BlackJackGame {
         }
     }
 
-    void endGame() {
+    public void endGame() {
         System.out.println("\n=== ИГРА ОКОНЧЕНА ===");
-        if (player.getScore() >= 3) {
+        if (player.getScore() == dealer.getScore()){
+            System.out.println("Ничья! Счет: "
+                    + player.getScore() + ":" + dealer.getScore());
+        } else if (player.getScore() > dealer.getScore()) {
             System.out.println("Поздравляем! Вы выиграли игру со счетом "
                     + player.getScore() + ":" + dealer.getScore());
         } else {

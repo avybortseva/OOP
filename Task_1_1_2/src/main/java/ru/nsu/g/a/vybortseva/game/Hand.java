@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class Hand {
     private List<Card> cards;
+    public static final int blackjackEnd = 21;
 
     /**
      * The constructor for a hand.
@@ -17,17 +18,45 @@ public class Hand {
     }
 
     /**
+     * The method equals.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Hand hand = (Hand) obj;
+        if (cards.size() != hand.cards.size()) return false;
+
+        for (int i = 0; i < cards.size(); i++) {
+            Card thisCard = cards.get(i);
+            Card otherCard = hand.cards.get(i);
+
+            if (!thisCard.getSuit().equals(otherCard.getSuit()) ||
+                    !thisCard.getRank().equals(otherCard.getRank()) ||
+                    thisCard.isHidden() != otherCard.isHidden()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * The method for adding card.
      */
     public void addCard(Card card) {
         cards.add(card);
     }
 
+
+
     /**
-     * The method for getting cards.
+     * The method for getting one card.
      */
-    public List<Card> getCards() {
-        return cards;
+    public Card getCard(int index) {
+        if (index >= 0 && index < cards.size()) {
+            return cards.get(index);
+        }
+        return null;
     }
 
     /**
@@ -48,7 +77,7 @@ public class Hand {
             }
         }
 
-        while (points > 21 && aces > 0) {
+        while (points > blackjackEnd && aces > 0) {
             points -= 10;
             aces--;
         }

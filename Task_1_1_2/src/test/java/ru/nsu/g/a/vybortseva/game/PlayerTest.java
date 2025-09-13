@@ -29,6 +29,6 @@ class PlayerTest {
         assertFalse(card.isHidden());
 
         assertEquals(1, player.getHand().getCountCards());
-        assertEquals(card, player.getHand().getCards().get(0));
+        assertEquals(card, player.getHand().getCard(0));
     }
 }

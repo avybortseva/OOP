@@ -11,20 +11,15 @@ class DeckTest {
 
     private Deck deck;
 
-    @BeforeEach
-    void setUp() {
-        deck = new Deck();
-    }
-
     @Test
     void initializeDeck() {
-        deck.initializeDeck();
-
+        Deck deck = new Deck();
         assertEquals(52, deck.remainingCards());
     }
 
     @Test
     void drawCard() {
+        Deck deck = new Deck();
         int initialCount = deck.remainingCards();
         Card card = deck.drawCard();
 

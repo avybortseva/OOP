@@ -14,43 +14,7 @@ class HandTest {
         Hand hand = new Hand();
         hand.addCard(card);
         assertEquals("Тройка Червы ♡ (3)",
-                hand.getCards().get(hand.getCountCards() - 1).toString());
-    }
-
-    @Test
-    void getCardsEmpty() {
-        Hand hand = new Hand();
-        List<Card> expectHand = new ArrayList<Card>();
-        assertEquals(expectHand, hand.getCards());
-    }
-
-    @Test
-    void getCardsOne() {
-        Hand hand = new Hand();
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.THREE);
-
-        List<Card> expectHand = new ArrayList<Card>();
-        expectHand.add(card1);
-
-        hand.addCard(card1);
-
-        assertEquals(expectHand, hand.getCards());
-    }
-
-    @Test
-    void getCardsTwo() {
-        Hand hand = new Hand();
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.THREE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.FOUR);
-
-        List<Card> expectHand = new ArrayList<Card>();
-        expectHand.add(card1);
-        expectHand.add(card2);
-
-        hand.addCard(card1);
-        hand.addCard(card2);
-
-        assertEquals(expectHand, hand.getCards());
+                hand.getCard(hand.getCountCards() - 1).toString());
     }
 
     @Test

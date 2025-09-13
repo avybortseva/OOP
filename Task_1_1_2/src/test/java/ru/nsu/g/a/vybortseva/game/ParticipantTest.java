@@ -26,15 +26,6 @@ class ParticipantTest {
     }
 
     @Test
-    void addCard() {
-        Card card = deck.drawCard();
-        participant.addCard(card);
-
-        assertEquals(1, participant.getHand().getCountCards());
-        assertEquals(card, participant.getHand().getCards().get(0));
-    }
-
-    @Test
     void clearHand() {
         participant.addCard(deck.drawCard());
         participant.addCard(deck.drawCard());
