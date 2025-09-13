@@ -22,18 +22,24 @@ public class Hand {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Hand hand = (Hand) obj;
-        if (cards.size() != hand.cards.size()) return false;
+        if (cards.size() != hand.cards.size()) {
+            return false;
+        }
 
         for (int i = 0; i < cards.size(); i++) {
             Card thisCard = cards.get(i);
             Card otherCard = hand.cards.get(i);
 
-            if (!thisCard.getSuit().equals(otherCard.getSuit()) ||
-                    !thisCard.getRank().equals(otherCard.getRank()) ||
-                    thisCard.isHidden() != otherCard.isHidden()) {
+            if (!thisCard.getSuit().equals(otherCard.getSuit())
+                    || !thisCard.getRank().equals(otherCard.getRank())
+                    || thisCard.isHidden() != otherCard.isHidden()) {
                 return false;
             }
         }

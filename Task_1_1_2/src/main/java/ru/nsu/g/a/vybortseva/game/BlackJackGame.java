@@ -244,9 +244,12 @@ public class BlackJackGame {
         }
     }
 
+    /**
+     * The method for ending the game.
+     */
     public void endGame() {
         System.out.println("\n=== ИГРА ОКОНЧЕНА ===");
-        if (player.getScore() == dealer.getScore()){
+        if (player.getScore() == dealer.getScore()) {
             System.out.println("Ничья! Счет: "
                     + player.getScore() + ":" + dealer.getScore());
         } else if (player.getScore() > dealer.getScore()) {
