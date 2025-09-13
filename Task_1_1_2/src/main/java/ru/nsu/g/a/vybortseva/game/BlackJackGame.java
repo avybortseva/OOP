@@ -130,7 +130,8 @@ public class BlackJackGame {
 
 
                 if (player.isBusted()) {
-                    System.out.println("Перебор! Сумма очков: " + player.getHandValue());
+                    System.out.println("Перебор! Сумма очков: "
+                            + player.getHandValue());
                     break;
                 } else if (player.getHandValue() == Hand.blackjackEnd) {
                     System.out.println("У вас 21 очко!");

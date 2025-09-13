@@ -2,8 +2,8 @@ package ru.nsu.g.a.vybortseva.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -168,10 +168,13 @@ class BlackJackGameTest {
         game.initializeGame();
         game.initialDeal();
 
-        assertEquals(2, game.getPlayer().getHand().getCountCards(), "Игрок должен получить 2 карты");
-        assertEquals(2, game.getDealer().getHand().getCountCards(), "Дилер должен получить 2 карты");
+        assertEquals(2, game.getPlayer().getHand().getCountCards(),
+                "Игрок должен получить 2 карты");
+        assertEquals(2, game.getDealer().getHand().getCountCards(),
+                "Дилер должен получить 2 карты");
 
-        assertTrue(game.getDealer().getHand().getCard(0).isHidden(), "У дилера должна быть одна скрытая карта");
+        assertTrue(game.getDealer().getHand().getCard(0).isHidden(),
+                "У дилера должна быть одна скрытая карта");
     }
 
     @Test
