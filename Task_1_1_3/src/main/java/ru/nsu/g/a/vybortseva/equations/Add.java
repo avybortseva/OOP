@@ -1,16 +1,19 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-public class Add extends Operations{
+/**
+ * Represents addition operation.
+ */
+public class Add extends Operations {
 
     /**
-     * adding two numbers
+     * Constructs addition operation with left and right expressions.
      */
     public Add(Expression left, Expression right) {
         super(left, right, "+");
     }
 
     /**
-     * implementation of addition
+     * Implementation of addition.
      */
     @Override
     public int operate(int leftValue, int rightValue) {
@@ -18,7 +21,7 @@ public class Add extends Operations{
     }
 
     /**
-     * calculating the derivative sum
+     * Calculating the derivative sum.
      */
     @Override
     public Expression differentiate(Expression leftDeriv, Expression rightDeriv) {

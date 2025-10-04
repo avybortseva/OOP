@@ -1,9 +1,15 @@
 package ru.nsu.g.a.vybortseva.equations;
 
+/**
+ * The class for the parser.
+ */
 public class Parser {
     private String input;
     private int pos;
 
+    /**
+     * Constructs for the parser.
+     */
     public Expression parse(String expression) {
         this.input = expression.replaceAll("\\s", "");
         this.pos = 0;
@@ -11,7 +17,7 @@ public class Parser {
     }
 
     /**
-     * method for parsing the expression
+     * Method for parsing the expression.
      */
     private Expression parseExpression() {
         if (pos >= input.length()) {
@@ -38,7 +44,7 @@ public class Parser {
     }
 
     /**
-     * method for parsing a simple expression
+     * Method for parsing a simple expression.
      */
     private Expression parseSimpleExpression() {
         String token = "";
@@ -49,7 +55,7 @@ public class Parser {
             token += input.charAt(pos++);
         }
 
-        if (token.isEmpty()){
+        if (token.isEmpty()) {
             throw new IllegalArgumentException("Expected number or variable at pos " + pos);
         }
 

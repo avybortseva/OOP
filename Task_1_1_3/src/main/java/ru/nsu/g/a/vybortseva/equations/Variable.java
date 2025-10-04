@@ -3,15 +3,22 @@ package ru.nsu.g.a.vybortseva.equations;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * The class for variables.
+ */
 public class Variable extends Expression {
     private final String name;
 
+    /**
+     * Constructs for a variable.
+     */
     public Variable(String name) {
         this.name = name;
     }
 
     /**
-     * method for evaluating of a variable is the variable itself
+     * Method for evaluating of a variable is the variable itself.
      */
     @Override
     public int evaluate(String variablesStr) {
@@ -24,11 +31,11 @@ public class Variable extends Expression {
 
     private Map<String, Integer> parseVariables(String variablesStr) {
         Map<String, Integer> variables = new HashMap<>();
-        if (variablesStr != null && !variablesStr.trim().isEmpty()){
+        if (variablesStr != null && !variablesStr.trim().isEmpty()) {
             String[] assignments = variablesStr.split(";");
-            for (String assignment : assignments){
+            for (String assignment : assignments) {
                 String[] parts = assignment.split("=");
-                if (parts.length == 2){
+                if (parts.length == 2) {
                     String nameVar = parts[0].trim();
                     int value = Integer.parseInt(parts[1].trim());
                     variables.put(nameVar, value);
@@ -39,7 +46,7 @@ public class Variable extends Expression {
     }
 
     /**
-     * method for printing of a variable
+     * Method for printing of a variable.
      */
     @Override
     public void print() {
@@ -47,7 +54,7 @@ public class Variable extends Expression {
     }
 
     /**
-     * method for derivative of a variable is the variable itself
+     * Method for derivative of a variable is the variable itself.
      */
     @Override
     public Expression derivative(String variable) {
@@ -59,7 +66,7 @@ public class Variable extends Expression {
     }
 
     /**
-     * method toString
+     * Method toString.
      */
     @Override
     public String toString() {

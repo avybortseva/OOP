@@ -1,12 +1,18 @@
 package ru.nsu.g.a.vybortseva.equations;
 
+/**
+ * Represents substraction operation.
+ */
 public class Sub extends Operations{
+    /**
+     * Constructs subtraction operation with left and right expressions.
+     */
     public Sub(Expression left, Expression right) {
         super(left, right, "-");
     }
 
     /**
-     * calculating of a subtraction
+     * Calculating of a subtraction.
      */
     @Override
     public int operate(int leftValue, int rightValue) {
@@ -14,7 +20,7 @@ public class Sub extends Operations{
     }
 
     /**
-     * calculating the derivative of a subtraction
+     * Calculating the derivative of a subtraction.
      */
     @Override
     public Expression differentiate(Expression leftDeriv, Expression rightDeriv) {

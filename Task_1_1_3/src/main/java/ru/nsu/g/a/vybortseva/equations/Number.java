@@ -1,14 +1,20 @@
 package ru.nsu.g.a.vybortseva.equations;
 
+/**
+ * The class for a number.
+ */
 public class Number extends Expression {
     private final int number;
 
+    /**
+     * Constructs for a number.
+     */
     public Number(int number) {
         this.number = number;
     }
 
     /**
-     * method for evaluating of a number is the number itself
+     * Method for evaluating of a number is the number itself.
      */
     @Override
     public int evaluate(String variablesStr) {
@@ -16,7 +22,7 @@ public class Number extends Expression {
     }
 
     /**
-     * method for printing of a number
+     * Method for printing of a number.
      */
     @Override
     public void print() {
@@ -24,7 +30,7 @@ public class Number extends Expression {
     }
 
     /**
-     * method for derivative of a number is the number itself
+     * Method for derivative of a number is the number itself.
      */
     @Override
     public Expression derivative(String variableStr) {
@@ -32,7 +38,7 @@ public class Number extends Expression {
     }
 
     /**
-     * method toString
+     * Method toString.
      */
     @Override
     public String toString() {

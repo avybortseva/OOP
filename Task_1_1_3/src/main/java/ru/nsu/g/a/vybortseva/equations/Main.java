@@ -1,8 +1,11 @@
 package ru.nsu.g.a.vybortseva.equations;
 
+/**
+ * The main class.
+ */
 public class Main {
     /**
-     * main method of the program
+     * Main method of the program.
      */
     public static void main(String[] args) {
 

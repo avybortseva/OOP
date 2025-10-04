@@ -1,10 +1,16 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-public abstract class Operations extends Expression{
+/**
+ * The method for the operarions.
+ */
+public abstract class Operations extends Expression {
     protected final Expression left;
     protected final Expression right;
     private final String operator;
 
+    /**
+     * Constructs for the operations.
+     */
     public Operations(Expression left, Expression right, String operator) {
         this.left = left;
         this.right = right;
@@ -12,10 +18,11 @@ public abstract class Operations extends Expression{
     }
 
     public abstract int operate(int leftValue, int rightValue);
+
     public abstract Expression differentiate(Expression leftDeriv, Expression rightDeriv);
 
     /**
-     * method for evaluating of an expression
+     * Method for evaluating of an expression.
      */
     @Override
     public int evaluate(String variablesStr) {
@@ -23,7 +30,7 @@ public abstract class Operations extends Expression{
     }
 
     /**
-     * method for derivative of an expressions
+     * Method for derivative of an expressions.
      */
     @Override
     public Expression derivative(String variable) {
@@ -31,7 +38,7 @@ public abstract class Operations extends Expression{
     }
 
     /**
-     * method for printing of an expression
+     * Method for printing of an expression.
      */
     public void print() {
         System.out.print("(");
@@ -42,7 +49,7 @@ public abstract class Operations extends Expression{
     }
 
     /**
-     * method toString
+     * Method toString.
      */
     @Override
     public String toString() {

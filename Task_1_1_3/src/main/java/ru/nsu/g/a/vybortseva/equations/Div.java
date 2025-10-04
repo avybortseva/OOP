@@ -1,12 +1,15 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-public class Div extends Operations{
+/**
+ * Represents division operation.
+ */
+public class Div extends Operations {
     public Div(Expression left, Expression right) {
         super(left, right, "/");
     }
 
     /**
-     * implementation of division
+     * Implementation of division.
      */
     @Override
     public int operate(int leftValue, int rightValue) {
@@ -14,7 +17,7 @@ public class Div extends Operations{
     }
 
     /**
-     * calculating the division derivative
+     * Calculating the division derivative.
      */
     @Override
     public Expression differentiate(Expression leftDeriv, Expression rightDeriv) {

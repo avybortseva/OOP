@@ -1,12 +1,15 @@
 package ru.nsu.g.a.vybortseva.equations;
 
+/**
+ * Represents Multiplication operation.
+ */
 public class Mul extends Operations{
     public Mul(Expression left, Expression right) {
         super(left, right, "*");
     }
 
     /**
-     * implementation of multiplication
+     * Implementation of multiplication.
      */
     @Override
     public int operate(int leftValue, int rightValue) {
@@ -14,7 +17,7 @@ public class Mul extends Operations{
     }
 
     /**
-     * calculating the derivative of multiplication
+     * Calculating the derivative of multiplication.
      */
     @Override
     public Expression differentiate(Expression leftDeriv, Expression rightDeriv) {
