@@ -47,13 +47,15 @@ class VariableTest {
     @Test
     void testToString() {
         Variable var1 = new Variable("x");
-        Variable var2 = new Variable("y");
-        Variable var3 = new Variable("myVariable");
-        Variable var4 = new Variable("temp");
-
         assertEquals("x", var1.toString());
+
+        Variable var2 = new Variable("y");
         assertEquals("y", var2.toString());
+
+        Variable var3 = new Variable("myVariable");
         assertEquals("myVariable", var3.toString());
+
+        Variable var4 = new Variable("temp");
         assertEquals("temp", var4.toString());
     }
 }

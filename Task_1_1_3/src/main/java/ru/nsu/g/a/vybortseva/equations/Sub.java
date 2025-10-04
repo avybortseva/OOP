@@ -3,7 +3,7 @@ package ru.nsu.g.a.vybortseva.equations;
 /**
  * Represents substraction operation.
  */
-public class Sub extends Operations{
+public class Sub extends Operations {
     /**
      * Constructs subtraction operation with left and right expressions.
      */

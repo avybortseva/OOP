@@ -18,7 +18,7 @@ public class Main {
         Expression de = e.derivative("x");
         System.out.print("Derivative de: ");
         de.print(); // (0+((0*x)+(2*1)))
-        System.out.println( );
+        System.out.println();
 
         Expression e2 = new Add(new Number(3), new Mul(new Number(2),
                 new Variable("x")));

@@ -1,5 +1,8 @@
 package ru.nsu.g.a.vybortseva.equations;
 
+/**
+ * The class for expressions.
+ */
 public abstract class Expression {
     public abstract int evaluate(String variables);
 

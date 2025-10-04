@@ -67,7 +67,7 @@ public class Parser {
             }
         }
 
-        if (isNumber){
+        if (isNumber) {
             return new Number(Integer.parseInt(token));
         } else {
             return new Variable(token);

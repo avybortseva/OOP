@@ -3,7 +3,7 @@ package ru.nsu.g.a.vybortseva.equations;
 /**
  * Represents Multiplication operation.
  */
-public class Mul extends Operations{
+public class Mul extends Operations {
     public Mul(Expression left, Expression right) {
         super(left, right, "*");
     }
