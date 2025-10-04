@@ -10,10 +10,13 @@ public class Variable extends Expression {
         this.name = name;
     }
 
+    /**
+     * method for evaluating of a variable is the variable itself
+     */
     @Override
     public int evaluate(String variablesStr) {
         Map<String, Integer> variables = parseVariables(variablesStr);
-        if (!variables.containsKey(name)){
+        if (!variables.containsKey(name)) {
             throw new IllegalArgumentException("Variable '" + name + "' is not defined.");
         }
         return variables.get(name);
@@ -35,11 +38,17 @@ public class Variable extends Expression {
         return variables;
     }
 
+    /**
+     * method for printing of a variable
+     */
     @Override
     public void print() {
         System.out.print(name);
     }
 
+    /**
+     * method for derivative of a variable is the variable itself
+     */
     @Override
     public Expression derivative(String variable) {
         if (this.name.equals(variable)) {
@@ -49,6 +58,9 @@ public class Variable extends Expression {
         }
     }
 
+    /**
+     * method toString
+     */
     @Override
     public String toString() {
         return name;

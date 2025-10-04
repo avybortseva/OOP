@@ -14,17 +14,25 @@ public abstract class Operations extends Expression{
     public abstract int operate(int leftValue, int rightValue);
     public abstract Expression differentiate(Expression leftDeriv, Expression rightDeriv);
 
-
+    /**
+     * method for evaluating of an expression
+     */
     @Override
     public int evaluate(String variablesStr) {
         return operate(left.evaluate(variablesStr), right.evaluate(variablesStr));
     }
 
+    /**
+     * method for derivative of an expressions
+     */
     @Override
     public Expression derivative(String variable) {
         return differentiate(left.derivative(variable), right.derivative(variable));
     }
 
+    /**
+     * method for printing of an expression
+     */
     public void print() {
         System.out.print("(");
         left.print();
@@ -33,6 +41,9 @@ public abstract class Operations extends Expression{
         System.out.print(")");
     }
 
+    /**
+     * method toString
+     */
     @Override
     public String toString() {
         return "(" + left.toString() + operator + right.toString() + ")";

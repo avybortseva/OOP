@@ -10,7 +10,10 @@ public class Parser {
         return parseExpression();
     }
 
-    private Expression parseExpression(){
+    /**
+     * method for parsing the expression
+     */
+    private Expression parseExpression() {
         if (pos >= input.length()) {
             throw new IllegalArgumentException("Unexpected end of expression");
         }
@@ -34,7 +37,10 @@ public class Parser {
         }
     }
 
-    private Expression parseSimpleExpression(){
+    /**
+     * method for parsing a simple expression
+     */
+    private Expression parseSimpleExpression() {
         String token = "";
 
         while (pos < input.length()

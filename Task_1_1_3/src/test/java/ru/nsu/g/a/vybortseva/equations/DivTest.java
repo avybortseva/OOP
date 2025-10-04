@@ -1,8 +1,9 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class DivTest {
 
@@ -111,5 +112,11 @@ class DivTest {
         Expression result = divWithOperands.differentiate(leftDeriv, rightDeriv);
 
         assertEquals(0, result.evaluate(""));
+    }
+
+    @Test
+    void testPrint() {
+        Div div = new Div(new Number(15), new Variable("a"));
+        assertDoesNotThrow(div::print);
     }
 }

@@ -5,11 +5,17 @@ public class Div extends Operations{
         super(left, right, "/");
     }
 
+    /**
+     * implementation of division
+     */
     @Override
     public int operate(int leftValue, int rightValue) {
         return leftValue / rightValue;
     }
 
+    /**
+     * calculating the division derivative
+     */
     @Override
     public Expression differentiate(Expression leftDeriv, Expression rightDeriv) {
         Expression top1 = new Mul(leftDeriv, right);

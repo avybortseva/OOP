@@ -1,8 +1,9 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class MulTest {
 
@@ -118,5 +119,11 @@ class MulTest {
         Expression result = mulWithOperands.differentiate(leftDeriv, rightDeriv);
 
         assertEquals(22, result.evaluate(""));
+    }
+
+    @Test
+    void testPrint() {
+        Mul mul = new Mul(new Number(3), new Variable("z"));
+        assertDoesNotThrow(mul::print);
     }
 }

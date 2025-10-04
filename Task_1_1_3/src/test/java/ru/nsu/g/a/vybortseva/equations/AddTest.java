@@ -1,8 +1,9 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class AddTest {
 
@@ -105,5 +106,11 @@ class AddTest {
         Expression result = add.differentiate(leftDeriv, rightDeriv);
 
         assertEquals(5, result.evaluate(""));
+    }
+
+    @Test
+    void testPrint() {
+        Add add = new Add(new Number(5), new Variable("x"));
+        assertDoesNotThrow(add::print);
     }
 }

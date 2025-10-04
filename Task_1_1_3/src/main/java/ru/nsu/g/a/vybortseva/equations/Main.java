@@ -1,6 +1,9 @@
 package ru.nsu.g.a.vybortseva.equations;
 
 public class Main {
+    /**
+     * main method of the program
+     */
     public static void main(String[] args) {
 
         Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
@@ -26,6 +29,7 @@ public class Main {
         Expression parsedExpr = parser.parse("(3+(2*x))");
         System.out.print("Parsed expression: ");
         parsedExpr.print(); // (3+(2*x))
+        System.out.println();
         System.out.println();
         int parsedResult = parsedExpr.evaluate("x = 10");
         System.out.println("Parsed result: " + parsedResult); // 23
