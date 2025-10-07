@@ -1,5 +1,8 @@
 package ru.nsu.g.a.vybortseva.equations;
 
+import ru.nsu.g.a.vybortseva.equations.exceptions.InvalidExpressionException;
+import ru.nsu.g.a.vybortseva.equations.exceptions.UndefinedVariableException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +27,7 @@ public class Variable extends Expression {
     public int evaluate(String variablesStr) {
         Map<String, Integer> variables = parseVariables(variablesStr);
         if (!variables.containsKey(name)) {
-            throw new IllegalArgumentException("Variable '" + name + "' is not defined.");
+            throw new UndefinedVariableException(name);
         }
         return variables.get(name);
     }
@@ -35,10 +38,15 @@ public class Variable extends Expression {
             String[] assignments = variablesStr.split(";");
             for (String assignment : assignments) {
                 String[] parts = assignment.split("=");
-                if (parts.length == 2) {
-                    String nameVar = parts[0].trim();
+                if (parts.length != 2) {
+                    throw new InvalidExpressionException("Некорректное присваивание: " + assignment);
+                }
+                try {
+                    String varName = parts[0].trim();
                     int value = Integer.parseInt(parts[1].trim());
-                    variables.put(nameVar, value);
+                    variables.put(varName, value);
+                } catch (NumberFormatException e) {
+                    throw new InvalidExpressionException("Некорректное значение переменной: " + assignment);
                 }
             }
         }

@@ -1,5 +1,8 @@
 package ru.nsu.g.a.vybortseva.equations;
 
+import ru.nsu.g.a.vybortseva.equations.exceptions.DivisionByZeroException;
+import ru.nsu.g.a.vybortseva.equations.exceptions.MathCalculationException;
+
 /**
  * Represents division operation.
  */
@@ -13,6 +16,9 @@ public class Div extends Operations {
      */
     @Override
     public int operate(int leftValue, int rightValue) {
+        if (rightValue == 0) {
+            throw new DivisionByZeroException();
+        }
         return leftValue / rightValue;
     }
 

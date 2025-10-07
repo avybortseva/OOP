@@ -1,5 +1,7 @@
 package ru.nsu.g.a.vybortseva.equations;
 
+import ru.nsu.g.a.vybortseva.equations.exceptions.MathCalculationException;
+
 /**
  * The method for the operarions.
  */
@@ -26,7 +28,13 @@ public abstract class Operations extends Expression {
      */
     @Override
     public int evaluate(String variablesStr) {
-        return operate(left.evaluate(variablesStr), right.evaluate(variablesStr));
+        try {
+            int leftValue = left.evaluate(variablesStr);
+            int rightValue = right.evaluate(variablesStr);
+            return operate(leftValue, rightValue);
+        } catch (ArithmeticException e) {
+            throw new MathCalculationException("арифметическая ошибка: " + e.getMessage());
+        }
     }
 
     /**

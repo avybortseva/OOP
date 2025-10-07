@@ -1,4 +1,6 @@
 package ru.nsu.g.a.vybortseva.equations;
+import ru.nsu.g.a.vybortseva.equations.exceptions.InvalidExpressionException;
+import ru.nsu.g.a.vybortseva.equations.exceptions.UnexpectedTokenException;
 
 /**
  * The class for the parser.
@@ -21,14 +23,23 @@ public class Parser {
      */
     private Expression parseExpression() {
         if (pos >= input.length()) {
-            throw new IllegalArgumentException("Unexpected end of expression");
+            throw new UnexpectedTokenException("Неожиданный конец выражения", pos);
         }
 
         if (input.charAt(pos) == '(') {
             pos++;
             Expression left = parseExpression();
+
+            if (pos >= input.length()) {
+                throw new UnexpectedTokenException("Ожидался оператор", pos);
+            }
+
             char operator = input.charAt(pos++);
+
             Expression right = parseExpression();
+            if (pos >= input.length() || input.charAt(pos) != ')') {
+                throw new UnexpectedTokenException("Ожидалась закрывающая скобка", pos);
+            }
             pos++;
 
             return switch (operator) {
@@ -36,7 +47,8 @@ public class Parser {
                 case '-' -> new Sub(left, right);
                 case '*' -> new Mul(left, right);
                 case '/' -> new Div(left, right);
-                default -> throw new IllegalArgumentException("Unknown operator: " + operator);
+                default ->
+                    throw new UnexpectedTokenException("Неизвестный оператор: " + operator, pos - 1);
             };
         } else {
             return parseSimpleExpression();
@@ -56,19 +68,15 @@ public class Parser {
         }
 
         if (token.isEmpty()) {
-            throw new IllegalArgumentException("Expected number or variable at pos " + pos);
+            throw new UnexpectedTokenException("Ожидалось число или переменная", pos);
         }
 
-        boolean isNumber = true;
-        for (int i = 0; i < token.length(); i++) {
-            if (!Character.isDigit(token.charAt(i))) {
-                isNumber = false;
-                break;
+        if (Character.isDigit(token.charAt(0))) {
+            try {
+                return new Number(Integer.parseInt(token));
+            } catch (NumberFormatException e) {
+                throw new InvalidExpressionException("Некорректное число: " + token);
             }
-        }
-
-        if (isNumber) {
-            return new Number(Integer.parseInt(token));
         } else {
             return new Variable(token);
         }
