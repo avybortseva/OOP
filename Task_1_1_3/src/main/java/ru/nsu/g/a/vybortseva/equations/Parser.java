@@ -60,7 +60,8 @@ public class Parser {
 
         String token = "";
         while (pos < input.length()
-                && (Character.isDigit(input.charAt(pos)) || Character.isLetter(input.charAt(pos)))) {
+                && (Character.isDigit(input.charAt(pos))
+                || Character.isLetter(input.charAt(pos)))) {
             token += input.charAt(pos++);
         }
 
