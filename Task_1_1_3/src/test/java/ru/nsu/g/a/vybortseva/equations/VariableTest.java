@@ -1,7 +1,7 @@
 package ru.nsu.g.a.vybortseva.equations;
 
 import org.junit.jupiter.api.Test;
-import ru.nsu.g.a.vybortseva.equations.exceptions.InvalidExpressionException;
+import java.util.Map;
 import ru.nsu.g.a.vybortseva.equations.exceptions.UndefinedVariableException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -184,5 +184,71 @@ class VariableTest {
         assertEquals(10, var.evaluate("x=10"));
         assertEquals(20, var.evaluate("x=20"));
         assertEquals(20, var.evaluate("x=20"));
+    }
+
+    @Test
+    void testParseVariablesWithValidInput() {
+        Variable var = new Variable("x");
+
+        assertDoesNotThrow(() -> var.parseVariables("x=10"));
+        assertDoesNotThrow(() -> var.parseVariables("x=10; y=20"));
+        assertDoesNotThrow(() -> var.parseVariables("x = 10 ; y = 20"));
+    }
+
+    @Test
+    void testParseVariablesWithEmptyAndNull() {
+        Variable var = new Variable("x");
+
+        assertDoesNotThrow(() -> {
+            Map<String, Integer> result = var.parseVariables("");
+            assertTrue(result.isEmpty());
+        });
+
+        assertDoesNotThrow(() -> {
+            Map<String, Integer> result = var.parseVariables(null);
+            assertTrue(result.isEmpty());
+        });
+
+        assertDoesNotThrow(() -> {
+            Map<String, Integer> result = var.parseVariables("   ");
+            assertTrue(result.isEmpty());
+        });
+    }
+
+    @Test
+    void testParseVariablesResultContent() {
+        Variable var = new Variable("x");
+
+        Map<String, Integer> result1 = var.parseVariables("x=10");
+        assertEquals(1, result1.size());
+        assertEquals(10, result1.get("x"));
+
+        Map<String, Integer> result2 = var.parseVariables("x=10; y=20; z=30");
+        assertEquals(3, result2.size());
+        assertEquals(10, result2.get("x"));
+        assertEquals(20, result2.get("y"));
+        assertEquals(30, result2.get("z"));
+
+        Map<String, Integer> result3 = var.parseVariables("a=1; b=2; a=3");
+        assertEquals(2, result3.size());
+        assertEquals(3, result3.get("a"));
+        assertEquals(2, result3.get("b"));
+    }
+
+    @Test
+    void testParseVariablesBoundaryValues() {
+        Variable var = new Variable("x");
+
+        Map<String, Integer> result1 = var.parseVariables("x=0");
+        assertEquals(0, result1.get("x"));
+
+        Map<String, Integer> result2 = var.parseVariables("x=-1");
+        assertEquals(-1, result2.get("x"));
+
+        Map<String, Integer> result3 = var.parseVariables("x=" + Integer.MAX_VALUE);
+        assertEquals(Integer.MAX_VALUE, result3.get("x"));
+
+        Map<String, Integer> result4 = var.parseVariables("x=" + Integer.MIN_VALUE);
+        assertEquals(Integer.MIN_VALUE, result4.get("x"));
     }
 }

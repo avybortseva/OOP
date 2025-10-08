@@ -30,7 +30,7 @@ public class Variable extends Expression {
         return variables.get(name);
     }
 
-    private Map<String, Integer> parseVariables(String variablesStr) {
+    public Map<String, Integer> parseVariables(String variablesStr) {
         Map<String, Integer> variables = new HashMap<>();
         if (variablesStr != null && !variablesStr.trim().isEmpty()) {
             String[] assignments = variablesStr.split(";");
