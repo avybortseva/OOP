@@ -9,6 +9,6 @@ public class InvalidExpressionException extends ParseException {
      * Constructs a new InvalidExpressionException for the given expression.
      */
     public InvalidExpressionException(String expression) {
-        super("Невалидное выражение: " + expression);
+        super("Invalid expression: " + expression);
     }
 }

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.g.a.vybortseva.equations.exceptions.UnexpectedTokenException;
 
 class ParserTest {
     @Test
@@ -79,13 +80,13 @@ class ParserTest {
     @Test
     void testParseUnexpectedEnd() {
         Parser parser = new Parser();
-        assertThrows(IllegalArgumentException.class, () -> parser.parse("(x+"));
+        assertThrows(UnexpectedTokenException.class, () -> parser.parse("(x+"));
     }
 
     @Test
     void testParseEmptyToken() {
         Parser parser = new Parser();
-        assertThrows(IllegalArgumentException.class, () -> parser.parse("()"));
+        assertThrows(UnexpectedTokenException.class, () -> parser.parse("()"));
     }
 
     @Test

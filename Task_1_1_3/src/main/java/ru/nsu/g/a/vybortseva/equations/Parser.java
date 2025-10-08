@@ -1,4 +1,5 @@
 package ru.nsu.g.a.vybortseva.equations;
+
 import ru.nsu.g.a.vybortseva.equations.exceptions.InvalidExpressionException;
 import ru.nsu.g.a.vybortseva.equations.exceptions.UnexpectedTokenException;
 
@@ -10,7 +11,7 @@ public class Parser {
     private int pos;
 
     /**
-     * Constructs for the parser.
+     * Constructor for the parser.
      */
     public Expression parse(String expression) {
         this.input = expression.replaceAll("\\s", "");
@@ -18,12 +19,9 @@ public class Parser {
         return parseExpression();
     }
 
-    /**
-     * Method for parsing the expression.
-     */
     private Expression parseExpression() {
         if (pos >= input.length()) {
-            throw new UnexpectedTokenException("Неожиданный конец выражения", pos);
+            throw new UnexpectedTokenException("Unexpected end of expression", pos);
         }
 
         if (input.charAt(pos) == '(') {
@@ -31,14 +29,15 @@ public class Parser {
             Expression left = parseExpression();
 
             if (pos >= input.length()) {
-                throw new UnexpectedTokenException("Ожидался оператор", pos);
+                throw new UnexpectedTokenException("Expected operator", pos);
             }
 
             char operator = input.charAt(pos++);
 
             Expression right = parseExpression();
+
             if (pos >= input.length() || input.charAt(pos) != ')') {
-                throw new UnexpectedTokenException("Ожидалась закрывающая скобка", pos);
+                throw new UnexpectedTokenException("Expected closing parenthesis", pos);
             }
             pos++;
 
@@ -47,35 +46,33 @@ public class Parser {
                 case '-' -> new Sub(left, right);
                 case '*' -> new Mul(left, right);
                 case '/' -> new Div(left, right);
-                default ->
-                    throw new UnexpectedTokenException("Неизвестный оператор: " + operator, pos - 1);
+                default -> throw new UnexpectedTokenException("Unknown operator: " + operator, pos - 1);
             };
         } else {
             return parseSimpleExpression();
         }
     }
 
-    /**
-     * Method for parsing a simple expression.
-     */
     private Expression parseSimpleExpression() {
-        String token = "";
+        if (pos >= input.length()) {
+            throw new UnexpectedTokenException("Expected number or variable", pos);
+        }
 
-        while (pos < input.length()
-                && (Character.isDigit(input.charAt(pos))
-                || Character.isLetter(input.charAt(pos)))) {
+        String token = "";
+        while (pos < input.length() &&
+                (Character.isDigit(input.charAt(pos)) || Character.isLetter(input.charAt(pos)))) {
             token += input.charAt(pos++);
         }
 
         if (token.isEmpty()) {
-            throw new UnexpectedTokenException("Ожидалось число или переменная", pos);
+            throw new UnexpectedTokenException("Expected number or variable", pos);
         }
 
         if (Character.isDigit(token.charAt(0))) {
             try {
                 return new Number(Integer.parseInt(token));
             } catch (NumberFormatException e) {
-                throw new InvalidExpressionException("Некорректное число: " + token);
+                throw new InvalidExpressionException("Invalid number format: " + token);
             }
         } else {
             return new Variable(token);

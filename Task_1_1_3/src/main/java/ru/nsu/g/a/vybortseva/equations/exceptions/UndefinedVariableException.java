@@ -10,7 +10,7 @@ public class UndefinedVariableException extends CalculationException{
      * Constructs a new UndefinedVariableException for the specified variable.
      */
     public UndefinedVariableException(String variableName) {
-        super("Переменная '" + variableName + "' не определена");
+        super("Variable '" + variableName + "' is not defined");
         this.variableName = variableName;
     }
 

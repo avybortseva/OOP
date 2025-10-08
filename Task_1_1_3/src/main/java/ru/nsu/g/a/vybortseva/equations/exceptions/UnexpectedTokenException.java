@@ -10,7 +10,7 @@ public class UnexpectedTokenException extends ParseException {
      * Constructs a new UnexpectedTokenException with error message and position.
      */
     public UnexpectedTokenException(String message, int position) {
-        super(message + " (позиция: " + position + ")");
+        super(message + " at position " + position);
         this.position = position;
     }
 

@@ -9,6 +9,6 @@ public class MathCalculationException extends CalculationException{
      * Constructs a new MathCalculationException with a prefixed mathematical error message.
      */
     public MathCalculationException(String message) {
-        super("Математическая ошибка: " + message);
+        super("Math calculation error: " + message);
     }
 }
