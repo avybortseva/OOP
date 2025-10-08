@@ -1,6 +1,5 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-import java.util.Map;
 import ru.nsu.g.a.vybortseva.equations.exceptions.MathExpressionException;
 
 /**
@@ -13,8 +12,6 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            Map<String, Integer> variables = ParseVariables.parseVariables("x = 10; y = 13");
-            
             Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
 
             System.out.print("Expression e: ");
@@ -28,7 +25,7 @@ public class Main {
 
             Expression e2 = new Add(new Number(3), new Mul(new Number(2),
                     new Variable("x")));
-            int result = e2.evaluate(variables);
+            int result = e2.evaluate("x = 10; y = 13");
             System.out.print("Result: ");
             System.out.println(result);
             System.out.println();
@@ -40,7 +37,7 @@ public class Main {
             parsedExpr.print(); // (3+(2*x))
             System.out.println();
             System.out.println();
-            int parsedResult = parsedExpr.evaluate(variables);
+            int parsedResult = parsedExpr.evaluate("x = 10");
             System.out.println("Parsed result: " + parsedResult); // 23
 
         } catch (MathExpressionException e) {

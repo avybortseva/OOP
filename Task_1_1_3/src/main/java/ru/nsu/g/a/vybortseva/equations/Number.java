@@ -1,7 +1,5 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-import java.util.Map;
-
 /**
  * The class for a number.
  */
@@ -19,7 +17,8 @@ public class Number extends Expression {
      * Method for evaluating of a number is the number itself.
      */
     @Override
-    public int evaluate(Map<String, Integer> variables) {
+    public int evaluate(String variablesStr) {
+        getCachedVariables(variablesStr);
         return number;
     }
 
