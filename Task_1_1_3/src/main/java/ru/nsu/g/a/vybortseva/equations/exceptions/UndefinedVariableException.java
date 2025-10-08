@@ -3,7 +3,7 @@ package ru.nsu.g.a.vybortseva.equations.exceptions;
 /**
  * Thrown when an undefined variable is encountered during expression calculation.
  */
-public class UndefinedVariableException extends CalculationException{
+public class UndefinedVariableException extends CalculationException {
     private final String variableName;
 
     /**

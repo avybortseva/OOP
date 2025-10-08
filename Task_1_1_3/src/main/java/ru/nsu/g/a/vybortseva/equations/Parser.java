@@ -26,7 +26,6 @@ public class Parser {
 
         if (input.charAt(pos) == '(') {
             pos++;
-            Expression left = parseExpression();
 
             if (pos >= input.length()) {
                 throw new UnexpectedTokenException("Expected operator", pos);
@@ -41,12 +40,15 @@ public class Parser {
             }
             pos++;
 
+            Expression left = parseExpression();
+
             return switch (operator) {
                 case '+' -> new Add(left, right);
                 case '-' -> new Sub(left, right);
                 case '*' -> new Mul(left, right);
                 case '/' -> new Div(left, right);
-                default -> throw new UnexpectedTokenException("Unknown operator: " + operator, pos - 1);
+                default -> throw new UnexpectedTokenException("Unknown operator: "
+                        + operator, pos - 1);
             };
         } else {
             return parseSimpleExpression();
@@ -59,8 +61,8 @@ public class Parser {
         }
 
         String token = "";
-        while (pos < input.length() &&
-                (Character.isDigit(input.charAt(pos)) || Character.isLetter(input.charAt(pos)))) {
+        while (pos < input.length()
+                && (Character.isDigit(input.charAt(pos)) || Character.isLetter(input.charAt(pos)))) {
             token += input.charAt(pos++);
         }
 

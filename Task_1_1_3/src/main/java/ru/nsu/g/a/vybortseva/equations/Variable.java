@@ -1,11 +1,10 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-import ru.nsu.g.a.vybortseva.equations.exceptions.InvalidExpressionException;
-import ru.nsu.g.a.vybortseva.equations.exceptions.UndefinedVariableException;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import ru.nsu.g.a.vybortseva.equations.exceptions.InvalidExpressionException;
+import ru.nsu.g.a.vybortseva.equations.exceptions.UndefinedVariableException;
 
 /**
  * The class for variables.
@@ -39,14 +38,16 @@ public class Variable extends Expression {
             for (String assignment : assignments) {
                 String[] parts = assignment.split("=");
                 if (parts.length != 2) {
-                    throw new InvalidExpressionException("Некорректное присваивание: " + assignment);
+                    throw new InvalidExpressionException("Некорректное присваивание: "
+                            + assignment);
                 }
                 try {
                     String varName = parts[0].trim();
                     int value = Integer.parseInt(parts[1].trim());
                     variables.put(varName, value);
                 } catch (NumberFormatException e) {
-                    throw new InvalidExpressionException("Некорректное значение переменной: " + assignment);
+                    throw new InvalidExpressionException("Некорректное значение переменной: "
+                            + assignment);
                 }
             }
         }
