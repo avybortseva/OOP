@@ -2,7 +2,6 @@ package ru.nsu.g.a.vybortseva.equations;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import ru.nsu.g.a.vybortseva.equations.exceptions.InvalidExpressionException;
 import ru.nsu.g.a.vybortseva.equations.exceptions.UndefinedVariableException;
 
