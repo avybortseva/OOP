@@ -22,35 +22,11 @@ public class Variable extends Expression {
      * Method for evaluating of a variable is the variable itself.
      */
     @Override
-    public int evaluate(String variablesStr) {
-        Map<String, Integer> variables = parseVariables(variablesStr);
+    public int evaluate(Map<String, Integer> variables) {
         if (!variables.containsKey(name)) {
             throw new UndefinedVariableException(name);
         }
         return variables.get(name);
-    }
-
-    private Map<String, Integer> parseVariables(String variablesStr) {
-        Map<String, Integer> variables = new HashMap<>();
-        if (variablesStr != null && !variablesStr.trim().isEmpty()) {
-            String[] assignments = variablesStr.split(";");
-            for (String assignment : assignments) {
-                String[] parts = assignment.split("=");
-                if (parts.length != 2) {
-                    throw new InvalidExpressionException("Некорректное присваивание: "
-                            + assignment);
-                }
-                try {
-                    String varName = parts[0].trim();
-                    int value = Integer.parseInt(parts[1].trim());
-                    variables.put(varName, value);
-                } catch (NumberFormatException e) {
-                    throw new InvalidExpressionException("Некорректное значение переменной: "
-                            + assignment);
-                }
-            }
-        }
-        return variables;
     }
 
     /**

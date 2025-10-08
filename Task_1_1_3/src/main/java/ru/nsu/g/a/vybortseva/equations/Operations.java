@@ -1,6 +1,7 @@
+
 package ru.nsu.g.a.vybortseva.equations;
 
-import ru.nsu.g.a.vybortseva.equations.exceptions.MathCalculationException;
+import java.util.Map;
 
 /**
  * The method for the operarions.
@@ -27,15 +28,12 @@ public abstract class Operations extends Expression {
      * Method for evaluating of an expression.
      */
     @Override
-    public int evaluate(String variablesStr) {
-        try {
-            int leftValue = left.evaluate(variablesStr);
-            int rightValue = right.evaluate(variablesStr);
-            return operate(leftValue, rightValue);
-        } catch (ArithmeticException e) {
-            throw new MathCalculationException("арифметическая ошибка: " + e.getMessage());
-        }
+    public int evaluate(Map<String, Integer> variables) {
+        int leftValue = left.evaluate(variables);
+        int rightValue = right.evaluate(variables);
+        return operate(leftValue, rightValue);
     }
+
 
     /**
      * Method for derivative of an expressions.
