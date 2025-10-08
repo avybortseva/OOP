@@ -31,16 +31,14 @@ public class Parser {
                 throw new UnexpectedTokenException("Expected operator", pos);
             }
 
+            Expression left = parseExpression();
             char operator = input.charAt(pos++);
-
             Expression right = parseExpression();
 
             if (pos >= input.length() || input.charAt(pos) != ')') {
                 throw new UnexpectedTokenException("Expected closing parenthesis", pos);
             }
             pos++;
-
-            Expression left = parseExpression();
 
             return switch (operator) {
                 case '+' -> new Add(left, right);
@@ -61,8 +59,8 @@ public class Parser {
         }
 
         String token = "";
-        while (pos < input.length()
-                && (Character.isDigit(input.charAt(pos)) || Character.isLetter(input.charAt(pos)))) {
+        while (pos < input.length() &&
+                (Character.isDigit(input.charAt(pos)) || Character.isLetter(input.charAt(pos)))) {
             token += input.charAt(pos++);
         }
 
