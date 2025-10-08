@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.g.a.vybortseva.equations"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.g.a.vybortseva.equations"},{"l":"ru.nsu.g.a.vybortseva.equations.exceptions"}];updateSearchResults();
