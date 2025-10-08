@@ -1,9 +1,10 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+import ru.nsu.g.a.vybortseva.equations.exceptions.InvalidExpressionException;
+import ru.nsu.g.a.vybortseva.equations.exceptions.UndefinedVariableException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class VariableTest {
 
@@ -106,5 +107,82 @@ class VariableTest {
 
         Variable var4 = new Variable("temp");
         assertEquals("temp", var4.toString());
+    }
+
+    @Test
+    void testEvaluateWithEmptyVariables() {
+        Variable var = new Variable("x");
+
+        assertThrows(UndefinedVariableException.class, () -> {
+            var.evaluate("");
+        });
+        assertThrows(UndefinedVariableException.class, () -> {
+            var.evaluate(null);
+        });
+    }
+
+    void testEvaluateWithInvalidAssignments() {
+        Variable var = new Variable("x");
+
+        assertThrows(UndefinedVariableException.class, () -> {
+            var.evaluate("y=10");
+        });
+
+        assertThrows(UndefinedVariableException.class, () -> {
+            var.evaluate("");
+        });
+
+        assertThrows(UndefinedVariableException.class, () -> {
+            var.evaluate(null);
+        });
+
+        assertThrows(UndefinedVariableException.class, () -> {
+            var.evaluate("   ");
+        });
+    }
+
+    @Test
+    void testEvaluateBoundaryValues() {
+        Variable var = new Variable("x");
+
+        assertEquals(0, var.evaluate("x=0"));
+        assertEquals(-1, var.evaluate("x=-1"));
+        assertEquals(Integer.MAX_VALUE, var.evaluate("x=" + Integer.MAX_VALUE));
+        assertEquals(Integer.MIN_VALUE, var.evaluate("x=" + Integer.MIN_VALUE));
+    }
+
+    @Test
+    void testEvaluateDuplicateVariables() {
+        Variable var = new Variable("x");
+
+        assertEquals(30, var.evaluate("x=10; x=20; x=30"));
+        assertEquals(70, var.evaluate("x=50; y=60; x=70")); // Последнее значение x=70
+    }
+
+    @Test
+    void testDerivativeEdgeCases() {
+        Variable var = new Variable("x");
+
+        assertEquals(1, var.derivative("x").evaluate(""));
+        assertEquals(0, var.derivative("y").evaluate(""));
+        assertEquals(0, var.derivative("X").evaluate(""));
+    }
+
+    @Test
+    void testEvaluateWithLargeNumbers() {
+        Variable var = new Variable("x");
+
+        assertEquals(1000000, var.evaluate("x=1000000"));
+        assertEquals(-1000000, var.evaluate("x=-1000000"));
+    }
+
+    @Test
+    void testEvaluateCacheWithDifferentStrings() {
+        Variable var = new Variable("x");
+
+        assertEquals(10, var.evaluate("x=10"));
+        assertEquals(10, var.evaluate("x=10"));
+        assertEquals(20, var.evaluate("x=20"));
+        assertEquals(20, var.evaluate("x=20"));
     }
 }
