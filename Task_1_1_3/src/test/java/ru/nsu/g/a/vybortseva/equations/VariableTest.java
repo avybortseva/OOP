@@ -23,6 +23,45 @@ class VariableTest {
     }
 
     @Test
+    void testEvaluateWithCache() {
+        String variablesStr = "x=10; y=20; z=30";
+
+        Variable varX = new Variable("x");
+        Variable varY = new Variable("y");
+        Variable varZ = new Variable("z");
+
+        assertEquals(10, varX.evaluate(variablesStr));
+        assertEquals(20, varY.evaluate(variablesStr));
+        assertEquals(30, varZ.evaluate(variablesStr));
+        assertEquals(10, varX.evaluate(variablesStr));
+    }
+
+    @Test
+    void testEvaluateCaseSensitivity() {
+        Variable varLower = new Variable("x");
+        Variable varUpper = new Variable("X");
+
+        assertEquals(10, varLower.evaluate("x=10; X=20"));
+        assertEquals(20, varUpper.evaluate("x=10; X=20"));
+    }
+
+    @Test
+    void testEvaluatePerformanceWithRepeatedCalls() {
+        String complexVariables = "a=1; b=2; c=3; d=4; e=5; f=6; g=7; h=8; i=9; j=10";
+
+        Variable[] variables = {
+                new Variable("a"), new Variable("b"), new Variable("c"),
+                new Variable("d"), new Variable("e"), new Variable("f"),
+                new Variable("g"), new Variable("h"), new Variable("i"), new Variable("j")
+        };
+        for (int i = 0; i < 10; i++) {
+            for (Variable var : variables) {
+                assertDoesNotThrow(() -> var.evaluate(complexVariables));
+            }
+        }
+    }
+
+    @Test
     void testPrint() {
         Variable var = new Variable("x");
 
@@ -42,6 +81,16 @@ class VariableTest {
 
         Variable var4 = new Variable("Var");
         assertEquals(0, var4.derivative("Var=10 ; y=20").evaluate(""));
+    }
+
+    @Test
+    void testDerivativeWithDifferentVariables() {
+        Variable varX = new Variable("x");
+        assertEquals(1, varX.derivative("x").evaluate("x=5"));
+
+        assertEquals(0, varX.derivative("y").evaluate("x=5; y=10"));
+
+        assertEquals(0, varX.derivative("z").evaluate("x=5"));
     }
 
     @Test
