@@ -1,10 +1,13 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-import org.junit.jupiter.api.Test;
-import java.util.Map;
-import ru.nsu.g.a.vybortseva.equations.exceptions.UndefinedVariableException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+import ru.nsu.g.a.vybortseva.equations.exceptions.UndefinedVariableException;
 
 class VariableTest {
 
@@ -51,9 +54,10 @@ class VariableTest {
         String complexVariables = "a=1; b=2; c=3; d=4; e=5; f=6; g=7; h=8; i=9; j=10";
 
         Variable[] variables = {
-                new Variable("a"), new Variable("b"), new Variable("c"),
-                new Variable("d"), new Variable("e"), new Variable("f"),
-                new Variable("g"), new Variable("h"), new Variable("i"), new Variable("j")
+            new Variable("a"), new Variable("b"), new Variable("c"),
+            new Variable("d"), new Variable("e"), new Variable("f"),
+            new Variable("g"), new Variable("h"), new Variable("i"),
+            new Variable("j")
         };
         for (int i = 0; i < 10; i++) {
             for (Variable var : variables) {

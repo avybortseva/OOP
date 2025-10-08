@@ -30,6 +30,9 @@ public class Variable extends Expression {
         return variables.get(name);
     }
 
+    /**
+     * Parsing Variables.
+     */
     public Map<String, Integer> parseVariables(String variablesStr) {
         Map<String, Integer> variables = new HashMap<>();
         if (variablesStr != null && !variablesStr.trim().isEmpty()) {
