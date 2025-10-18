@@ -49,11 +49,16 @@ public class AdjacencyList implements Graph {
 
     @Override
     public void addEdge(Object from, Object to) {
+        if (!hasVertex(from)) {
+            addVertex(from);
+        }
+        if (!hasVertex(to)) {
+            addVertex(to);
+        }
+
         List<Object> fromNeighbors = adjacencyList.get(from);
-        if (hasVertex(from) && hasVertex(to)) {
+        if (!fromNeighbors.contains(to)) {
             fromNeighbors.add(to);
-        } else {
-            throw new IllegalArgumentException("One or both vertices not found");
         }
 
         if (!directed) {
@@ -66,16 +71,16 @@ public class AdjacencyList implements Graph {
 
     @Override
     public void removeEdge(Object from, Object to) {
-        List<Object> fromNeighbors = adjacencyList.get(from);
-        if (hasVertex(from) && hasVertex(to)) {
-            fromNeighbors.remove(to);
-        } else {
+        if (!hasVertex(from) || !hasVertex(to)) {
             throw new IllegalArgumentException("One or both vertices not found");
         }
 
+        List<Object> fromNeighbors = adjacencyList.get(from);
+        fromNeighbors.remove(to);
+
         if (!directed) {
             List<Object> toNeighbors = adjacencyList.get(to);
-            fromNeighbors.remove(from);
+            toNeighbors.remove(from);
         }
     }
 

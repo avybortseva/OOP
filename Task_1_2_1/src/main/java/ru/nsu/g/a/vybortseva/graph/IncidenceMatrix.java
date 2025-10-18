@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class IncidenceMatrix implements Graph{
+public class IncidenceMatrix implements Graph {
     private Map<Object, Integer> vertexIndices;
     private List<List<Integer>> matrix;
     private List<Object> vertices;
@@ -52,10 +52,11 @@ public class IncidenceMatrix implements Graph{
     @Override
     public void removeVertex(Object vertex) {
         if (hasVertex(vertex)) {
+            int vertexIndex = objectToInt(vertex);
 
             vertexIndices.remove(vertex);
-            vertices.remove(objectToInt(vertex));
-            matrix.remove(objectToInt(vertex));
+            vertices.remove(vertexIndex);
+            matrix.remove(vertexIndex);
 
             vertexIndices.clear();
             for (int i = 0; i < vertices.size(); i++) {
@@ -64,27 +65,33 @@ public class IncidenceMatrix implements Graph{
         } else {
             throw new IllegalArgumentException("Vertex not found: " + vertex);
         }
-
     }
 
     @Override
     public void addEdge(Object from, Object to) {
-        if (hasVertex(from) || hasVertex(to)) {
-            int fromIdx = vertexIndices.get(from);
-            int toIdx = vertexIndices.get(to);
+        if (hasVertex(from) && hasVertex(to)) {
+            int fromIdx = objectToInt(from);
+            int toIdx = objectToInt(to);
 
             for (List<Integer> row : matrix) {
                 row.add(0);
             }
 
-            matrix.get(fromIdx).set(edgeCount, 1);
-            if (directed) {
-                matrix.get(toIdx).set(edgeCount, -1);
+            if (from.equals(to)) {
+                if (directed) {
+                    matrix.get(fromIdx).set(edgeCount, 2);
+                } else {
+                    matrix.get(fromIdx).set(edgeCount, 1);
+                }
             } else {
-                matrix.get(toIdx).set(edgeCount, 1);
+                matrix.get(fromIdx).set(edgeCount, 1);
+                if (directed) {
+                    matrix.get(toIdx).set(edgeCount, -1);
+                } else {
+                    matrix.get(toIdx).set(edgeCount, 1);
+                }
             }
             edgeCount++;
-
         } else {
             throw new IllegalArgumentException("One or both vertices not found");
         }
@@ -92,30 +99,53 @@ public class IncidenceMatrix implements Graph{
 
     @Override
     public void removeEdge(Object from, Object to) {
-        if (hasVertex(from) || hasVertex(to)) {
-            int fromIdx = vertexIndices.get(from);
-            int toIdx = vertexIndices.get(to);
+        if (hasVertex(from) && hasVertex(to)) {
+            int fromIdx = objectToInt(from);
+            int toIdx = objectToInt(to);
 
             int edgeToRemove = -1;
 
             for (int edge = 0; edge < edgeCount; edge++) {
-                if (directed) {
-                    if (matrix.get(fromIdx).get(edge) == 1 &&
-                            matrix.get(toIdx).get(edge) == -1) {
-                        edgeToRemove = edge;
-                        break;
+                if (from.equals(to)) {
+                    if (directed) {
+                        if (matrix.get(fromIdx).get(edge) == 2) {
+                            edgeToRemove = edge;
+                            break;
+                        }
+                    } else {
+                        if (matrix.get(fromIdx).get(edge) == 1) {
+                            boolean isLoop = true;
+                            for (int i = 0; i < vertices.size(); i++) {
+                                if (i != fromIdx && matrix.get(i).get(edge) == 1) {
+                                    isLoop = false;
+                                    break;
+                                }
+                            }
+                            if (isLoop) {
+                                edgeToRemove = edge;
+                                break;
+                            }
+                        }
                     }
                 } else {
-                    if (matrix.get(fromIdx).get(edge) == 1 &&
-                            matrix.get(toIdx).get(edge) == 1) {
-                        edgeToRemove = edge;
-                        break;
+                    if (directed) {
+                        if (matrix.get(fromIdx).get(edge) == 1 &&
+                                matrix.get(toIdx).get(edge) == -1) {
+                            edgeToRemove = edge;
+                            break;
+                        }
+                    } else {
+                        if (matrix.get(fromIdx).get(edge) == 1 &&
+                                matrix.get(toIdx).get(edge) == 1) {
+                            edgeToRemove = edge;
+                            break;
+                        }
                     }
                 }
             }
 
             if (edgeToRemove == -1) {
-                throw new IllegalArgumentException("Ребро между вершинами " + from + " и " + to + " не найдено");
+                throw new NullPointerException("Edge between vertices " + from + " and " + to + " not found");
             }
 
             for (List<Integer> row : matrix) {
@@ -123,7 +153,7 @@ public class IncidenceMatrix implements Graph{
             }
             edgeCount--;
         } else {
-            throw new IllegalArgumentException("One or both vertices not found");
+            throw new NullPointerException("One or both vertices not found");
         }
     }
 
@@ -141,23 +171,32 @@ public class IncidenceMatrix implements Graph{
             if (directed) {
                 if (value == 1) {
                     for (int i = 0; i < vertices.size(); i++) {
-                        if (i != vertexIndex && matrix.get(i).get(edge) == -1) {
+                        if (matrix.get(i).get(edge) == -1) {
                             Object neighbor = intToObject(i);
                             if (!neighbors.contains(neighbor)) {
                                 neighbors.add(neighbor);
                             }
                         }
                     }
+                } else if (value == 2) {
+                    if (!neighbors.contains(vertex)) {
+                        neighbors.add(vertex);
+                    }
                 }
             } else {
                 if (value == 1) {
+                    boolean foundOther = false;
                     for (int i = 0; i < vertices.size(); i++) {
                         if (i != vertexIndex && matrix.get(i).get(edge) == 1) {
                             Object neighbor = intToObject(i);
                             if (!neighbors.contains(neighbor)) {
                                 neighbors.add(neighbor);
                             }
+                            foundOther = true;
                         }
+                    }
+                    if (!foundOther && !neighbors.contains(vertex)) {
+                        neighbors.add(vertex);
                     }
                 }
             }
@@ -207,19 +246,41 @@ public class IncidenceMatrix implements Graph{
 
     @Override
     public boolean hasEdge(Object from, Object to) {
-        if (hasVertex(from) && hasVertex(to)){
+        if (hasVertex(from) && hasVertex(to)) {
             int fromIdx = objectToInt(from);
             int toIdx = objectToInt(to);
+
             for (int edge = 0; edge < edgeCount; edge++) {
-                if (directed) {
-                    if (matrix.get(fromIdx).get(edge) == 1 &&
-                            matrix.get(toIdx).get(edge) == -1) {
-                        return true;
+                if (from.equals(to)) {
+                    if (directed) {
+                        if (matrix.get(fromIdx).get(edge) == 2) {
+                            return true;
+                        }
+                    } else {
+                        if (matrix.get(fromIdx).get(edge) == 1) {
+                            boolean isLoop = true;
+                            for (int i = 0; i < vertices.size(); i++) {
+                                if (i != fromIdx && matrix.get(i).get(edge) == 1) {
+                                    isLoop = false;
+                                    break;
+                                }
+                            }
+                            if (isLoop) {
+                                return true;
+                            }
+                        }
                     }
                 } else {
-                    if (matrix.get(fromIdx).get(edge) == 1 &&
-                            matrix.get(toIdx).get(edge) == 1) {
-                        return true;
+                    if (directed) {
+                        if (matrix.get(fromIdx).get(edge) == 1 &&
+                                matrix.get(toIdx).get(edge) == -1) {
+                            return true;
+                        }
+                    } else {
+                        if (matrix.get(fromIdx).get(edge) == 1 &&
+                                matrix.get(toIdx).get(edge) == 1) {
+                            return true;
+                        }
                     }
                 }
             }
