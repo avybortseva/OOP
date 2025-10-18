@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ru.nsu.g.a.vybortseva.sort","c":"Sort","l":"heapsort(int[])"},{"p":"ru.nsu.g.a.vybortseva.sort","c":"Sort","l":"Sort()","u":"%3Cinit%3E()"}];updateSearchResults();

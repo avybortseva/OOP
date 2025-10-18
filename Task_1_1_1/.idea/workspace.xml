@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4848f164-c7d5-4584-83ee-dc86ca84ca78" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Task_1_1_2/src/main/java/ru/nsu/g/a/vybortseva/game/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/src/main/java/ru/nsu/g/a/vybortseva/Task_1_1_1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_1_1_2/src/main/java/ru/nsu/g/a/vybortseva/game/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="32UTQC6ivbrDEiDXCGW3n0hWowq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "task-1-1-2",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4848f164-c7d5-4584-83ee-dc86ca84ca78" name="Changes" comment="" />
+      <created>1757474132303</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757474132303</updated>
+    </task>
+    <servers />
+  </component>
+</project>
