@@ -1,15 +1,12 @@
 package ru.nsu.g.a.vybortseva.graph;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class AdjacencyList implements Graph {
-    private Map<Object, List<Object>> adjacencyList;
+    private Map<Vertex, List<Vertex>> adjacencyList;
     private final boolean directed;
 
     public AdjacencyList(boolean directed) {
@@ -19,23 +16,23 @@ public class AdjacencyList implements Graph {
 
 
     @Override
-    public void addVertex(Object vertex) {
+    public void addVertex(Vertex vertex) {
         if (!hasVertex(vertex)) {
             adjacencyList.put(vertex, new ArrayList<>());
         }
     }
 
     @Override
-    public void removeVertex(Object vertex) {
+    public void removeVertex(Vertex vertex) {
         if (hasVertex(vertex)) {
             if (directed) {
-                for (List<Object> neighbors : adjacencyList.values()) {
+                for (List<Vertex> neighbors : adjacencyList.values()) {
                     neighbors.remove(vertex);
                 }
             } else {
-                List<Object> neighbors = adjacencyList.get(vertex);
-                for (Object neighbor : neighbors) {
-                    List<Object> neighborList = adjacencyList.get(neighbor);
+                List<Vertex> neighbors = adjacencyList.get(vertex);
+                for (Vertex neighbor : neighbors) {
+                    List<Vertex> neighborList = adjacencyList.get(neighbor);
                     if (neighborList != null) {
                         neighborList.remove(vertex);
                     }
@@ -48,7 +45,7 @@ public class AdjacencyList implements Graph {
     }
 
     @Override
-    public void addEdge(Object from, Object to) {
+    public void addEdge(Vertex from, Vertex to) {
         if (!hasVertex(from)) {
             addVertex(from);
         }
@@ -56,13 +53,13 @@ public class AdjacencyList implements Graph {
             addVertex(to);
         }
 
-        List<Object> fromNeighbors = adjacencyList.get(from);
+        List<Vertex> fromNeighbors = adjacencyList.get(from);
         if (!fromNeighbors.contains(to)) {
             fromNeighbors.add(to);
         }
 
         if (!directed) {
-            List<Object> toNeighbors = adjacencyList.get(to);
+            List<Vertex> toNeighbors = adjacencyList.get(to);
             if (!toNeighbors.contains(from)) {
                 toNeighbors.add(from);
             }
@@ -70,22 +67,22 @@ public class AdjacencyList implements Graph {
     }
 
     @Override
-    public void removeEdge(Object from, Object to) {
+    public void removeEdge(Vertex from, Vertex to) {
         if (!hasVertex(from) || !hasVertex(to)) {
             throw new IllegalArgumentException("One or both vertices not found");
         }
 
-        List<Object> fromNeighbors = adjacencyList.get(from);
+        List<Vertex> fromNeighbors = adjacencyList.get(from);
         fromNeighbors.remove(to);
 
         if (!directed) {
-            List<Object> toNeighbors = adjacencyList.get(to);
+            List<Vertex> toNeighbors = adjacencyList.get(to);
             toNeighbors.remove(from);
         }
     }
 
     @Override
-    public List<Object> getNeighbors(Object vertex) {
+    public List<Vertex> getNeighbors(Vertex vertex) {
         if (hasVertex(vertex)) {
             return new ArrayList<>(adjacencyList.get(vertex));
         } else {
@@ -94,55 +91,19 @@ public class AdjacencyList implements Graph {
     }
 
     @Override
-    public void readFromFile(String filename) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            boolean firstLine = true;
-
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-                if (line.isEmpty()) continue;
-
-                if (firstLine) {
-                    firstLine = false;
-                    continue;
-                }
-
-                String[] parts = line.split("\\s+");
-                if (parts.length >= 2) {
-                    String from = parts[0];
-                    String to = parts[1];
-
-                    if (!hasVertex(from)) {
-                        addVertex(from);
-                    }
-                    if (!hasVertex(to)) {
-                        addVertex(to);
-                    }
-
-                    addEdge(from, to);
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Error reading graph from file: " + filename, e);
-        }
-    }
-
-    @Override
-    public boolean hasVertex(Object vertex) {
+    public boolean hasVertex(Vertex vertex) {
         return adjacencyList.containsKey(vertex);
     }
 
     @Override
-    public boolean hasEdge(Object from, Object to) {
+    public boolean hasEdge(Vertex from, Vertex to) {
         if (!hasVertex(from) || !hasVertex(to)) {
             return false;
         }
         return adjacencyList.get(from).contains(to);
     }
 
-    @Override
-    public List<Object> getAllVertices() {
+    public List<Vertex> getVertices() {
         return new ArrayList<>(adjacencyList.keySet());
     }
 

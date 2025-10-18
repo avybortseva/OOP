@@ -1,208 +1,258 @@
 package ru.nsu.g.a.vybortseva.graph;
 
 import org.junit.jupiter.api.Test;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Тесты для класса IncidenceMatrix
+ */
 class IncidenceMatrixTest {
 
     @Test
-    void intToObject() {
+    void intToVertex() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        assertEquals("A", graph.intToObject(0));
-        assertEquals("B", graph.intToObject(1));
-        assertEquals("C", graph.intToObject(2));
-        assertNull(graph.intToObject(3));
-        assertNull(graph.intToObject(-1));
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+
+        assertEquals(vertexA, graph.intToVertex(0));
+        assertEquals(vertexB, graph.intToVertex(1));
+        assertEquals(vertexC, graph.intToVertex(2));
+        assertNull(graph.intToVertex(3));
+        assertNull(graph.intToVertex(-1));
     }
 
     @Test
-    void objectToInt() {
+    void VertexToInt() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        assertEquals(0, graph.objectToInt("A"));
-        assertEquals(1, graph.objectToInt("B"));
-        assertEquals(2, graph.objectToInt("C"));
-        assertEquals(-1, graph.objectToInt("D"));
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+
+        assertEquals(0, graph.VertexToInt(vertexA));
+        assertEquals(1, graph.VertexToInt(vertexB));
+        assertEquals(2, graph.VertexToInt(vertexC));
+
+        Vertex vertexD = new StringVertex("D");
+        assertEquals(IncidenceMatrix.INVALID_INDEX, graph.VertexToInt(vertexD));
     }
 
     @Test
     void addVertex() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
 
-        assertTrue(graph.hasVertex("A"));
-        assertTrue(graph.hasVertex("B"));
-        assertEquals(2, graph.getAllVertices().size());
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
 
-        graph.addVertex("A");
-        assertEquals(2, graph.getAllVertices().size());
+        assertTrue(graph.hasVertex(vertexA));
+        assertTrue(graph.hasVertex(vertexB));
+        assertEquals(2, graph.getVertices().size());
+
+        graph.addVertex(vertexA);
+        assertEquals(2, graph.getVertices().size());
     }
 
     @Test
     void removeVertex() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.removeVertex("B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
 
-        assertFalse(graph.hasVertex("B"));
-        assertTrue(graph.hasVertex("A"));
-        assertTrue(graph.hasVertex("C"));
-        assertFalse(graph.hasEdge("A", "B"));
-        assertFalse(graph.hasEdge("B", "C"));
+        graph.removeVertex(vertexB);
 
-        assertThrows(IllegalArgumentException.class, () -> graph.removeVertex("D"));
+        assertFalse(graph.hasVertex(vertexB));
+        assertTrue(graph.hasVertex(vertexA));
+        assertTrue(graph.hasVertex(vertexC));
+        assertFalse(graph.hasEdge(vertexA, vertexB));
+        assertFalse(graph.hasEdge(vertexB, vertexC));
+
+        Vertex vertexD = new StringVertex("D");
+        assertThrows(IllegalArgumentException.class, () -> graph.removeVertex(vertexD));
     }
 
     @Test
     void removeVertexDirected() {
         IncidenceMatrix graph = new IncidenceMatrix(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.removeVertex("B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
 
-        assertFalse(graph.hasVertex("B"));
-        assertFalse(graph.hasEdge("A", "B"));
-        assertFalse(graph.hasEdge("B", "C"));
+        graph.removeVertex(vertexB);
+
+        assertFalse(graph.hasVertex(vertexB));
+        assertFalse(graph.hasEdge(vertexA, vertexB));
+        assertFalse(graph.hasEdge(vertexB, vertexC));
     }
 
     @Test
     void addEdge() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
 
-        assertTrue(graph.hasEdge("A", "B"));
-        assertTrue(graph.hasEdge("B", "A"));
-        assertTrue(graph.hasEdge("B", "C"));
-        assertTrue(graph.hasEdge("C", "B"));
-        assertFalse(graph.hasEdge("A", "C"));
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
+
+        assertTrue(graph.hasEdge(vertexA, vertexB));
+        assertTrue(graph.hasEdge(vertexB, vertexA));
+        assertTrue(graph.hasEdge(vertexB, vertexC));
+        assertTrue(graph.hasEdge(vertexC, vertexB));
+        assertFalse(graph.hasEdge(vertexA, vertexC));
     }
 
     @Test
     void addEdgeDirected() {
         IncidenceMatrix graph = new IncidenceMatrix(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
 
-        assertTrue(graph.hasEdge("A", "B"));
-        assertFalse(graph.hasEdge("B", "A"));
-        assertTrue(graph.hasEdge("B", "C"));
-        assertFalse(graph.hasEdge("C", "B"));
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
+
+        assertTrue(graph.hasEdge(vertexA, vertexB));
+        assertFalse(graph.hasEdge(vertexB, vertexA));
+        assertTrue(graph.hasEdge(vertexB, vertexC));
+        assertFalse(graph.hasEdge(vertexC, vertexB));
     }
 
     @Test
     void removeEdge() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        assertTrue(graph.hasEdge("A", "B"));
-        assertTrue(graph.hasEdge("B", "A"));
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
 
-        graph.removeEdge("A", "B");
+        assertTrue(graph.hasEdge(vertexA, vertexB));
+        assertTrue(graph.hasEdge(vertexB, vertexA));
 
-        assertFalse(graph.hasEdge("A", "B"));
-        assertFalse(graph.hasEdge("B", "A"));
+        graph.removeEdge(vertexA, vertexB);
 
-        assertTrue(graph.hasEdge("B", "C"));
-        assertTrue(graph.hasEdge("C", "B"));
+        assertFalse(graph.hasEdge(vertexA, vertexB));
+        assertFalse(graph.hasEdge(vertexB, vertexA));
+        assertTrue(graph.hasEdge(vertexB, vertexC));
+        assertTrue(graph.hasEdge(vertexC, vertexB));
 
-        assertThrows(NullPointerException.class, () -> graph.removeEdge("A", "D"));
+        Vertex vertexD = new StringVertex("D");
+        assertThrows(NullPointerException.class, () -> graph.removeEdge(vertexA, vertexD));
     }
 
     @Test
     void removeEdgeDirected() {
         IncidenceMatrix graph = new IncidenceMatrix(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.removeEdge("A", "B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
 
-        assertFalse(graph.hasEdge("A", "B"));
-        assertTrue(graph.hasEdge("B", "C"));
+        graph.removeEdge(vertexA, vertexB);
+
+        assertFalse(graph.hasEdge(vertexA, vertexB));
+        assertTrue(graph.hasEdge(vertexB, vertexC));
     }
 
     @Test
     void getNeighbors() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addVertex("D");
-        graph.addEdge("A", "B");
-        graph.addEdge("A", "C");
-        graph.addEdge("B", "D");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
+        Vertex vertexD = new StringVertex("D");
 
-        List<Object> neighborsA = graph.getNeighbors("A");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addVertex(vertexD);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexA, vertexC);
+        graph.addEdge(vertexB, vertexD);
+
+        List<Vertex> neighborsA = graph.getNeighbors(vertexA);
         assertEquals(2, neighborsA.size());
-        assertTrue(neighborsA.contains("B"));
-        assertTrue(neighborsA.contains("C"));
+        assertTrue(neighborsA.contains(vertexB));
+        assertTrue(neighborsA.contains(vertexC));
 
-        List<Object> neighborsB = graph.getNeighbors("B");
+        List<Vertex> neighborsB = graph.getNeighbors(vertexB);
         assertEquals(2, neighborsB.size());
-        assertTrue(neighborsB.contains("A"));
-        assertTrue(neighborsB.contains("D"));
+        assertTrue(neighborsB.contains(vertexA));
+        assertTrue(neighborsB.contains(vertexD));
 
-        List<Object> neighborsC = graph.getNeighbors("C");
+        List<Vertex> neighborsC = graph.getNeighbors(vertexC);
         assertEquals(1, neighborsC.size());
-        assertTrue(neighborsC.contains("A"));
+        assertTrue(neighborsC.contains(vertexA));
 
-        List<Object> neighborsE = graph.getNeighbors("E");
+        Vertex vertexE = new StringVertex("E");
+        List<Vertex> neighborsE = graph.getNeighbors(vertexE);
         assertTrue(neighborsE.isEmpty());
     }
 
     @Test
     void getNeighborsDirected() {
         IncidenceMatrix graph = new IncidenceMatrix(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        List<Object> neighborsA = graph.getNeighbors("A");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
+
+        List<Vertex> neighborsA = graph.getNeighbors(vertexA);
         assertEquals(1, neighborsA.size());
-        assertTrue(neighborsA.contains("B"));
+        assertTrue(neighborsA.contains(vertexB));
 
-        List<Object> neighborsB = graph.getNeighbors("B");
+        List<Vertex> neighborsB = graph.getNeighbors(vertexB);
         assertEquals(1, neighborsB.size());
-        assertTrue(neighborsB.contains("C"));
+        assertTrue(neighborsB.contains(vertexC));
 
-        List<Object> neighborsC = graph.getNeighbors("C");
+        List<Vertex> neighborsC = graph.getNeighbors(vertexC);
         assertTrue(neighborsC.isEmpty());
     }
 
@@ -212,7 +262,7 @@ class IncidenceMatrixTest {
 
         try {
             graph.readFromFile("graph.txt");
-            assertTrue(graph.getAllVertices().size() > 0);
+            assertTrue(graph.getVertices().size() > 0);
         } catch (RuntimeException e) {
             assertTrue(e.getMessage().contains("Error reading graph from file"));
         }
@@ -221,58 +271,76 @@ class IncidenceMatrixTest {
     @Test
     void hasVertex() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
 
-        assertTrue(graph.hasVertex("A"));
-        assertTrue(graph.hasVertex("B"));
-        assertFalse(graph.hasVertex("C"));
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+
+        assertTrue(graph.hasVertex(vertexA));
+        assertTrue(graph.hasVertex(vertexB));
+
+        Vertex vertexC = new StringVertex("C");
+        assertFalse(graph.hasVertex(vertexC));
     }
 
     @Test
     void hasEdge() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        assertTrue(graph.hasEdge("A", "B"));
-        assertTrue(graph.hasEdge("B", "A"));
-        assertFalse(graph.hasEdge("A", "C"));
-        assertFalse(graph.hasEdge("B", "C"));
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
 
-        assertFalse(graph.hasEdge("A", "D"));
-        assertFalse(graph.hasEdge("D", "A"));
+        assertTrue(graph.hasEdge(vertexA, vertexB));
+        assertTrue(graph.hasEdge(vertexB, vertexA));
+        assertFalse(graph.hasEdge(vertexA, vertexC));
+        assertFalse(graph.hasEdge(vertexB, vertexC));
+
+        Vertex vertexD = new StringVertex("D");
+        assertFalse(graph.hasEdge(vertexA, vertexD));
+        assertFalse(graph.hasEdge(vertexD, vertexA));
     }
 
     @Test
     void hasEdgeDirected() {
         IncidenceMatrix graph = new IncidenceMatrix(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        assertTrue(graph.hasEdge("A", "B"));
-        assertFalse(graph.hasEdge("B", "A"));
-        assertTrue(graph.hasEdge("B", "C"));
-        assertFalse(graph.hasEdge("C", "B"));
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
+
+        assertTrue(graph.hasEdge(vertexA, vertexB));
+        assertFalse(graph.hasEdge(vertexB, vertexA));
+        assertTrue(graph.hasEdge(vertexB, vertexC));
+        assertFalse(graph.hasEdge(vertexC, vertexB));
     }
 
     @Test
-    void getAllVertices() {
+    void getVertices() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        List<Object> vertices = graph.getAllVertices();
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+
+        List<Vertex> vertices = graph.getVertices();
         assertEquals(3, vertices.size());
-        assertTrue(vertices.contains("A"));
-        assertTrue(vertices.contains("B"));
-        assertTrue(vertices.contains("C"));
+        assertTrue(vertices.contains(vertexA));
+        assertTrue(vertices.contains(vertexB));
+        assertTrue(vertices.contains(vertexC));
     }
 
     @Test
@@ -287,62 +355,72 @@ class IncidenceMatrixTest {
     @Test
     void multipleEdges() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.addEdge("A", "B");
-        graph.addEdge("A", "C");
-        graph.addEdge("B", "C");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
 
-        assertEquals(2, graph.getNeighbors("A").size());
-        assertEquals(2, graph.getNeighbors("B").size());
-        assertEquals(2, graph.getNeighbors("C").size()); // A и B
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexA, vertexC);
+        graph.addEdge(vertexB, vertexC);
+
+        assertEquals(2, graph.getNeighbors(vertexA).size());
+        assertEquals(2, graph.getNeighbors(vertexB).size());
+        assertEquals(2, graph.getNeighbors(vertexC).size());
     }
 
     @Test
     void emptyGraph() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
 
-        assertTrue(graph.getAllVertices().isEmpty());
-        assertFalse(graph.hasVertex("A"));
-        assertFalse(graph.hasEdge("A", "B"));
-        assertTrue(graph.getNeighbors("A").isEmpty());
+        assertTrue(graph.getVertices().isEmpty());
+
+        Vertex vertexA = new StringVertex("A");
+        assertFalse(graph.hasVertex(vertexA));
+        assertFalse(graph.hasEdge(vertexA, vertexA));
+        assertTrue(graph.getNeighbors(vertexA).isEmpty());
     }
 
     @Test
     void singleVertex() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
+        Vertex vertexA = new StringVertex("A");
 
-        assertEquals(1, graph.getAllVertices().size());
-        assertTrue(graph.hasVertex("A"));
-        assertTrue(graph.getNeighbors("A").isEmpty());
+        graph.addVertex(vertexA);
+
+        assertEquals(1, graph.getVertices().size());
+        assertTrue(graph.hasVertex(vertexA));
+        assertTrue(graph.getNeighbors(vertexA).isEmpty());
     }
 
     @Test
     void selfLoopDirected() {
         IncidenceMatrix graph = new IncidenceMatrix(true);
-        graph.addVertex("A");
+        Vertex vertexA = new StringVertex("A");
 
-        graph.addEdge("A", "A");
+        graph.addVertex(vertexA);
+        graph.addEdge(vertexA, vertexA);
 
-        assertTrue(graph.hasEdge("A", "A"));
-        List<Object> neighbors = graph.getNeighbors("A");
+        assertTrue(graph.hasEdge(vertexA, vertexA));
+        List<Vertex> neighbors = graph.getNeighbors(vertexA);
         assertEquals(1, neighbors.size());
-        assertTrue(neighbors.contains("A"));
+        assertTrue(neighbors.contains(vertexA));
     }
 
     @Test
     void selfLoopUndirected() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
-        graph.addVertex("A");
+        Vertex vertexA = new StringVertex("A");
 
-        graph.addEdge("A", "A");
+        graph.addVertex(vertexA);
+        graph.addEdge(vertexA, vertexA);
 
-        assertTrue(graph.hasEdge("A", "A"));
-        List<Object> neighbors = graph.getNeighbors("A");
+        assertTrue(graph.hasEdge(vertexA, vertexA));
+        List<Vertex> neighbors = graph.getNeighbors(vertexA);
         assertEquals(1, neighbors.size());
-        assertTrue(neighbors.contains("A"));
+        assertTrue(neighbors.contains(vertexA));
     }
 }

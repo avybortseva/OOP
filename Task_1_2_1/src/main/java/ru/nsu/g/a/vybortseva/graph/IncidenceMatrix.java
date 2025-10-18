@@ -1,17 +1,14 @@
 package ru.nsu.g.a.vybortseva.graph;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class IncidenceMatrix implements Graph {
-    private Map<Object, Integer> vertexIndices;
+    private Map<Vertex, Integer> vertexIndices;
     private List<List<Integer>> matrix;
-    private List<Object> vertices;
+    private List<Vertex> vertices;
     private int edgeCount;
     private final boolean directed;
 
@@ -23,20 +20,20 @@ public class IncidenceMatrix implements Graph {
         this.directed = directed;
     }
 
-    public Object intToObject(int index) {
+    public Vertex intToVertex(int index) {
         if (index >= 0 && index < vertices.size()) {
             return vertices.get(index);
         }
         return null;
     }
 
-    public int objectToInt(Object vertex) {
+    public int VertexToInt(Vertex vertex) {
         Integer index = vertexIndices.get(vertex);
-        return index != null ? index : -1;
+        return index != null ? index : INVALID_INDEX;
     }
 
     @Override
-    public void addVertex(Object vertex) {
+    public void addVertex(Vertex vertex) {
         if (!hasVertex(vertex)) {
             vertexIndices.put(vertex, vertices.size());
             vertices.add(vertex);
@@ -50,9 +47,9 @@ public class IncidenceMatrix implements Graph {
     }
 
     @Override
-    public void removeVertex(Object vertex) {
+    public void removeVertex(Vertex vertex) {
         if (hasVertex(vertex)) {
-            int vertexIndex = objectToInt(vertex);
+            int vertexIndex = VertexToInt(vertex);
 
             vertexIndices.remove(vertex);
             vertices.remove(vertexIndex);
@@ -68,10 +65,10 @@ public class IncidenceMatrix implements Graph {
     }
 
     @Override
-    public void addEdge(Object from, Object to) {
+    public void addEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)) {
-            int fromIdx = objectToInt(from);
-            int toIdx = objectToInt(to);
+            int fromIdx = VertexToInt(from);
+            int toIdx = VertexToInt(to);
 
             for (List<Integer> row : matrix) {
                 row.add(0);
@@ -98,12 +95,12 @@ public class IncidenceMatrix implements Graph {
     }
 
     @Override
-    public void removeEdge(Object from, Object to) {
+    public void removeEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)) {
-            int fromIdx = objectToInt(from);
-            int toIdx = objectToInt(to);
+            int fromIdx = VertexToInt(from);
+            int toIdx = VertexToInt(to);
 
-            int edgeToRemove = -1;
+            int edgeToRemove = INVALID_INDEX;
 
             for (int edge = 0; edge < edgeCount; edge++) {
                 if (from.equals(to)) {
@@ -144,7 +141,7 @@ public class IncidenceMatrix implements Graph {
                 }
             }
 
-            if (edgeToRemove == -1) {
+            if (edgeToRemove == INVALID_INDEX) {
                 throw new NullPointerException("Edge between vertices " + from + " and " + to + " not found");
             }
 
@@ -158,10 +155,10 @@ public class IncidenceMatrix implements Graph {
     }
 
     @Override
-    public List<Object> getNeighbors(Object vertex) {
-        List<Object> neighbors = new ArrayList<>();
-        int vertexIndex = objectToInt(vertex);
-        if (vertexIndex == -1) return neighbors;
+    public List<Vertex> getNeighbors(Vertex vertex) {
+        List<Vertex> neighbors = new ArrayList<>();
+        int vertexIndex = VertexToInt(vertex);
+        if (vertexIndex == INVALID_INDEX) return neighbors;
 
         List<Integer> vertexRow = matrix.get(vertexIndex);
 
@@ -172,7 +169,7 @@ public class IncidenceMatrix implements Graph {
                 if (value == 1) {
                     for (int i = 0; i < vertices.size(); i++) {
                         if (matrix.get(i).get(edge) == -1) {
-                            Object neighbor = intToObject(i);
+                            Vertex neighbor = intToVertex(i);
                             if (!neighbors.contains(neighbor)) {
                                 neighbors.add(neighbor);
                             }
@@ -188,7 +185,7 @@ public class IncidenceMatrix implements Graph {
                     boolean foundOther = false;
                     for (int i = 0; i < vertices.size(); i++) {
                         if (i != vertexIndex && matrix.get(i).get(edge) == 1) {
-                            Object neighbor = intToObject(i);
+                            Vertex neighbor = intToVertex(i);
                             if (!neighbors.contains(neighbor)) {
                                 neighbors.add(neighbor);
                             }
@@ -205,50 +202,15 @@ public class IncidenceMatrix implements Graph {
     }
 
     @Override
-    public void readFromFile(String filename) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            boolean firstLine = true;
-
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-                if (line.isEmpty()) continue;
-
-                if (firstLine) {
-                    firstLine = false;
-                    continue;
-                }
-
-                String[] parts = line.split("\\s+");
-                if (parts.length >= 2) {
-                    String from = parts[0];
-                    String to = parts[1];
-
-                    if (!hasVertex(from)) {
-                        addVertex(from);
-                    }
-                    if (!hasVertex(to)) {
-                        addVertex(to);
-                    }
-
-                    addEdge(from, to);
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Error reading graph from file: " + filename, e);
-        }
-    }
-
-    @Override
-    public boolean hasVertex(Object vertex) {
+    public boolean hasVertex(Vertex vertex) {
         return vertexIndices.containsKey(vertex);
     }
 
     @Override
-    public boolean hasEdge(Object from, Object to) {
+    public boolean hasEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)) {
-            int fromIdx = objectToInt(from);
-            int toIdx = objectToInt(to);
+            int fromIdx = VertexToInt(from);
+            int toIdx = VertexToInt(to);
 
             for (int edge = 0; edge < edgeCount; edge++) {
                 if (from.equals(to)) {
@@ -288,8 +250,7 @@ public class IncidenceMatrix implements Graph {
         return false;
     }
 
-    @Override
-    public List<Object> getAllVertices() {
+    public List<Vertex> getVertices() {
         return new ArrayList<>(vertices);
     }
 

@@ -4,18 +4,18 @@ import java.util.*;
 
 public class TopologicalSorting {
 
-    public static List<Object> topologicalSort(Graph graph) {
+    public static List<Vertex> topologicalSort(Graph graph) {
         if (!graph.isDirected()) {
             throw new IllegalArgumentException("Topological sort can only be applied to directed graphs");
         }
 
-        List<Object> result = new ArrayList<>();
-        Set<Object> visited = new HashSet<>();
-        Set<Object> tempMark = new HashSet<>();
+        List<Vertex> result = new ArrayList<>();
+        Set<Vertex> visited = new HashSet<>();
+        Set<Vertex> tempMark = new HashSet<>();
 
-        List<Object> allVertices = graph.getAllVertices();
+        List<Vertex> allVertices = graph.getVertices();
 
-        for (Object vertex : allVertices) {
+        for (Vertex vertex : allVertices) {
             if (!visited.contains(vertex)) {
                 try {
                     visit(vertex, graph, visited, tempMark, result);
@@ -29,8 +29,8 @@ public class TopologicalSorting {
         return result;
     }
 
-    private static void visit(Object vertex, Graph graph, Set<Object> visited,
-                              Set<Object> tempMark, List<Object> result) {
+    private static void visit(Vertex vertex, Graph graph, Set<Vertex> visited,
+                              Set<Vertex> tempMark, List<Vertex> result) {
         if (tempMark.contains(vertex)) {
             throw new IllegalArgumentException("Cycle detected");
         }
@@ -41,8 +41,8 @@ public class TopologicalSorting {
 
         tempMark.add(vertex);
 
-        List<Object> neighbors = graph.getNeighbors(vertex);
-        for (Object neighbor : neighbors) {
+        List<Vertex> neighbors = graph.getNeighbors(vertex);
+        for (Vertex neighbor : neighbors) {
             visit(neighbor, graph, visited, tempMark, result);
         }
 

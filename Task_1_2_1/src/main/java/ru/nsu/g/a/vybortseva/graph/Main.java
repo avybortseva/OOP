@@ -1,10 +1,13 @@
 package ru.nsu.g.a.vybortseva.graph;
 
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Main класс для демонстрации работы с графами
+ */
 public class Main {
+
     public static void main(String[] args) {
         System.out.println("=== Демонстрация трех представлений графа ===\n");
 
@@ -38,10 +41,15 @@ public class Main {
         System.out.println("1. МАТРИЦА СМЕЖНОСТИ:");
 
         AdjacencyMatrix graph = new AdjacencyMatrix(directed);
-        graph.setVertices(Arrays.asList(vertices.toArray()));
+
+        for (String vertex : vertices) {
+            graph.addVertex(new StringVertex(vertex));
+        }
 
         for (String[] edge : edges) {
-            graph.addEdge(edge[0], edge[1]);
+            Vertex from = new StringVertex(edge[0]);
+            Vertex to = new StringVertex(edge[1]);
+            graph.addEdge(from, to);
         }
 
         printGraphInfo(graph, directed);
@@ -49,7 +57,7 @@ public class Main {
 
         if (directed) {
             try {
-                List<Object> sorted = TopologicalSorting.topologicalSort(graph);
+                List<Vertex> sorted = TopologicalSorting.topologicalSort(graph);
                 System.out.println("Топологическая сортировка: " + sorted);
             } catch (IllegalArgumentException e) {
                 System.out.println("Топологическая сортировка невозможна: " + e.getMessage());
@@ -64,11 +72,13 @@ public class Main {
         IncidenceMatrix graph = new IncidenceMatrix(directed);
 
         for (String vertex : vertices) {
-            graph.addVertex(vertex);
+            graph.addVertex(new StringVertex(vertex));
         }
 
         for (String[] edge : edges) {
-            graph.addEdge(edge[0], edge[1]);
+            Vertex from = new StringVertex(edge[0]);
+            Vertex to = new StringVertex(edge[1]);
+            graph.addEdge(from, to);
         }
 
         printGraphInfo(graph, directed);
@@ -76,7 +86,7 @@ public class Main {
 
         if (directed) {
             try {
-                List<Object> sorted = TopologicalSorting.topologicalSort(graph);
+                List<Vertex> sorted = TopologicalSorting.topologicalSort(graph);
                 System.out.println("Топологическая сортировка: " + sorted);
             } catch (IllegalArgumentException e) {
                 System.out.println("Топологическая сортировка невозможна: " + e.getMessage());
@@ -91,11 +101,13 @@ public class Main {
         AdjacencyList graph = new AdjacencyList(directed);
 
         for (String vertex : vertices) {
-            graph.addVertex(vertex);
+            graph.addVertex(new StringVertex(vertex));
         }
 
         for (String[] edge : edges) {
-            graph.addEdge(edge[0], edge[1]);
+            Vertex from = new StringVertex(edge[0]);
+            Vertex to = new StringVertex(edge[1]);
+            graph.addEdge(from, to);
         }
 
         printGraphInfo(graph, directed);
@@ -103,7 +115,7 @@ public class Main {
 
         if (directed) {
             try {
-                List<Object> sorted = TopologicalSorting.topologicalSort(graph);
+                List<Vertex> sorted = TopologicalSorting.topologicalSort(graph);
                 System.out.println("Топологическая сортировка: " + sorted);
             } catch (IllegalArgumentException e) {
                 System.out.println("Топологическая сортировка невозможна: " + e.getMessage());
@@ -119,24 +131,24 @@ public class Main {
 
         String[] vertices = {"A", "B", "C", "D", "E", "F"};
         for (String vertex : vertices) {
-            dag.addVertex(vertex);
+            dag.addVertex(new StringVertex(vertex));
         }
 
-        dag.addEdge("A", "B");
-        dag.addEdge("A", "C");
-        dag.addEdge("B", "D");
-        dag.addEdge("C", "D");
-        dag.addEdge("D", "E");
-        dag.addEdge("E", "F");
+        dag.addEdge(new StringVertex("A"), new StringVertex("B"));
+        dag.addEdge(new StringVertex("A"), new StringVertex("C"));
+        dag.addEdge(new StringVertex("B"), new StringVertex("D"));
+        dag.addEdge(new StringVertex("C"), new StringVertex("D"));
+        dag.addEdge(new StringVertex("D"), new StringVertex("E"));
+        dag.addEdge(new StringVertex("E"), new StringVertex("F"));
 
-        System.out.println("Вершины: " + dag.getAllVertices());
+        System.out.println("Вершины: " + dag.getVertices());
         System.out.println("Список смежности:");
-        for (Object vertex : dag.getAllVertices()) {
+        for (Vertex vertex : dag.getVertices()) {
             System.out.println("  " + vertex + " -> " + dag.getNeighbors(vertex));
         }
 
         try {
-            List<Object> sorted = TopologicalSorting.topologicalSort(dag);
+            List<Vertex> sorted = TopologicalSorting.topologicalSort(dag);
             System.out.println("Результат топологической сортировки: " + sorted);
         } catch (IllegalArgumentException e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -147,22 +159,22 @@ public class Main {
         AdjacencyList cyclicGraph = new AdjacencyList(true);
 
         for (String vertex : vertices) {
-            cyclicGraph.addVertex(vertex);
+            cyclicGraph.addVertex(new StringVertex(vertex));
         }
 
-        cyclicGraph.addEdge("A", "B");
-        cyclicGraph.addEdge("B", "C");
-        cyclicGraph.addEdge("C", "A");
-        cyclicGraph.addEdge("C", "D");
+        cyclicGraph.addEdge(new StringVertex("A"), new StringVertex("B"));
+        cyclicGraph.addEdge(new StringVertex("B"), new StringVertex("C"));
+        cyclicGraph.addEdge(new StringVertex("C"), new StringVertex("A"));
+        cyclicGraph.addEdge(new StringVertex("C"), new StringVertex("D"));
 
-        System.out.println("Вершины: " + cyclicGraph.getAllVertices());
+        System.out.println("Вершины: " + cyclicGraph.getVertices());
         System.out.println("Список смежности:");
-        for (Object vertex : cyclicGraph.getAllVertices()) {
+        for (Vertex vertex : cyclicGraph.getVertices()) {
             System.out.println("  " + vertex + " -> " + cyclicGraph.getNeighbors(vertex));
         }
 
         try {
-            List<Object> sorted = TopologicalSorting.topologicalSort(cyclicGraph);
+            List<Vertex> sorted = TopologicalSorting.topologicalSort(cyclicGraph);
             System.out.println("Результат топологической сортировки: " + sorted);
         } catch (IllegalArgumentException e) {
             System.out.println("Ошибка: " + e.getMessage());
@@ -199,7 +211,7 @@ public class Main {
             printAdjacencyListRepresentation(directedFromFile);
 
             try {
-                List<Object> sorted = TopologicalSorting.topologicalSort(directedFromFile);
+                List<Vertex> sorted = TopologicalSorting.topologicalSort(directedFromFile);
                 System.out.println("Топологическая сортировка: " + sorted);
             } catch (IllegalArgumentException e) {
                 System.out.println("Топологическая сортировка невозможна: " + e.getMessage());
@@ -211,14 +223,14 @@ public class Main {
 
     private static void printGraphInfo(Graph graph, boolean directed) {
         System.out.println("Тип графа: " + (directed ? "ориентированный" : "неориентированный"));
-        System.out.println("Вершины: " + graph.getAllVertices());
-        System.out.println("Количество вершин: " + graph.getAllVertices().size());
+        System.out.println("Вершины: " + graph.getVertices());
+        System.out.println("Количество вершин: " + graph.getVertices().size());
 
-        List<Object> vertices = graph.getAllVertices();
+        List<Vertex> vertices = graph.getVertices();
 
         System.out.println("Соседи вершин:");
-        for (Object vertex : vertices) {
-            List<Object> neighbors = graph.getNeighbors(vertex);
+        for (Vertex vertex : vertices) {
+            List<Vertex> neighbors = graph.getNeighbors(vertex);
             System.out.println("  " + vertex + " -> " + neighbors);
         }
     }
@@ -234,8 +246,8 @@ public class Main {
         for (int i = 0; i < vertices.size(); i++) {
             System.out.print(vertices.get(i) + " | ");
             for (int j = 0; j < vertices.size(); j++) {
-                Object from = graph.intToObject(i);
-                Object to = graph.intToObject(j);
+                Vertex from = graph.intToVertex(i);
+                Vertex to = graph.intToVertex(j);
                 System.out.print((graph.hasEdge(from, to) ? "1 " : "0 "));
             }
             System.out.println();
@@ -255,19 +267,19 @@ public class Main {
             System.out.print(vertex + " |");
 
             for (String[] edge : edges) {
-                String from = edge[0];
-                String to = edge[1];
+                Vertex from = new StringVertex(edge[0]);
+                Vertex to = new StringVertex(edge[1]);
 
                 if (graph.isDirected()) {
-                    if (vertex.equals(from) && graph.hasEdge(from, to)) {
+                    if (vertex.equals(from.getId()) && graph.hasEdge(from, to)) {
                         System.out.print(" 1 ");
-                    } else if (vertex.equals(to) && graph.hasEdge(from, to)) {
+                    } else if (vertex.equals(to.getId()) && graph.hasEdge(from, to)) {
                         System.out.print("-1 ");
                     } else {
                         System.out.print(" 0 ");
                     }
                 } else {
-                    if ((vertex.equals(from) || vertex.equals(to)) && graph.hasEdge(from, to)) {
+                    if ((vertex.equals(from.getId()) || vertex.equals(to.getId())) && graph.hasEdge(from, to)) {
                         System.out.print(" 1 ");
                     } else {
                         System.out.print(" 0 ");
@@ -280,8 +292,8 @@ public class Main {
 
     private static void printAdjacencyListRepresentation(Graph graph) {
         System.out.println("Список смежности:");
-        for (Object vertex : graph.getAllVertices()) {
-            List<Object> neighbors = graph.getNeighbors(vertex);
+        for (Vertex vertex : graph.getVertices()) {
+            List<Vertex> neighbors = graph.getNeighbors(vertex);
             System.out.println("  " + vertex + " -> " + neighbors);
         }
     }

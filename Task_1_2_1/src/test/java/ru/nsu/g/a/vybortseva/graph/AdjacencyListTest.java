@@ -1,178 +1,218 @@
 package ru.nsu.g.a.vybortseva.graph;
 
 import org.junit.jupiter.api.Test;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Тесты для класса AdjacencyList
+ */
 class AdjacencyListTest {
 
     @Test
     void addVertex() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
 
-        assertTrue(graph.hasVertex("A"));
-        assertTrue(graph.hasVertex("B"));
-        assertEquals(2, graph.getAllVertices().size());
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
 
-        graph.addVertex("A");
-        assertEquals(2, graph.getAllVertices().size());
+        assertTrue(graph.hasVertex(vertexA));
+        assertTrue(graph.hasVertex(vertexB));
+        assertEquals(2, graph.getVertices().size());
+
+        graph.addVertex(vertexA);
+        assertEquals(2, graph.getVertices().size());
     }
 
     @Test
     void removeVertex() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.removeVertex("B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
 
-        assertFalse(graph.hasVertex("B"));
-        assertTrue(graph.hasVertex("A"));
-        assertTrue(graph.hasVertex("C"));
-        assertFalse(graph.hasEdge("A", "B"));
-        assertFalse(graph.hasEdge("B", "C"));
+        graph.removeVertex(vertexB);
 
-        assertThrows(IllegalArgumentException.class, () -> graph.removeVertex("D"));
+        assertFalse(graph.hasVertex(vertexB));
+        assertTrue(graph.hasVertex(vertexA));
+        assertTrue(graph.hasVertex(vertexC));
+        assertFalse(graph.hasEdge(vertexA, vertexB));
+        assertFalse(graph.hasEdge(vertexB, vertexC));
+
+        Vertex vertexD = new StringVertex("D");
+        assertThrows(IllegalArgumentException.class, () -> graph.removeVertex(vertexD));
     }
 
     @Test
     void removeVertexDirected() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.removeVertex("B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
 
-        assertFalse(graph.hasVertex("B"));
-        assertFalse(graph.hasEdge("A", "B"));
-        assertFalse(graph.hasEdge("B", "C"));
+        graph.removeVertex(vertexB);
+
+        assertFalse(graph.hasVertex(vertexB));
+        assertFalse(graph.hasEdge(vertexA, vertexB));
+        assertFalse(graph.hasEdge(vertexB, vertexC));
     }
 
     @Test
     void addEdge() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
 
-        assertTrue(graph.hasEdge("A", "B"));
-        assertTrue(graph.hasEdge("B", "A"));
-        assertTrue(graph.hasEdge("B", "C"));
-        assertTrue(graph.hasEdge("C", "B"));
-        assertFalse(graph.hasEdge("A", "C"));
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
+
+        assertTrue(graph.hasEdge(vertexA, vertexB));
+        assertTrue(graph.hasEdge(vertexB, vertexA));
+        assertTrue(graph.hasEdge(vertexB, vertexC));
+        assertTrue(graph.hasEdge(vertexC, vertexB));
+        assertFalse(graph.hasEdge(vertexA, vertexC));
     }
 
     @Test
     void addEdgeDirected() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
 
-        assertTrue(graph.hasEdge("A", "B"));
-        assertFalse(graph.hasEdge("B", "A"));
-        assertTrue(graph.hasEdge("B", "C"));
-        assertFalse(graph.hasEdge("C", "B"));
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
+
+        assertTrue(graph.hasEdge(vertexA, vertexB));
+        assertFalse(graph.hasEdge(vertexB, vertexA));
+        assertTrue(graph.hasEdge(vertexB, vertexC));
+        assertFalse(graph.hasEdge(vertexC, vertexB));
     }
 
     @Test
     void removeEdge() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.removeEdge("A", "B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
 
-        assertFalse(graph.hasEdge("A", "B"));
-        assertFalse(graph.hasEdge("B", "A"));
-        assertTrue(graph.hasEdge("B", "C"));
-        assertTrue(graph.hasEdge("C", "B"));
+        graph.removeEdge(vertexA, vertexB);
 
-        assertThrows(IllegalArgumentException.class, () -> graph.removeEdge("A", "D"));
+        assertFalse(graph.hasEdge(vertexA, vertexB));
+        assertFalse(graph.hasEdge(vertexB, vertexA));
+        assertTrue(graph.hasEdge(vertexB, vertexC));
+        assertTrue(graph.hasEdge(vertexC, vertexB));
+
+        Vertex vertexD = new StringVertex("D");
+        assertThrows(IllegalArgumentException.class, () -> graph.removeEdge(vertexA, vertexD));
     }
 
     @Test
     void removeEdgeDirected() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.removeEdge("A", "B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
 
-        assertFalse(graph.hasEdge("A", "B"));
-        assertTrue(graph.hasEdge("B", "C"));
+        graph.removeEdge(vertexA, vertexB);
+
+        assertFalse(graph.hasEdge(vertexA, vertexB));
+        assertTrue(graph.hasEdge(vertexB, vertexC));
     }
 
     @Test
     void getNeighbors() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addVertex("D");
-        graph.addEdge("A", "B");
-        graph.addEdge("A", "C");
-        graph.addEdge("B", "D");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
+        Vertex vertexD = new StringVertex("D");
 
-        List<Object> neighborsA = graph.getNeighbors("A");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addVertex(vertexD);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexA, vertexC);
+        graph.addEdge(vertexB, vertexD);
+
+        List<Vertex> neighborsA = graph.getNeighbors(vertexA);
         assertEquals(2, neighborsA.size());
-        assertTrue(neighborsA.contains("B"));
-        assertTrue(neighborsA.contains("C"));
+        assertTrue(neighborsA.contains(vertexB));
+        assertTrue(neighborsA.contains(vertexC));
 
-        List<Object> neighborsB = graph.getNeighbors("B");
+        List<Vertex> neighborsB = graph.getNeighbors(vertexB);
         assertEquals(2, neighborsB.size());
-        assertTrue(neighborsB.contains("A"));
-        assertTrue(neighborsB.contains("D"));
+        assertTrue(neighborsB.contains(vertexA));
+        assertTrue(neighborsB.contains(vertexD));
 
-        List<Object> neighborsC = graph.getNeighbors("C");
+        List<Vertex> neighborsC = graph.getNeighbors(vertexC);
         assertEquals(1, neighborsC.size());
-        assertTrue(neighborsC.contains("A"));
+        assertTrue(neighborsC.contains(vertexA));
 
-        // Несуществующая вершина
-        List<Object> neighborsE = graph.getNeighbors("E");
+        Vertex vertexE = new StringVertex("E");
+        List<Vertex> neighborsE = graph.getNeighbors(vertexE);
         assertTrue(neighborsE.isEmpty());
     }
 
     @Test
     void getNeighborsDirected() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        List<Object> neighborsA = graph.getNeighbors("A");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
+
+        List<Vertex> neighborsA = graph.getNeighbors(vertexA);
         assertEquals(1, neighborsA.size());
-        assertTrue(neighborsA.contains("B"));
+        assertTrue(neighborsA.contains(vertexB));
 
-        List<Object> neighborsB = graph.getNeighbors("B");
+        List<Vertex> neighborsB = graph.getNeighbors(vertexB);
         assertEquals(1, neighborsB.size());
-        assertTrue(neighborsB.contains("C"));
+        assertTrue(neighborsB.contains(vertexC));
 
-        List<Object> neighborsC = graph.getNeighbors("C");
+        List<Vertex> neighborsC = graph.getNeighbors(vertexC);
         assertTrue(neighborsC.isEmpty());
     }
 
@@ -182,9 +222,8 @@ class AdjacencyListTest {
 
         try {
             graph.readFromFile("graph.txt");
-            assertTrue(graph.getAllVertices().size() > 0);
+            assertTrue(graph.getVertices().size() > 0);
         } catch (RuntimeException e) {
-            // Если файла нет - это нормально для теста
             assertTrue(e.getMessage().contains("Error reading graph from file"));
         }
     }
@@ -192,43 +231,57 @@ class AdjacencyListTest {
     @Test
     void hasVertex() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
 
-        assertTrue(graph.hasVertex("A"));
-        assertTrue(graph.hasVertex("B"));
-        assertFalse(graph.hasVertex("C"));
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+
+        assertTrue(graph.hasVertex(vertexA));
+        assertTrue(graph.hasVertex(vertexB));
+
+        Vertex vertexC = new StringVertex("C");
+        assertFalse(graph.hasVertex(vertexC));
     }
 
     @Test
     void hasEdge() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addEdge("A", "B");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        assertTrue(graph.hasEdge("A", "B"));
-        assertTrue(graph.hasEdge("B", "A"));
-        assertFalse(graph.hasEdge("A", "C"));
-        assertFalse(graph.hasEdge("B", "C"));
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addEdge(vertexA, vertexB);
 
-        assertFalse(graph.hasEdge("A", "D"));
-        assertFalse(graph.hasEdge("D", "A"));
+        assertTrue(graph.hasEdge(vertexA, vertexB));
+        assertTrue(graph.hasEdge(vertexB, vertexA));
+        assertFalse(graph.hasEdge(vertexA, vertexC));
+        assertFalse(graph.hasEdge(vertexB, vertexC));
+
+        Vertex vertexD = new StringVertex("D");
+        assertFalse(graph.hasEdge(vertexA, vertexD));
+        assertFalse(graph.hasEdge(vertexD, vertexA));
     }
 
     @Test
-    void getAllVertices() {
+    void getVertices() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        List<Object> vertices = graph.getAllVertices();
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+
+        List<Vertex> vertices = graph.getVertices();
         assertEquals(3, vertices.size());
-        assertTrue(vertices.contains("A"));
-        assertTrue(vertices.contains("B"));
-        assertTrue(vertices.contains("C"));
+        assertTrue(vertices.contains(vertexA));
+        assertTrue(vertices.contains(vertexB));
+        assertTrue(vertices.contains(vertexC));
     }
 
     @Test
@@ -243,13 +296,16 @@ class AdjacencyListTest {
     @Test
     void duplicateEdges() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
 
-        graph.addEdge("A", "B");
-        graph.addEdge("A", "B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
 
-        List<Object> neighbors = graph.getNeighbors("A");
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexA, vertexB);
+
+        List<Vertex> neighbors = graph.getNeighbors(vertexA);
         assertEquals(1, neighbors.size());
     }
 }

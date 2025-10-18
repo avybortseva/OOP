@@ -1,8 +1,5 @@
 package ru.nsu.g.a.vybortseva.graph;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +7,8 @@ import java.util.Map;
 
 public class AdjacencyMatrix implements Graph {
     private List<List<Integer>> matrix;
-    private List<Object> vertices;
-    private Map<Object, Integer> vertexIndexMap;
+    private List<Vertex> vertices;
+    private Map<Vertex, Integer> vertexIndexMap;
     private final boolean directed;
 
     public AdjacencyMatrix(boolean directed) {
@@ -21,19 +18,19 @@ public class AdjacencyMatrix implements Graph {
         this.directed = directed;
     }
 
-    public Object intToObject(int index) {
+    public Vertex intToVertex(int index) {
         if (index >= 0 && index < vertices.size()) {
             return vertices.get(index);
         }
         return null;
     }
 
-    public int objectToInt(Object vertex) {
+    public int VertexToInt(Vertex vertex) {
         Integer index = vertexIndexMap.get(vertex);
-        return index != null ? index : -1;
+        return index != null ? index : INVALID_INDEX;
     }
 
-    public void setVertices(List<Object> vertices) {
+    public void setVertices(List<Vertex> vertices) {
         this.vertices = new ArrayList<>(vertices);
         this.vertexIndexMap.clear();
 
@@ -52,7 +49,7 @@ public class AdjacencyMatrix implements Graph {
     }
 
     @Override
-    public void addVertex(Object vertex) {
+    public void addVertex(Vertex vertex) {
         // хз может если есть менять значение просто
         if (!hasVertex(vertex)) {
             vertices.add(vertex);
@@ -75,21 +72,21 @@ public class AdjacencyMatrix implements Graph {
     }
 
     @Override
-    public void removeVertex(Object vertex) {
+    public void removeVertex(Vertex vertex) {
         if (hasVertex(vertex)){
-            int removedIndex = objectToInt(vertex);
+            int removedIndex = VertexToInt(vertex);
 
-            vertices.remove(vertex);
+            vertices.remove(removedIndex);
             vertexIndexMap.remove(vertex);
-
-            vertexIndexMap.clear();
-            for (int i = 0; i < vertices.size(); i++) {
-                vertexIndexMap.put(vertices.get(i), i);
-            }
 
             matrix.remove(removedIndex);
             for (List<Integer> row : matrix) {
                 row.remove(removedIndex);
+            }
+
+            for (int i = removedIndex; i < vertices.size(); i++) {
+                Vertex currentVertex = vertices.get(i);
+                vertexIndexMap.put(currentVertex, i);
             }
         } else {
             throw new IllegalArgumentException("Vertex not found: " + vertex);
@@ -97,10 +94,10 @@ public class AdjacencyMatrix implements Graph {
     }
 
     @Override
-    public void addEdge(Object from, Object to) {
+    public void addEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)){
-            int fromIndex = objectToInt(from);
-            int toIndex = objectToInt(to);
+            int fromIndex = VertexToInt(from);
+            int toIndex = VertexToInt(to);
             matrix.get(fromIndex).set(toIndex, 1);
             if (!directed) {
                 matrix.get(toIndex).set(fromIndex, 1);
@@ -111,10 +108,10 @@ public class AdjacencyMatrix implements Graph {
     }
 
     @Override
-    public void removeEdge(Object from, Object to) {
+    public void removeEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)){
-            int fromIndex = objectToInt(from);
-            int toIndex = objectToInt(to);
+            int fromIndex = VertexToInt(from);
+            int toIndex = VertexToInt(to);
             matrix.get(fromIndex).set(toIndex, 0);
             if (!directed) {
                 matrix.get(toIndex).set(fromIndex, 0);
@@ -125,24 +122,24 @@ public class AdjacencyMatrix implements Graph {
     }
 
     @Override
-    public List<Object> getNeighbors(Object vertex) {
-        List<Object> neighbors = new ArrayList<>();
-        int vertexIndex = objectToInt(vertex);
+    public List<Vertex> getNeighbors(Vertex vertex) {
+        List<Vertex> neighbors = new ArrayList<>();
+        int vertexIndex = VertexToInt(vertex);
 
-        if (vertexIndex == -1) return neighbors;
+        if (vertexIndex == INVALID_INDEX) return neighbors;
 
         List<Integer> row = matrix.get(vertexIndex);
         for (int i = 0; i < row.size(); i++) {
-            if (row.get(i) == 1 && intToObject(i) != null) {
-                neighbors.add(intToObject(i));
+            if (row.get(i) == 1 && intToVertex(i) != null) {
+                neighbors.add(intToVertex(i));
             }
         }
 
         if (!directed) {
             for (int i = 0; i < matrix.size(); i++) {
-                if (i != vertexIndex && matrix.get(i).get(vertexIndex) == 1 && intToObject(i) != null) {
-                    if (!neighbors.contains(intToObject(i))) {
-                        neighbors.add(intToObject(i));
+                if (i != vertexIndex && matrix.get(i).get(vertexIndex) == 1 && intToVertex(i) != null) {
+                    if (!neighbors.contains(intToVertex(i))) {
+                        neighbors.add(intToVertex(i));
                     }
                 }
             }
@@ -151,58 +148,23 @@ public class AdjacencyMatrix implements Graph {
     }
 
     @Override
-    public void readFromFile(String filename) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            boolean firstLine = true;
-
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-                if (line.isEmpty()) continue;
-
-                if (firstLine) {
-                    firstLine = false;
-                    continue;
-                }
-
-                String[] parts = line.split("\\s+");
-                if (parts.length >= 2) {
-                    String from = parts[0];
-                    String to = parts[1];
-
-                    if (!hasVertex(from)) {
-                        addVertex(from);
-                    }
-                    if (!hasVertex(to)) {
-                        addVertex(to);
-                    }
-
-                    addEdge(from, to);
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Error reading graph from file: " + filename, e);
-        }
+    public List<Vertex> getVertices() {
+        return new ArrayList<>(vertices);
     }
 
     @Override
-    public boolean hasVertex(Object vertex) {
+    public boolean hasVertex(Vertex vertex) {
         return vertexIndexMap.containsKey(vertex);
     }
 
     @Override
-    public boolean hasEdge(Object from, Object to) {
+    public boolean hasEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)){
-            int fromIndex = objectToInt(from);
-            int toIndex = objectToInt(to);
+            int fromIndex = VertexToInt(from);
+            int toIndex = VertexToInt(to);
             return matrix.get(fromIndex).get(toIndex) == 1;
         }
         return false;
-    }
-
-    @Override
-    public List<Object> getAllVertices() {
-        return new ArrayList<>(vertices);
     }
 
     @Override

@@ -1,111 +1,136 @@
 package ru.nsu.g.a.vybortseva.graph;
 
 import org.junit.jupiter.api.Test;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Тесты для класса TopologicalSorting
+ */
 class TopologicalSortingTest {
 
     @Test
     void topologicalSort() {
-        AdjacencyList graph1 = new AdjacencyList(true);
-        graph1.addVertex("A");
-        graph1.addVertex("B");
-        graph1.addVertex("C");
-        graph1.addVertex("D");
+        AdjacencyList graph = new AdjacencyList(true);
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
+        Vertex vertexD = new StringVertex("D");
 
-        graph1.addEdge("A", "B");
-        graph1.addEdge("A", "C");
-        graph1.addEdge("B", "D");
-        graph1.addEdge("C", "D");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addVertex(vertexD);
 
-        List<Object> result1 = TopologicalSorting.topologicalSort(graph1);
-        assertEquals(4, result1.size());
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexA, vertexC);
+        graph.addEdge(vertexB, vertexD);
+        graph.addEdge(vertexC, vertexD);
 
-        assertTrue(result1.indexOf("A") < result1.indexOf("B"));
-        assertTrue(result1.indexOf("A") < result1.indexOf("C"));
-        assertTrue(result1.indexOf("B") < result1.indexOf("D"));
-        assertTrue(result1.indexOf("C") < result1.indexOf("D"));
+        List<Vertex> result = TopologicalSorting.topologicalSort(graph);
+        assertEquals(4, result.size());
+
+        assertTrue(result.indexOf(vertexA) < result.indexOf(vertexB));
+        assertTrue(result.indexOf(vertexA) < result.indexOf(vertexC));
+        assertTrue(result.indexOf(vertexB) < result.indexOf(vertexD));
+        assertTrue(result.indexOf(vertexC) < result.indexOf(vertexD));
     }
 
     @Test
     void topologicalSortComplexGraph() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addVertex("D");
-        graph.addVertex("E");
-        graph.addVertex("F");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
+        Vertex vertexD = new StringVertex("D");
+        Vertex vertexE = new StringVertex("E");
+        Vertex vertexF = new StringVertex("F");
 
-        graph.addEdge("A", "B");
-        graph.addEdge("A", "C");
-        graph.addEdge("B", "D");
-        graph.addEdge("C", "D");
-        graph.addEdge("D", "E");
-        graph.addEdge("E", "F");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addVertex(vertexD);
+        graph.addVertex(vertexE);
+        graph.addVertex(vertexF);
 
-        List<Object> result = TopologicalSorting.topologicalSort(graph);
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexA, vertexC);
+        graph.addEdge(vertexB, vertexD);
+        graph.addEdge(vertexC, vertexD);
+        graph.addEdge(vertexD, vertexE);
+        graph.addEdge(vertexE, vertexF);
+
+        List<Vertex> result = TopologicalSorting.topologicalSort(graph);
         assertEquals(6, result.size());
 
-        assertTrue(result.indexOf("A") < result.indexOf("B"));
-        assertTrue(result.indexOf("A") < result.indexOf("C"));
-        assertTrue(result.indexOf("B") < result.indexOf("D"));
-        assertTrue(result.indexOf("C") < result.indexOf("D"));
-        assertTrue(result.indexOf("D") < result.indexOf("E"));
-        assertTrue(result.indexOf("E") < result.indexOf("F"));
+        assertTrue(result.indexOf(vertexA) < result.indexOf(vertexB));
+        assertTrue(result.indexOf(vertexA) < result.indexOf(vertexC));
+        assertTrue(result.indexOf(vertexB) < result.indexOf(vertexD));
+        assertTrue(result.indexOf(vertexC) < result.indexOf(vertexD));
+        assertTrue(result.indexOf(vertexD) < result.indexOf(vertexE));
+        assertTrue(result.indexOf(vertexE) < result.indexOf(vertexF));
     }
 
     @Test
     void topologicalSortWithMultipleStarts() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addVertex("D");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
+        Vertex vertexD = new StringVertex("D");
 
-        graph.addEdge("A", "C");
-        graph.addEdge("B", "C");
-        graph.addEdge("C", "D");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addVertex(vertexD);
 
-        List<Object> result = TopologicalSorting.topologicalSort(graph);
+        graph.addEdge(vertexA, vertexC);
+        graph.addEdge(vertexB, vertexC);
+        graph.addEdge(vertexC, vertexD);
+
+        List<Vertex> result = TopologicalSorting.topologicalSort(graph);
         assertEquals(4, result.size());
 
-        assertTrue(result.indexOf("A") < result.indexOf("C"));
-        assertTrue(result.indexOf("B") < result.indexOf("C"));
-        assertTrue(result.indexOf("C") < result.indexOf("D"));
+        assertTrue(result.indexOf(vertexA) < result.indexOf(vertexC));
+        assertTrue(result.indexOf(vertexB) < result.indexOf(vertexC));
+        assertTrue(result.indexOf(vertexC) < result.indexOf(vertexD));
     }
 
     @Test
     void topologicalSortSingleVertex() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
+        Vertex vertexA = new StringVertex("A");
 
-        List<Object> result = TopologicalSorting.topologicalSort(graph);
+        graph.addVertex(vertexA);
+
+        List<Vertex> result = TopologicalSorting.topologicalSort(graph);
         assertEquals(1, result.size());
-        assertEquals("A", result.get(0));
+        assertEquals(vertexA, result.get(0));
     }
 
     @Test
     void topologicalSortEmptyGraph() {
         AdjacencyList graph = new AdjacencyList(true);
 
-        List<Object> result = TopologicalSorting.topologicalSort(graph);
+        List<Vertex> result = TopologicalSorting.topologicalSort(graph);
         assertTrue(result.isEmpty());
     }
 
     @Test
     void topologicalSortWithCycle() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
-        graph.addEdge("C", "A");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+
+        graph.addEdge(vertexA, vertexB);
+        graph.addEdge(vertexB, vertexC);
+        graph.addEdge(vertexC, vertexA);
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
@@ -118,11 +143,14 @@ class TopologicalSortingTest {
     @Test
     void topologicalSortSelfLoop() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
 
-        graph.addEdge("A", "A");
-        graph.addEdge("A", "B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+
+        graph.addEdge(vertexA, vertexA);
+        graph.addEdge(vertexA, vertexB);
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
@@ -135,9 +163,12 @@ class TopologicalSortingTest {
     @Test
     void topologicalSortUndirectedGraph() {
         AdjacencyList graph = new AdjacencyList(false);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addEdge("A", "B");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addEdge(vertexA, vertexB);
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
@@ -150,43 +181,59 @@ class TopologicalSortingTest {
     @Test
     void topologicalSortWithIsolatedVertices() {
         AdjacencyList graph = new AdjacencyList(true);
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addVertex("D");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
+        Vertex vertexD = new StringVertex("D");
 
-        graph.addEdge("A", "B");
+        graph.addVertex(vertexA);
+        graph.addVertex(vertexB);
+        graph.addVertex(vertexC);
+        graph.addVertex(vertexD);
 
-        List<Object> result = TopologicalSorting.topologicalSort(graph);
+        graph.addEdge(vertexA, vertexB);
+
+        List<Vertex> result = TopologicalSorting.topologicalSort(graph);
         assertEquals(4, result.size());
 
-        assertTrue(result.indexOf("A") < result.indexOf("B"));
+        assertTrue(result.indexOf(vertexA) < result.indexOf(vertexB));
     }
 
     @Test
     void topologicalSortDifferentGraphRepresentations() {
-
+        // Тест с AdjacencyMatrix
         AdjacencyMatrix matrixGraph = new AdjacencyMatrix(true);
-        matrixGraph.setVertices(Arrays.asList("A", "B", "C"));
-        matrixGraph.addEdge("A", "B");
-        matrixGraph.addEdge("B", "C");
+        Vertex vertexA = new StringVertex("A");
+        Vertex vertexB = new StringVertex("B");
+        Vertex vertexC = new StringVertex("C");
 
-        List<Object> matrixResult = TopologicalSorting.topologicalSort(matrixGraph);
+        matrixGraph.addVertex(vertexA);
+        matrixGraph.addVertex(vertexB);
+        matrixGraph.addVertex(vertexC);
+        matrixGraph.addEdge(vertexA, vertexB);
+        matrixGraph.addEdge(vertexB, vertexC);
+
+        List<Vertex> matrixResult = TopologicalSorting.topologicalSort(matrixGraph);
         assertEquals(3, matrixResult.size());
-        assertTrue(matrixResult.indexOf("A") < matrixResult.indexOf("B"));
-        assertTrue(matrixResult.indexOf("B") < matrixResult.indexOf("C"));
+        assertTrue(matrixResult.indexOf(vertexA) < matrixResult.indexOf(vertexB));
+        assertTrue(matrixResult.indexOf(vertexB) < matrixResult.indexOf(vertexC));
 
+        // Тест с IncidenceMatrix
         IncidenceMatrix incidenceGraph = new IncidenceMatrix(true);
-        incidenceGraph.addVertex("A");
-        incidenceGraph.addVertex("B");
-        incidenceGraph.addVertex("C");
-        incidenceGraph.addEdge("A", "B");
-        incidenceGraph.addEdge("B", "C");
+        Vertex vertexA2 = new StringVertex("A");
+        Vertex vertexB2 = new StringVertex("B");
+        Vertex vertexC2 = new StringVertex("C");
 
-        List<Object> incidenceResult = TopologicalSorting.topologicalSort(incidenceGraph);
+        incidenceGraph.addVertex(vertexA2);
+        incidenceGraph.addVertex(vertexB2);
+        incidenceGraph.addVertex(vertexC2);
+        incidenceGraph.addEdge(vertexA2, vertexB2);
+        incidenceGraph.addEdge(vertexB2, vertexC2);
+
+        List<Vertex> incidenceResult = TopologicalSorting.topologicalSort(incidenceGraph);
         assertEquals(3, incidenceResult.size());
-        assertTrue(incidenceResult.indexOf("A") < incidenceResult.indexOf("B"));
-        assertTrue(incidenceResult.indexOf("B") < incidenceResult.indexOf("C"));
+        assertTrue(incidenceResult.indexOf(vertexA2) < incidenceResult.indexOf(vertexB2));
+        assertTrue(incidenceResult.indexOf(vertexB2) < incidenceResult.indexOf(vertexC2));
     }
 
     @Test
@@ -194,18 +241,22 @@ class TopologicalSortingTest {
         AdjacencyList graph = new AdjacencyList(true);
 
         for (int i = 0; i < 10; i++) {
-            graph.addVertex("V" + i);
+            graph.addVertex(new StringVertex("V" + i));
         }
 
         for (int i = 0; i < 9; i++) {
-            graph.addEdge("V" + i, "V" + (i + 1));
+            Vertex from = new StringVertex("V" + i);
+            Vertex to = new StringVertex("V" + (i + 1));
+            graph.addEdge(from, to);
         }
 
-        List<Object> result = TopologicalSorting.topologicalSort(graph);
+        List<Vertex> result = TopologicalSorting.topologicalSort(graph);
         assertEquals(10, result.size());
 
         for (int i = 0; i < 9; i++) {
-            assertTrue(result.indexOf("V" + i) < result.indexOf("V" + (i + 1)));
+            Vertex from = new StringVertex("V" + i);
+            Vertex to = new StringVertex("V" + (i + 1));
+            assertTrue(result.indexOf(from) < result.indexOf(to));
         }
     }
 }
