@@ -151,7 +151,8 @@ public class AdjacencyMatrix implements Graph {
 
         if (!directed) {
             for (int i = 0; i < matrix.size(); i++) {
-                if (i != vertexIndex && matrix.get(i).get(vertexIndex) == 1 && intToVertex(i) != null) {
+                if (i != vertexIndex && matrix.get(i).get(vertexIndex) == 1
+                        && intToVertex(i) != null) {
                     if (!neighbors.contains(intToVertex(i))) {
                         neighbors.add(intToVertex(i));
                     }
@@ -197,6 +198,4 @@ public class AdjacencyMatrix implements Graph {
     public boolean isDirected() {
         return directed;
     }
-
-
 }

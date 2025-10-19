@@ -1,13 +1,14 @@
 package ru.nsu.g.a.vybortseva.graph;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-/**
- * Тесты для класса AdjacencyMatrix
- */
 class AdjacencyMatrixTest {
 
     @Test
@@ -112,21 +113,21 @@ class AdjacencyMatrixTest {
         assertThrows(IllegalArgumentException.class, () -> graph.addEdge(vertexA, vertexD));
 
         AdjacencyMatrix graphDir = new AdjacencyMatrix(true);
-        Vertex vertexADir = new StringVertex("A");
-        Vertex vertexBDir = new StringVertex("B");
-        Vertex vertexCDir = new StringVertex("C");
+        Vertex vertex1Dir = new StringVertex("A");
+        Vertex vertex2Dir = new StringVertex("B");
+        Vertex vertex3Dir = new StringVertex("C");
 
-        graphDir.addVertex(vertexADir);
-        graphDir.addVertex(vertexBDir);
-        graphDir.addVertex(vertexCDir);
+        graphDir.addVertex(vertex1Dir);
+        graphDir.addVertex(vertex2Dir);
+        graphDir.addVertex(vertex3Dir);
 
-        graphDir.addEdge(vertexADir, vertexBDir);
-        graphDir.addEdge(vertexBDir, vertexCDir);
+        graphDir.addEdge(vertex1Dir, vertex2Dir);
+        graphDir.addEdge(vertex2Dir, vertex3Dir);
 
-        assertTrue(graphDir.hasEdge(vertexADir, vertexBDir));
-        assertFalse(graphDir.hasEdge(vertexBDir, vertexADir));
-        assertTrue(graphDir.hasEdge(vertexBDir, vertexCDir));
-        assertFalse(graphDir.hasEdge(vertexCDir, vertexBDir));
+        assertTrue(graphDir.hasEdge(vertex1Dir, vertex2Dir));
+        assertFalse(graphDir.hasEdge(vertex2Dir, vertex1Dir));
+        assertTrue(graphDir.hasEdge(vertex2Dir, vertex3Dir));
+        assertFalse(graphDir.hasEdge(vertex3Dir, vertex2Dir));
     }
 
     @Test
@@ -179,25 +180,25 @@ class AdjacencyMatrixTest {
         assertTrue(neighborsB.contains(vertexD));
 
         AdjacencyMatrix graphDir = new AdjacencyMatrix(true);
-        Vertex vertexADir = new StringVertex("A");
-        Vertex vertexBDir = new StringVertex("B");
-        Vertex vertexCDir = new StringVertex("C");
+        Vertex vertex1Dir = new StringVertex("A");
+        Vertex vertex2Dir = new StringVertex("B");
+        Vertex vertex3Dir = new StringVertex("C");
 
-        graphDir.addVertex(vertexADir);
-        graphDir.addVertex(vertexBDir);
-        graphDir.addVertex(vertexCDir);
-        graphDir.addEdge(vertexADir, vertexBDir);
-        graphDir.addEdge(vertexBDir, vertexCDir);
+        graphDir.addVertex(vertex1Dir);
+        graphDir.addVertex(vertex2Dir);
+        graphDir.addVertex(vertex3Dir);
+        graphDir.addEdge(vertex1Dir, vertex2Dir);
+        graphDir.addEdge(vertex2Dir, vertex3Dir);
 
-        List<Vertex> neighborsADir = graphDir.getNeighbors(vertexADir);
-        assertEquals(1, neighborsADir.size());
-        assertTrue(neighborsADir.contains(vertexBDir));
+        List<Vertex> neighbors1Dir = graphDir.getNeighbors(vertex1Dir);
+        assertEquals(1, neighbors1Dir.size());
+        assertTrue(neighbors1Dir.contains(vertex2Dir));
 
-        List<Vertex> neighborsBDir = graphDir.getNeighbors(vertexBDir);
+        List<Vertex> neighborsBDir = graphDir.getNeighbors(vertex2Dir);
         assertEquals(1, neighborsBDir.size());
-        assertTrue(neighborsBDir.contains(vertexCDir));
+        assertTrue(neighborsBDir.contains(vertex3Dir));
 
-        List<Vertex> neighborsCDir = graphDir.getNeighbors(vertexCDir);
+        List<Vertex> neighborsCDir = graphDir.getNeighbors(vertex3Dir);
         assertEquals(0, neighborsCDir.size());
     }
 

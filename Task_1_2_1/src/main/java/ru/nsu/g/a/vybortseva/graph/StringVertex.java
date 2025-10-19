@@ -18,7 +18,9 @@ public class StringVertex implements Vertex {
      * Возвращает идентификатор вершины.
      */
     @Override
-    public String getId() { return name; }
+    public String getId() {
+        return name;
+    }
 
     /**
      * Сравнивает данную вершину с другим объектом на равенство.
@@ -26,8 +28,12 @@ public class StringVertex implements Vertex {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         StringVertex vertex = (StringVertex) o;
         return name.equals(vertex.name);
     }
@@ -37,11 +43,15 @@ public class StringVertex implements Vertex {
      * Хэш-код основан на имени вершины.
      */
     @Override
-    public int hashCode() { return name.hashCode(); }
+    public int hashCode() {
+        return name.hashCode();
+    }
 
     /**
      * Возвращает строковое представление вершины.
      */
     @Override
-    public String toString() { return "Vertex" + ": " + name; }
+    public String toString() {
+        return "Vertex" + ": " + name;
+    }
 }

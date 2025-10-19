@@ -13,7 +13,8 @@ public class TopologicalSorting {
      */
     public static List<Vertex> topologicalSort(Graph graph) {
         if (!graph.isDirected()) {
-            throw new IllegalArgumentException("Topological sort can only be applied to directed graphs");
+            throw new IllegalArgumentException(
+                    "Topological sort can only be applied to directed graphs");
         }
 
         List<Vertex> result = new ArrayList<>();
@@ -27,7 +28,8 @@ public class TopologicalSorting {
                 try {
                     visit(vertex, graph, visited, tempMark, result);
                 } catch (IllegalArgumentException e) {
-                    throw new IllegalArgumentException("Graph contains a cycle, topological sort is impossible");
+                    throw new IllegalArgumentException(
+                            "Graph contains a cycle, topological sort is impossible");
                 }
             }
         }

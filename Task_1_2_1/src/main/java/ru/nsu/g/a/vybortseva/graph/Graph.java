@@ -8,58 +8,58 @@ import java.util.List;
 import java.util.List;
 
 /**
- * Интерфейс для работы с графом
+ * Интерфейс для работы с графом.
  */
 public interface Graph {
     final int INVALID_INDEX = -1;
 
     /**
-     * Добавляет вершину в граф
+     * Добавляет вершину в граф.
      */
     void addVertex(Vertex vertex);
 
     /**
-     * Удаляет вершину из графа
+     * Удаляет вершину из графа.
      */
     void removeVertex(Vertex vertex);
 
     /**
-     * Добавляет ребро между вершинами
+     * Добавляет ребро между вершинами.
      */
     void addEdge(Vertex source, Vertex destination);
 
     /**
-     * Удаляет ребро между вершинами
+     * Удаляет ребро между вершинами.
      */
     void removeEdge(Vertex source, Vertex destination);
 
     /**
-     * Проверяет наличие вершины в графе
+     * Проверяет наличие вершины в графе.
      */
     boolean hasVertex(Vertex vertex);
 
     /**
-     * Проверяет наличие ребра между вершинами
+     * Проверяет наличие ребра между вершинами.
      */
     boolean hasEdge(Vertex source, Vertex destination);
 
     /**
-     * Возвращает список соседей вершины
+     * Возвращает список соседей вершины.
      */
     List<Vertex> getNeighbors(Vertex vertex);
 
     /**
-     * Возвращает список всех вершин графа
+     * Возвращает список всех вершин графа.
      */
     List<Vertex> getVertices();
 
     /**
-     * Проверяет, является ли граф ориентированным
+     * Проверяет, является ли граф ориентированным.
      */
     boolean isDirected();
 
     /**
-     * Читает граф из файла
+     * Читает граф из файла.
      */
     default void readFromFile(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {

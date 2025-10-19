@@ -155,14 +155,14 @@ public class IncidenceMatrix implements Graph {
                     }
                 } else {
                     if (directed) {
-                        if (matrix.get(fromIdx).get(edge) == 1 &&
-                                matrix.get(toIdx).get(edge) == -1) {
+                        if (matrix.get(fromIdx).get(edge) == 1
+                                && matrix.get(toIdx).get(edge) == -1) {
                             edgeToRemove = edge;
                             break;
                         }
                     } else {
-                        if (matrix.get(fromIdx).get(edge) == 1 &&
-                                matrix.get(toIdx).get(edge) == 1) {
+                        if (matrix.get(fromIdx).get(edge) == 1
+                                && matrix.get(toIdx).get(edge) == 1) {
                             edgeToRemove = edge;
                             break;
                         }
@@ -171,7 +171,8 @@ public class IncidenceMatrix implements Graph {
             }
 
             if (edgeToRemove == INVALID_INDEX) {
-                throw new NullPointerException("Edge between vertices " + from + " and " + to + " not found");
+                throw new NullPointerException("Edge between vertices "
+                        + from + " and " + to + " not found");
             }
 
             for (List<Integer> row : matrix) {
@@ -273,13 +274,13 @@ public class IncidenceMatrix implements Graph {
                     }
                 } else {
                     if (directed) {
-                        if (matrix.get(fromIdx).get(edge) == 1 &&
-                                matrix.get(toIdx).get(edge) == -1) {
+                        if (matrix.get(fromIdx).get(edge) == 1
+                                && matrix.get(toIdx).get(edge) == -1) {
                             return true;
                         }
                     } else {
-                        if (matrix.get(fromIdx).get(edge) == 1 &&
-                                matrix.get(toIdx).get(edge) == 1) {
+                        if (matrix.get(fromIdx).get(edge) == 1
+                                && matrix.get(toIdx).get(edge) == 1) {
                             return true;
                         }
                     }

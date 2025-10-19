@@ -43,7 +43,8 @@ public class Main {
     /**
      * Демонстрирует работу с матрицей смежности.
      */
-    private static void demonstrateAdjacencyMatrix(boolean directed, List<String> vertices, String[][] edges) {
+    private static void demonstrateAdjacencyMatrix(boolean directed,
+                                                   List<String> vertices, String[][] edges) {
         System.out.println("1. МАТРИЦА СМЕЖНОСТИ:");
 
         AdjacencyMatrix graph = new AdjacencyMatrix(directed);
@@ -75,7 +76,8 @@ public class Main {
     /**
      * Демонстрирует работу с матрицей инцидентности.
      */
-    private static void demonstrateIncidenceMatrix(boolean directed, List<String> vertices, String[][] edges) {
+    private static void demonstrateIncidenceMatrix(boolean directed,
+                                                   List<String> vertices, String[][] edges) {
         System.out.println("2. МАТРИЦА ИНЦИДЕНТНОСТИ:");
 
         IncidenceMatrix graph = new IncidenceMatrix(directed);
@@ -107,7 +109,8 @@ public class Main {
     /**
      * Демонстрирует работу со списком смежности.
      */
-    private static void demonstrateAdjacencyList(boolean directed, List<String> vertices, String[][] edges) {
+    private static void demonstrateAdjacencyList(boolean directed,
+                                                 List<String> vertices, String[][] edges) {
         System.out.println("3. СПИСОК СМЕЖНОСТИ:");
 
         AdjacencyList graph = new AdjacencyList(directed);
@@ -259,7 +262,8 @@ public class Main {
     /**
      * Выводит матрицу смежности в читаемом формате.
      */
-    private static void printAdjacencyMatrixRepresentation(AdjacencyMatrix graph, List<String> vertices) {
+    private static void printAdjacencyMatrixRepresentation(
+            AdjacencyMatrix graph, List<String> vertices) {
         System.out.println("Матрица смежности:");
         System.out.print("    ");
         for (String vertex : vertices) {
@@ -281,7 +285,8 @@ public class Main {
     /**
      * Выводит упрощенное представление матрицы инцидентности.
      */
-    private static void printSimpleIncidenceMatrix(IncidenceMatrix graph, List<String> vertices, String[][] edges) {
+    private static void printSimpleIncidenceMatrix(IncidenceMatrix graph,
+                                                   List<String> vertices, String[][] edges) {
         System.out.println("Матрица инцидентности:");
 
         System.out.print("   ");
@@ -306,7 +311,8 @@ public class Main {
                         System.out.print(" 0 ");
                     }
                 } else {
-                    if ((vertex.equals(from.getId()) || vertex.equals(to.getId())) && graph.hasEdge(from, to)) {
+                    if ((vertex.equals(from.getId()) || vertex.equals(to.getId()))
+                            && graph.hasEdge(from, to)) {
                         System.out.print(" 1 ");
                     } else {
                         System.out.print(" 0 ");
