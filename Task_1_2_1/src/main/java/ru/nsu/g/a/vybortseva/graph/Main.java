@@ -1,15 +1,14 @@
 package ru.nsu.g.a.vybortseva.graph;
-
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * Main класс для демонстрации работы с графами
+ * Main класс для демонстрации работы с графами.
  */
 public class Main {
 
     /**
-     * Main метод для демонстрации работы с графами
+     * Main метод для демонстрации работы с графами.
      */
     public static void main(String[] args) {
         System.out.println("=== Демонстрация трех представлений графа ===\n");

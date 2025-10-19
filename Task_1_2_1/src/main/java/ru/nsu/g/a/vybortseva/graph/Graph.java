@@ -68,7 +68,9 @@ public interface Graph {
 
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue;
+                if (line.isEmpty()) {
+                    continue;
+                }
 
                 if (firstLine) {
                     firstLine = false;

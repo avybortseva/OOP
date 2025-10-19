@@ -39,7 +39,7 @@ public class AdjacencyMatrix implements Graph {
     /**
      * Преобразует вершину в индекс.
      */
-    public int VertexToInt(Vertex vertex) {
+    public int vertexToInt(Vertex vertex) {
         Integer index = vertexIndexMap.get(vertex);
         return index != null ? index : INVALID_INDEX;
     }
@@ -77,8 +77,8 @@ public class AdjacencyMatrix implements Graph {
      */
     @Override
     public void removeVertex(Vertex vertex) {
-        if (hasVertex(vertex)){
-            int removedIndex = VertexToInt(vertex);
+        if (hasVertex(vertex)) {
+            int removedIndex = vertexToInt(vertex);
 
             vertices.remove(removedIndex);
             vertexIndexMap.remove(vertex);
@@ -102,9 +102,9 @@ public class AdjacencyMatrix implements Graph {
      */
     @Override
     public void addEdge(Vertex from, Vertex to) {
-        if (hasVertex(from) && hasVertex(to)){
-            int fromIndex = VertexToInt(from);
-            int toIndex = VertexToInt(to);
+        if (hasVertex(from) && hasVertex(to)) {
+            int fromIndex = vertexToInt(from);
+            int toIndex = vertexToInt(to);
             matrix.get(fromIndex).set(toIndex, 1);
             if (!directed) {
                 matrix.get(toIndex).set(fromIndex, 1);
@@ -119,9 +119,9 @@ public class AdjacencyMatrix implements Graph {
      */
     @Override
     public void removeEdge(Vertex from, Vertex to) {
-        if (hasVertex(from) && hasVertex(to)){
-            int fromIndex = VertexToInt(from);
-            int toIndex = VertexToInt(to);
+        if (hasVertex(from) && hasVertex(to)) {
+            int fromIndex = vertexToInt(from);
+            int toIndex = vertexToInt(to);
             matrix.get(fromIndex).set(toIndex, 0);
             if (!directed) {
                 matrix.get(toIndex).set(fromIndex, 0);
@@ -138,9 +138,11 @@ public class AdjacencyMatrix implements Graph {
     @Override
     public List<Vertex> getNeighbors(Vertex vertex) {
         List<Vertex> neighbors = new ArrayList<>();
-        int vertexIndex = VertexToInt(vertex);
+        int vertexIndex = vertexToInt(vertex);
 
-        if (vertexIndex == INVALID_INDEX) return neighbors;
+        if (vertexIndex == INVALID_INDEX) {
+            return neighbors;
+        }
 
         List<Integer> row = matrix.get(vertexIndex);
         for (int i = 0; i < row.size(); i++) {
@@ -183,9 +185,9 @@ public class AdjacencyMatrix implements Graph {
      */
     @Override
     public boolean hasEdge(Vertex from, Vertex to) {
-        if (hasVertex(from) && hasVertex(to)){
-            int fromIndex = VertexToInt(from);
-            int toIndex = VertexToInt(to);
+        if (hasVertex(from) && hasVertex(to)) {
+            int fromIndex = vertexToInt(from);
+            int toIndex = vertexToInt(to);
             return matrix.get(fromIndex).get(toIndex) == 1;
         }
         return false;

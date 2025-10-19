@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class AdjacencyMatrixTest {
 
@@ -30,7 +30,7 @@ class AdjacencyMatrixTest {
     }
 
     @Test
-    void VertexToInt() {
+    void vertexToInt() {
         AdjacencyMatrix graph = new AdjacencyMatrix(false);
         Vertex vertexA = new StringVertex("A");
         Vertex vertexB = new StringVertex("B");
@@ -40,12 +40,12 @@ class AdjacencyMatrixTest {
         graph.addVertex(vertexB);
         graph.addVertex(vertexC);
 
-        assertEquals(0, graph.VertexToInt(vertexA));
-        assertEquals(1, graph.VertexToInt(vertexB));
-        assertEquals(2, graph.VertexToInt(vertexC));
+        assertEquals(0, graph.vertexToInt(vertexA));
+        assertEquals(1, graph.vertexToInt(vertexB));
+        assertEquals(2, graph.vertexToInt(vertexC));
 
         Vertex vertexD = new StringVertex("D");
-        assertEquals(AdjacencyMatrix.INVALID_INDEX, graph.VertexToInt(vertexD));
+        assertEquals(AdjacencyMatrix.INVALID_INDEX, graph.vertexToInt(vertexD));
     }
 
     @Test
@@ -194,12 +194,12 @@ class AdjacencyMatrixTest {
         assertEquals(1, neighbors1Dir.size());
         assertTrue(neighbors1Dir.contains(vertex2Dir));
 
-        List<Vertex> neighborsBDir = graphDir.getNeighbors(vertex2Dir);
-        assertEquals(1, neighborsBDir.size());
-        assertTrue(neighborsBDir.contains(vertex3Dir));
+        List<Vertex> neighbors2Dir = graphDir.getNeighbors(vertex2Dir);
+        assertEquals(1, neighbors2Dir.size());
+        assertTrue(neighbors2Dir.contains(vertex3Dir));
 
-        List<Vertex> neighborsCDir = graphDir.getNeighbors(vertex3Dir);
-        assertEquals(0, neighborsCDir.size());
+        List<Vertex> neighbors3Dir = graphDir.getNeighbors(vertex3Dir);
+        assertEquals(0, neighbors3Dir.size());
     }
 
     @Test
