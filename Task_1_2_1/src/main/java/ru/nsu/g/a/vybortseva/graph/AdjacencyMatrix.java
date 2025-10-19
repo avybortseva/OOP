@@ -16,6 +16,9 @@ public class AdjacencyMatrix implements Graph {
     private Map<Vertex, Integer> vertexIndexMap;
     private final boolean directed;
 
+    private static final int NO_EDGE = 0;
+    private static final int EDGE_EXISTS = 1;
+
     /**
      * Конструктор для создания графа с матрицей смежности.
      */
@@ -50,7 +53,6 @@ public class AdjacencyMatrix implements Graph {
      */
     @Override
     public void addVertex(Vertex vertex) {
-        // хз может если есть менять значение просто
         if (!hasVertex(vertex)) {
             vertices.add(vertex);
 
@@ -60,12 +62,12 @@ public class AdjacencyMatrix implements Graph {
             int newSize = vertices.size();
 
             for (int i = 0; i < matrix.size(); i++) {
-                matrix.get(i).add(0);
+                matrix.get(i).add(NO_EDGE);
             }
 
             List<Integer> newRow = new ArrayList<>();
             for (int i = 0; i < newSize; i++) {
-                newRow.add(0);
+                newRow.add(NO_EDGE);
             }
             matrix.add(newRow);
         }
@@ -105,9 +107,9 @@ public class AdjacencyMatrix implements Graph {
         if (hasVertex(from) && hasVertex(to)) {
             int fromIndex = vertexToInt(from);
             int toIndex = vertexToInt(to);
-            matrix.get(fromIndex).set(toIndex, 1);
+            matrix.get(fromIndex).set(toIndex, EDGE_EXISTS);
             if (!directed) {
-                matrix.get(toIndex).set(fromIndex, 1);
+                matrix.get(toIndex).set(fromIndex, EDGE_EXISTS);
             }
         } else {
             throw new IllegalArgumentException("One or both vertices not found");
@@ -122,9 +124,9 @@ public class AdjacencyMatrix implements Graph {
         if (hasVertex(from) && hasVertex(to)) {
             int fromIndex = vertexToInt(from);
             int toIndex = vertexToInt(to);
-            matrix.get(fromIndex).set(toIndex, 0);
+            matrix.get(fromIndex).set(toIndex, NO_EDGE);
             if (!directed) {
-                matrix.get(toIndex).set(fromIndex, 0);
+                matrix.get(toIndex).set(fromIndex, NO_EDGE);
             }
         } else {
             throw new IllegalArgumentException("One or both vertices not found");
@@ -153,7 +155,7 @@ public class AdjacencyMatrix implements Graph {
 
         if (!directed) {
             for (int i = 0; i < matrix.size(); i++) {
-                if (i != vertexIndex && matrix.get(i).get(vertexIndex) == 1
+                if (i != vertexIndex && matrix.get(i).get(vertexIndex) == EDGE_EXISTS
                         && intToVertex(i) != null) {
                     if (!neighbors.contains(intToVertex(i))) {
                         neighbors.add(intToVertex(i));
@@ -188,7 +190,7 @@ public class AdjacencyMatrix implements Graph {
         if (hasVertex(from) && hasVertex(to)) {
             int fromIndex = vertexToInt(from);
             int toIndex = vertexToInt(to);
-            return matrix.get(fromIndex).get(toIndex) == 1;
+            return matrix.get(fromIndex).get(toIndex) == EDGE_EXISTS;
         }
         return false;
     }

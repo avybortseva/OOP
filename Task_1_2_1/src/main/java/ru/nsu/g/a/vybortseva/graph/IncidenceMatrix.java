@@ -16,6 +16,11 @@ public class IncidenceMatrix implements Graph {
     private int edgeCount;
     private final boolean directed;
 
+    private static final int NO_EDGE = 0;
+    private static final int EDGE_START = 1;
+    private static final int EDGE_END = -1;
+    private static final int LOOP_EDGE = 2;
+
     /**
      * Конструктор для создания графа с матрицей инцидентности.
      */
@@ -57,7 +62,7 @@ public class IncidenceMatrix implements Graph {
 
             List<Integer> newRow = new ArrayList<>();
             for (int i = 0; i < edgeCount; i++) {
-                newRow.add(0);
+                newRow.add(NO_EDGE);
             }
             matrix.add(newRow);
         }
@@ -96,21 +101,21 @@ public class IncidenceMatrix implements Graph {
             int toIdx = vertexToInt(to);
 
             for (List<Integer> row : matrix) {
-                row.add(0);
+                row.add(NO_EDGE);
             }
 
             if (from.equals(to)) {
                 if (directed) {
-                    matrix.get(fromIdx).set(edgeCount, 2);
+                    matrix.get(fromIdx).set(edgeCount, LOOP_EDGE);
                 } else {
-                    matrix.get(fromIdx).set(edgeCount, 1);
+                    matrix.get(fromIdx).set(edgeCount, EDGE_START);
                 }
             } else {
-                matrix.get(fromIdx).set(edgeCount, 1);
+                matrix.get(fromIdx).set(edgeCount, EDGE_START);
                 if (directed) {
-                    matrix.get(toIdx).set(edgeCount, -1);
+                    matrix.get(toIdx).set(edgeCount, EDGE_END);
                 } else {
-                    matrix.get(toIdx).set(edgeCount, 1);
+                    matrix.get(toIdx).set(edgeCount, EDGE_START);
                 }
             }
             edgeCount++;
@@ -134,15 +139,15 @@ public class IncidenceMatrix implements Graph {
             for (int edge = 0; edge < edgeCount; edge++) {
                 if (from.equals(to)) {
                     if (directed) {
-                        if (matrix.get(fromIdx).get(edge) == 2) {
+                        if (matrix.get(fromIdx).get(edge) == LOOP_EDGE) {
                             edgeToRemove = edge;
                             break;
                         }
                     } else {
-                        if (matrix.get(fromIdx).get(edge) == 1) {
+                        if (matrix.get(fromIdx).get(edge) == EDGE_START) {
                             boolean isLoop = true;
                             for (int i = 0; i < vertices.size(); i++) {
-                                if (i != fromIdx && matrix.get(i).get(edge) == 1) {
+                                if (i != fromIdx && matrix.get(i).get(edge) == EDGE_START) {
                                     isLoop = false;
                                     break;
                                 }
@@ -155,14 +160,14 @@ public class IncidenceMatrix implements Graph {
                     }
                 } else {
                     if (directed) {
-                        if (matrix.get(fromIdx).get(edge) == 1
-                                && matrix.get(toIdx).get(edge) == -1) {
+                        if (matrix.get(fromIdx).get(edge) == EDGE_START
+                                && matrix.get(toIdx).get(edge) == EDGE_END) {
                             edgeToRemove = edge;
                             break;
                         }
                     } else {
-                        if (matrix.get(fromIdx).get(edge) == 1
-                                && matrix.get(toIdx).get(edge) == 1) {
+                        if (matrix.get(fromIdx).get(edge) == EDGE_START
+                                && matrix.get(toIdx).get(edge) == EDGE_START) {
                             edgeToRemove = edge;
                             break;
                         }
@@ -202,25 +207,25 @@ public class IncidenceMatrix implements Graph {
             int value = vertexRow.get(edge);
 
             if (directed) {
-                if (value == 1) {
+                if (value == EDGE_START) {
                     for (int i = 0; i < vertices.size(); i++) {
-                        if (matrix.get(i).get(edge) == -1) {
+                        if (matrix.get(i).get(edge) == EDGE_END) {
                             Vertex neighbor = intToVertex(i);
                             if (!neighbors.contains(neighbor)) {
                                 neighbors.add(neighbor);
                             }
                         }
                     }
-                } else if (value == 2) {
+                } else if (value == LOOP_EDGE) {
                     if (!neighbors.contains(vertex)) {
                         neighbors.add(vertex);
                     }
                 }
             } else {
-                if (value == 1) {
+                if (value == EDGE_START) {
                     boolean foundOther = false;
                     for (int i = 0; i < vertices.size(); i++) {
-                        if (i != vertexIndex && matrix.get(i).get(edge) == 1) {
+                        if (i != vertexIndex && matrix.get(i).get(edge) == EDGE_START) {
                             Vertex neighbor = intToVertex(i);
                             if (!neighbors.contains(neighbor)) {
                                 neighbors.add(neighbor);
@@ -257,14 +262,14 @@ public class IncidenceMatrix implements Graph {
             for (int edge = 0; edge < edgeCount; edge++) {
                 if (from.equals(to)) {
                     if (directed) {
-                        if (matrix.get(fromIdx).get(edge) == 2) {
+                        if (matrix.get(fromIdx).get(edge) == LOOP_EDGE) {
                             return true;
                         }
                     } else {
-                        if (matrix.get(fromIdx).get(edge) == 1) {
+                        if (matrix.get(fromIdx).get(edge) == EDGE_START) {
                             boolean isLoop = true;
                             for (int i = 0; i < vertices.size(); i++) {
-                                if (i != fromIdx && matrix.get(i).get(edge) == 1) {
+                                if (i != fromIdx && matrix.get(i).get(edge) == EDGE_START) {
                                     isLoop = false;
                                     break;
                                 }
@@ -276,13 +281,13 @@ public class IncidenceMatrix implements Graph {
                     }
                 } else {
                     if (directed) {
-                        if (matrix.get(fromIdx).get(edge) == 1
-                                && matrix.get(toIdx).get(edge) == -1) {
+                        if (matrix.get(fromIdx).get(edge) == EDGE_START
+                                && matrix.get(toIdx).get(edge) == EDGE_END) {
                             return true;
                         }
                     } else {
-                        if (matrix.get(fromIdx).get(edge) == 1
-                                && matrix.get(toIdx).get(edge) == 1) {
+                        if (matrix.get(fromIdx).get(edge) == EDGE_START
+                                && matrix.get(toIdx).get(edge) == EDGE_START) {
                             return true;
                         }
                     }
