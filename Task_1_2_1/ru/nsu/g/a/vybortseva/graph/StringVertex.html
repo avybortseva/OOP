@@ -81,6 +81,8 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">StringVertex</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph">Vertex</a></span></div>
+<div class="block">Реализация вершины графа со строковым идентификатором.
+ Вершина идентифицируется по своему имени (строке).</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -93,7 +95,9 @@ implements <a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">StringVertex</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор для создания вершины с заданным именем.</div>
+</div>
 </div>
 </section>
 </li>
@@ -111,22 +115,22 @@ implements <a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Проверяет эквивалентность вершин</div>
+<div class="block">Сравнивает данную вершину с другим объектом на равенство.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getId()" class="member-name-link">getId</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает уникальный идентификатор вершины</div>
+<div class="block">Возвращает идентификатор вершины.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает хэш-код вершины</div>
+<div class="block">Возвращает хэш-код вершины.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает строковое представление вершины</div>
+<div class="block">Возвращает строковое представление вершины.</div>
 </div>
 </div>
 </div>
@@ -149,6 +153,7 @@ implements <a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>StringVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">StringVertex</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Конструктор для создания вершины с заданным именем.</div>
 </section>
 </li>
 </ul>
@@ -163,13 +168,10 @@ implements <a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph
 <section class="detail" id="getId()">
 <h3>getId</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getId</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Vertex.html#getId()">Vertex</a></code></span></div>
-<div class="block">Возвращает уникальный идентификатор вершины</div>
+<div class="block">Возвращает идентификатор вершины.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Vertex.html#getId()">getId</a></code>&nbsp;in interface&nbsp;<code><a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph">Vertex</a></code></dd>
-<dt>Returns:</dt>
-<dd>уникальный идентификатор</dd>
 </dl>
 </section>
 </li>
@@ -177,17 +179,13 @@ implements <a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph
 <section class="detail" id="equals(java.lang.Object)">
 <h3>equals</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Vertex.html#equals(java.lang.Object)">Vertex</a></code></span></div>
-<div class="block">Проверяет эквивалентность вершин</div>
+<div class="block">Сравнивает данную вершину с другим объектом на равенство.
+ Две вершины считаются равными, если они имеют одинаковые имена.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Vertex.html#equals(java.lang.Object)">equals</a></code>&nbsp;in interface&nbsp;<code><a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph">Vertex</a></code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>o</code> - объект для сравнения</dd>
-<dt>Returns:</dt>
-<dd>true если вершины эквивалентны</dd>
 </dl>
 </section>
 </li>
@@ -195,15 +193,13 @@ implements <a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph
 <section class="detail" id="hashCode()">
 <h3>hashCode</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">hashCode</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Vertex.html#hashCode()">Vertex</a></code></span></div>
-<div class="block">Возвращает хэш-код вершины</div>
+<div class="block">Возвращает хэш-код вершины.
+ Хэш-код основан на имени вершины.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Vertex.html#hashCode()">hashCode</a></code>&nbsp;in interface&nbsp;<code><a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph">Vertex</a></code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
-<dt>Returns:</dt>
-<dd>хэш-код</dd>
 </dl>
 </section>
 </li>
@@ -211,15 +207,12 @@ implements <a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Vertex.html#toString()">Vertex</a></code></span></div>
-<div class="block">Возвращает строковое представление вершины</div>
+<div class="block">Возвращает строковое представление вершины.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Vertex.html#toString()">toString</a></code>&nbsp;in interface&nbsp;<code><a href="Vertex.html" title="interface in ru.nsu.g.a.vybortseva.graph">Vertex</a></code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
-<dt>Returns:</dt>
-<dd>строковое представление</dd>
 </dl>
 </section>
 </li>
