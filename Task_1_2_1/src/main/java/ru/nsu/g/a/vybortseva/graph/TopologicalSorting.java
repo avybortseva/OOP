@@ -2,9 +2,9 @@ package ru.nsu.g.a.vybortseva.graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.List;
 
 /**
  * Класс для выполнения топологической сортировки ориентированного графа.
