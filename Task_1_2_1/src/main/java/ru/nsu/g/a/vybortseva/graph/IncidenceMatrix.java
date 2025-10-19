@@ -192,7 +192,9 @@ public class IncidenceMatrix implements Graph {
     public List<Vertex> getNeighbors(Vertex vertex) {
         List<Vertex> neighbors = new ArrayList<>();
         int vertexIndex = vertexToInt(vertex);
-        if (vertexIndex == INVALID_INDEX) return neighbors;
+        if (vertexIndex == INVALID_INDEX) {
+            return neighbors;
+        }
 
         List<Integer> vertexRow = matrix.get(vertexIndex);
 

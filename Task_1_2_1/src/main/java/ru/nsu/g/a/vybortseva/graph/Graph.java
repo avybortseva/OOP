@@ -5,8 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-import java.util.List;
-
 /**
  * Интерфейс для работы с графом.
  */
