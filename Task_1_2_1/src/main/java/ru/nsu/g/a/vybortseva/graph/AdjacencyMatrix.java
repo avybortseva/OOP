@@ -5,12 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Реализация графа с использованием матрицы смежности.
+ * Поддерживает как ориентированные, так и неориентированные графы.
+ * Вершины хранятся в списке, а ребра представлены в виде матрицы.
+ */
 public class AdjacencyMatrix implements Graph {
     private List<List<Integer>> matrix;
     private List<Vertex> vertices;
     private Map<Vertex, Integer> vertexIndexMap;
     private final boolean directed;
 
+    /**
+     * Конструктор для создания графа с матрицей смежности.
+     */
     public AdjacencyMatrix(boolean directed) {
         this.matrix = new ArrayList<>();
         this.vertices = new ArrayList<>();
@@ -18,6 +26,9 @@ public class AdjacencyMatrix implements Graph {
         this.directed = directed;
     }
 
+    /**
+     * Преобразует индекс в вершину.
+     */
     public Vertex intToVertex(int index) {
         if (index >= 0 && index < vertices.size()) {
             return vertices.get(index);
@@ -25,29 +36,18 @@ public class AdjacencyMatrix implements Graph {
         return null;
     }
 
+    /**
+     * Преобразует вершину в индекс.
+     */
     public int VertexToInt(Vertex vertex) {
         Integer index = vertexIndexMap.get(vertex);
         return index != null ? index : INVALID_INDEX;
     }
 
-    public void setVertices(List<Vertex> vertices) {
-        this.vertices = new ArrayList<>(vertices);
-        this.vertexIndexMap.clear();
-
-        for (int i = 0; i < vertices.size(); i++) {
-            vertexIndexMap.put(vertices.get(i), i);
-        }
-
-        this.matrix = new ArrayList<>();
-        for (int i = 0; i < vertices.size(); i++) {
-            List<Integer> row = new ArrayList<>();
-            for (int j = 0; j < vertices.size(); j++) {
-                row.add(0);
-            }
-            matrix.add(row);
-        }
-    }
-
+    /**
+     * Добавляет вершину в граф.
+     * Матрица смежности автоматически расширяется для accommodate новой вершины.
+     */
     @Override
     public void addVertex(Vertex vertex) {
         // хз может если есть менять значение просто
@@ -71,6 +71,10 @@ public class AdjacencyMatrix implements Graph {
         }
     }
 
+    /**
+     * Удаляет вершину из графа.
+     * Удаляет соответствующую строку и столбец из матрицы смежности.
+     */
     @Override
     public void removeVertex(Vertex vertex) {
         if (hasVertex(vertex)){
@@ -93,6 +97,9 @@ public class AdjacencyMatrix implements Graph {
         }
     }
 
+    /**
+     * Добавляет ребро между двумя вершинами.
+     */
     @Override
     public void addEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)){
@@ -107,6 +114,9 @@ public class AdjacencyMatrix implements Graph {
         }
     }
 
+    /**
+     * Удаляет ребро между двумя вершинами.
+     */
     @Override
     public void removeEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)){
@@ -121,6 +131,10 @@ public class AdjacencyMatrix implements Graph {
         }
     }
 
+    /**
+     * Возвращает список соседей указанной вершины.
+     * Для неориентированного графа включает все смежные вершины.
+     */
     @Override
     public List<Vertex> getNeighbors(Vertex vertex) {
         List<Vertex> neighbors = new ArrayList<>();
@@ -147,16 +161,25 @@ public class AdjacencyMatrix implements Graph {
         return neighbors;
     }
 
+    /**
+     * Возвращает список всех вершин графа.
+     */
     @Override
     public List<Vertex> getVertices() {
         return new ArrayList<>(vertices);
     }
 
+    /**
+     * Проверяет наличие вершины в графе.
+     */
     @Override
     public boolean hasVertex(Vertex vertex) {
         return vertexIndexMap.containsKey(vertex);
     }
 
+    /**
+     * Проверяет наличие ребра между двумя вершинами.
+     */
     @Override
     public boolean hasEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)){
@@ -167,6 +190,9 @@ public class AdjacencyMatrix implements Graph {
         return false;
     }
 
+    /**
+     * Проверяет, является ли граф ориентированным.
+     */
     @Override
     public boolean isDirected() {
         return directed;

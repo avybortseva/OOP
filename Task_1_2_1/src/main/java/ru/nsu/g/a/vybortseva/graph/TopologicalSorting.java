@@ -2,8 +2,15 @@ package ru.nsu.g.a.vybortseva.graph;
 
 import java.util.*;
 
+/**
+ * Класс для выполнения топологической сортировки ориентированного графа.
+ */
 public class TopologicalSorting {
 
+    /**
+     * Выполняет топологическую сортировку ориентированного ациклического графа (DAG).
+     * Использует алгоритм Depth-First Search (DFS) с обнаружением циклов.
+     */
     public static List<Vertex> topologicalSort(Graph graph) {
         if (!graph.isDirected()) {
             throw new IllegalArgumentException("Topological sort can only be applied to directed graphs");
@@ -29,6 +36,10 @@ public class TopologicalSorting {
         return result;
     }
 
+    /**
+     * Вспомогательный метод для обхода графа в глубину (DFS).
+     * Помечает вершины и обнаруживает циклы.
+     */
     private static void visit(Vertex vertex, Graph graph, Set<Vertex> visited,
                               Set<Vertex> tempMark, List<Vertex> result) {
         if (tempMark.contains(vertex)) {

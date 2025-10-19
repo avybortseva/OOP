@@ -5,16 +5,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Реализация графа с использованием списка смежности.
+ * Поддерживает как ориентированные, так и неориентированные графы.
+ */
 public class AdjacencyList implements Graph {
     private Map<Vertex, List<Vertex>> adjacencyList;
     private final boolean directed;
 
+    /**
+     * Конструктор для создания графа.
+     */
     public AdjacencyList(boolean directed) {
         this.directed = directed;
         this.adjacencyList = new HashMap<>();
     }
 
-
+    /**
+     * Добавляет вершину в граф.
+     * Если вершина уже существует, метод не выполняет никаких действий.
+     */
     @Override
     public void addVertex(Vertex vertex) {
         if (!hasVertex(vertex)) {
@@ -22,6 +32,10 @@ public class AdjacencyList implements Graph {
         }
     }
 
+    /**
+     * Удаляет вершину из графа.
+     * Также удаляет все инцидентные ребра.
+     */
     @Override
     public void removeVertex(Vertex vertex) {
         if (hasVertex(vertex)) {
@@ -44,6 +58,10 @@ public class AdjacencyList implements Graph {
         }
     }
 
+    /**
+     * Добавляет ребро между двумя вершинами.
+     * Если вершины не существуют, они будут автоматически созданы.
+     */
     @Override
     public void addEdge(Vertex from, Vertex to) {
         if (!hasVertex(from)) {
@@ -66,6 +84,9 @@ public class AdjacencyList implements Graph {
         }
     }
 
+    /**
+     * Удаляет ребро между двумя вершинами.
+     */
     @Override
     public void removeEdge(Vertex from, Vertex to) {
         if (!hasVertex(from) || !hasVertex(to)) {
@@ -81,6 +102,9 @@ public class AdjacencyList implements Graph {
         }
     }
 
+    /**
+     * Возвращает список соседей указанной вершины.
+     */
     @Override
     public List<Vertex> getNeighbors(Vertex vertex) {
         if (hasVertex(vertex)) {
@@ -90,11 +114,17 @@ public class AdjacencyList implements Graph {
         }
     }
 
+    /**
+     * Проверяет наличие вершины в графе.
+     */
     @Override
     public boolean hasVertex(Vertex vertex) {
         return adjacencyList.containsKey(vertex);
     }
 
+    /**
+     * Проверяет наличие ребра между двумя вершинами.
+     */
     @Override
     public boolean hasEdge(Vertex from, Vertex to) {
         if (!hasVertex(from) || !hasVertex(to)) {
@@ -103,10 +133,16 @@ public class AdjacencyList implements Graph {
         return adjacencyList.get(from).contains(to);
     }
 
+    /**
+     * Возвращает список всех вершин графа.
+     */
     public List<Vertex> getVertices() {
         return new ArrayList<>(adjacencyList.keySet());
     }
 
+    /**
+     * Проверяет, является ли граф ориентированным.
+     */
     @Override
     public boolean isDirected() {
         return directed;

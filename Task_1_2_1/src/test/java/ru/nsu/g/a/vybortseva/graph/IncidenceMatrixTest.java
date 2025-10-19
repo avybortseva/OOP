@@ -29,7 +29,7 @@ class IncidenceMatrixTest {
     }
 
     @Test
-    void VertexToInt() {
+    void vertexToInt() {
         IncidenceMatrix graph = new IncidenceMatrix(false);
         Vertex vertexA = new StringVertex("A");
         Vertex vertexB = new StringVertex("B");
@@ -39,12 +39,12 @@ class IncidenceMatrixTest {
         graph.addVertex(vertexB);
         graph.addVertex(vertexC);
 
-        assertEquals(0, graph.VertexToInt(vertexA));
-        assertEquals(1, graph.VertexToInt(vertexB));
-        assertEquals(2, graph.VertexToInt(vertexC));
+        assertEquals(0, graph.vertexToInt(vertexA));
+        assertEquals(1, graph.vertexToInt(vertexB));
+        assertEquals(2, graph.vertexToInt(vertexC));
 
         Vertex vertexD = new StringVertex("D");
-        assertEquals(IncidenceMatrix.INVALID_INDEX, graph.VertexToInt(vertexD));
+        assertEquals(IncidenceMatrix.INVALID_INDEX, graph.vertexToInt(vertexD));
     }
 
     @Test

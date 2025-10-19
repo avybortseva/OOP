@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Реализация графа с использованием матрицы инцидентности.
+ * Поддерживает как ориентированные, так и неориентированные графы.
+ */
 public class IncidenceMatrix implements Graph {
     private Map<Vertex, Integer> vertexIndices;
     private List<List<Integer>> matrix;
@@ -12,6 +16,9 @@ public class IncidenceMatrix implements Graph {
     private int edgeCount;
     private final boolean directed;
 
+    /**
+     * Конструктор для создания графа с матрицей инцидентности.
+     */
     public IncidenceMatrix(boolean directed) {
         vertexIndices = new HashMap<>();
         vertices = new ArrayList<>();
@@ -20,6 +27,9 @@ public class IncidenceMatrix implements Graph {
         this.directed = directed;
     }
 
+    /**
+     * Преобразует индекс в вершину.
+     */
     public Vertex intToVertex(int index) {
         if (index >= 0 && index < vertices.size()) {
             return vertices.get(index);
@@ -27,11 +37,18 @@ public class IncidenceMatrix implements Graph {
         return null;
     }
 
-    public int VertexToInt(Vertex vertex) {
+    /**
+     * Преобразует вершину в индекс.
+     */
+    public int vertexToInt(Vertex vertex) {
         Integer index = vertexIndices.get(vertex);
         return index != null ? index : INVALID_INDEX;
     }
 
+    /**
+     * Добавляет вершину в граф.
+     * Создает новую строку в матрице инцидентности для новой вершины.
+     */
     @Override
     public void addVertex(Vertex vertex) {
         if (!hasVertex(vertex)) {
@@ -46,10 +63,14 @@ public class IncidenceMatrix implements Graph {
         }
     }
 
+    /**
+     * Удаляет вершину из графа.
+     * Удаляет соответствующую строку из матрицы инцидентности.
+     */
     @Override
     public void removeVertex(Vertex vertex) {
         if (hasVertex(vertex)) {
-            int vertexIndex = VertexToInt(vertex);
+            int vertexIndex = vertexToInt(vertex);
 
             vertexIndices.remove(vertex);
             vertices.remove(vertexIndex);
@@ -64,11 +85,15 @@ public class IncidenceMatrix implements Graph {
         }
     }
 
+    /**
+     * Добавляет ребро между двумя вершинами.
+     * Создает новый столбец в матрице инцидентности.
+     */
     @Override
     public void addEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)) {
-            int fromIdx = VertexToInt(from);
-            int toIdx = VertexToInt(to);
+            int fromIdx = vertexToInt(from);
+            int toIdx = vertexToInt(to);
 
             for (List<Integer> row : matrix) {
                 row.add(0);
@@ -94,11 +119,15 @@ public class IncidenceMatrix implements Graph {
         }
     }
 
+    /**
+     * Удаляет ребро между двумя вершинами.
+     * Удаляет соответствующий столбец из матрицы инцидентности.
+     */
     @Override
     public void removeEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)) {
-            int fromIdx = VertexToInt(from);
-            int toIdx = VertexToInt(to);
+            int fromIdx = vertexToInt(from);
+            int toIdx = vertexToInt(to);
 
             int edgeToRemove = INVALID_INDEX;
 
@@ -154,10 +183,14 @@ public class IncidenceMatrix implements Graph {
         }
     }
 
+    /**
+     * Возвращает список соседей указанной вершины.
+     * Для ориентированного графа возвращает только вершины, достижимые из данной.
+     */
     @Override
     public List<Vertex> getNeighbors(Vertex vertex) {
         List<Vertex> neighbors = new ArrayList<>();
-        int vertexIndex = VertexToInt(vertex);
+        int vertexIndex = vertexToInt(vertex);
         if (vertexIndex == INVALID_INDEX) return neighbors;
 
         List<Integer> vertexRow = matrix.get(vertexIndex);
@@ -201,16 +234,22 @@ public class IncidenceMatrix implements Graph {
         return neighbors;
     }
 
+    /**
+     * Проверяет наличие вершины в графе.
+     */
     @Override
     public boolean hasVertex(Vertex vertex) {
         return vertexIndices.containsKey(vertex);
     }
 
+    /**
+     * Проверяет наличие ребра между двумя вершинами.
+     */
     @Override
     public boolean hasEdge(Vertex from, Vertex to) {
         if (hasVertex(from) && hasVertex(to)) {
-            int fromIdx = VertexToInt(from);
-            int toIdx = VertexToInt(to);
+            int fromIdx = vertexToInt(from);
+            int toIdx = vertexToInt(to);
 
             for (int edge = 0; edge < edgeCount; edge++) {
                 if (from.equals(to)) {
@@ -250,10 +289,16 @@ public class IncidenceMatrix implements Graph {
         return false;
     }
 
+    /**
+     * Возвращает список всех вершин графа.
+     */
     public List<Vertex> getVertices() {
         return new ArrayList<>(vertices);
     }
 
+    /**
+     * Проверяет, является ли граф ориентированным.
+     */
     @Override
     public boolean isDirected() {
         return directed;

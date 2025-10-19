@@ -6,26 +6,21 @@ package ru.nsu.g.a.vybortseva.graph;
 public interface Vertex {
     /**
      * Возвращает уникальный идентификатор вершины
-     * @return уникальный идентификатор
      */
     String getId();
 
     /**
      * Возвращает строковое представление вершины
-     * @return строковое представление
      */
     String toString();
 
     /**
      * Проверяет эквивалентность вершин
-     * @param obj объект для сравнения
-     * @return true если вершины эквивалентны
      */
     boolean equals(Object obj);
 
     /**
      * Возвращает хэш-код вершины
-     * @return хэш-код
      */
     int hashCode();
 }

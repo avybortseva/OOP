@@ -15,67 +15,51 @@ public interface Graph {
 
     /**
      * Добавляет вершину в граф
-     * @param vertex вершина для добавления
      */
     void addVertex(Vertex vertex);
 
     /**
      * Удаляет вершину из графа
-     * @param vertex вершина для удаления
      */
     void removeVertex(Vertex vertex);
 
     /**
      * Добавляет ребро между вершинами
-     * @param source исходная вершина
-     * @param destination целевая вершина
      */
     void addEdge(Vertex source, Vertex destination);
 
     /**
      * Удаляет ребро между вершинами
-     * @param source исходная вершина
-     * @param destination целевая вершина
      */
     void removeEdge(Vertex source, Vertex destination);
 
     /**
      * Проверяет наличие вершины в графе
-     * @param vertex вершина для проверки
-     * @return true если вершина присутствует
      */
     boolean hasVertex(Vertex vertex);
 
     /**
      * Проверяет наличие ребра между вершинами
-     * @param source исходная вершина
-     * @param destination целевая вершина
-     * @return true если ребро существует
      */
     boolean hasEdge(Vertex source, Vertex destination);
 
     /**
      * Возвращает список соседей вершины
-     * @param vertex вершина
-     * @return список соседних вершин
      */
     List<Vertex> getNeighbors(Vertex vertex);
 
     /**
      * Возвращает список всех вершин графа
-     * @return список вершин
      */
     List<Vertex> getVertices();
 
     /**
      * Проверяет, является ли граф ориентированным
-     * @return true если граф ориентированный
      */
     boolean isDirected();
 
     /**
      * Читает граф из файла
-     * @param filename имя файла
      */
     default void readFromFile(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {

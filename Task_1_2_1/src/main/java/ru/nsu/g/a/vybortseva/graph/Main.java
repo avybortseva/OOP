@@ -8,6 +8,9 @@ import java.util.List;
  */
 public class Main {
 
+    /**
+     * Main метод для демонстрации работы с графами
+     */
     public static void main(String[] args) {
         System.out.println("=== Демонстрация трех представлений графа ===\n");
 
@@ -37,6 +40,9 @@ public class Main {
         demonstrateGraphFromFile();
     }
 
+    /**
+     * Демонстрирует работу с матрицей смежности.
+     */
     private static void demonstrateAdjacencyMatrix(boolean directed, List<String> vertices, String[][] edges) {
         System.out.println("1. МАТРИЦА СМЕЖНОСТИ:");
 
@@ -66,6 +72,9 @@ public class Main {
         System.out.println();
     }
 
+    /**
+     * Демонстрирует работу с матрицей инцидентности.
+     */
     private static void demonstrateIncidenceMatrix(boolean directed, List<String> vertices, String[][] edges) {
         System.out.println("2. МАТРИЦА ИНЦИДЕНТНОСТИ:");
 
@@ -95,6 +104,9 @@ public class Main {
         System.out.println();
     }
 
+    /**
+     * Демонстрирует работу со списком смежности.
+     */
     private static void demonstrateAdjacencyList(boolean directed, List<String> vertices, String[][] edges) {
         System.out.println("3. СПИСОК СМЕЖНОСТИ:");
 
@@ -124,6 +136,9 @@ public class Main {
         System.out.println();
     }
 
+    /**
+     * Тестирует топологическую сортировку на ациклическом и циклическом графах.
+     */
     private static void testTopologicalSort() {
         System.out.println("Тест топологической сортировки на ациклическом графе:");
 
@@ -181,6 +196,9 @@ public class Main {
         }
     }
 
+    /**
+     * Демонстрирует чтение графа из файла для всех трех представлений.
+     */
     private static void demonstrateGraphFromFile() {
         String filename = "graph.txt";
 
@@ -221,6 +239,9 @@ public class Main {
         }
     }
 
+    /**
+     * Выводит основную информацию о графе.
+     */
     private static void printGraphInfo(Graph graph, boolean directed) {
         System.out.println("Тип графа: " + (directed ? "ориентированный" : "неориентированный"));
         System.out.println("Вершины: " + graph.getVertices());
@@ -235,6 +256,9 @@ public class Main {
         }
     }
 
+    /**
+     * Выводит матрицу смежности в читаемом формате.
+     */
     private static void printAdjacencyMatrixRepresentation(AdjacencyMatrix graph, List<String> vertices) {
         System.out.println("Матрица смежности:");
         System.out.print("    ");
@@ -254,12 +278,15 @@ public class Main {
         }
     }
 
+    /**
+     * Выводит упрощенное представление матрицы инцидентности.
+     */
     private static void printSimpleIncidenceMatrix(IncidenceMatrix graph, List<String> vertices, String[][] edges) {
         System.out.println("Матрица инцидентности:");
 
         System.out.print("   ");
-        for (int i = 0; i < edges.length; i++) {
-            System.out.print(edges[i][0] + edges[i][1] + " ");
+        for (String[] strings : edges) {
+            System.out.print(strings[0] + strings[1] + " ");
         }
         System.out.println();
 
@@ -290,6 +317,9 @@ public class Main {
         }
     }
 
+    /**
+     * Выводит список смежности графа.
+     */
     private static void printAdjacencyListRepresentation(Graph graph) {
         System.out.println("Список смежности:");
         for (Vertex vertex : graph.getVertices()) {
