@@ -1,9 +1,14 @@
 package ru.nsu.g.a.vybortseva.table;
-import java.util.*;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
- * A generic hash table implementation that maps keys to values using separate chaining for collision resolution.
- * Supports basic operations like put, get, remove, and update with constant-time performance on average.
+ * A generic hash table implementation that maps keys to values using separate
+ * chaining for collision resolution.
+ * Supports basic operations like put, get, remove, and update with constant-time
+ * performance on average.
  * Implements Iterable to allow iteration over key-value pairs.
  */
 public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
@@ -116,10 +121,12 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      * Constructs an empty hash table with the specified initial capacity and load factor.
      */
     public HashTable(int initialCapacity, float loadFactor) {
-        if (initialCapacity < 0)
+        if (initialCapacity < 0) {
             throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
-        if (loadFactor <= 0 || Float.isNaN(loadFactor))
+        }
+        if (loadFactor <= 0 || Float.isNaN(loadFactor)) {
             throw new IllegalArgumentException("Illegal load factor: " + loadFactor);
+        }
 
         this.loadFactor = loadFactor;
         this.capacity = initialCapacity;
@@ -333,7 +340,8 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
     /**
      * Compares the specified object with this hash table for equality.
-     * Returns true if the given object is also a hash table and contains the same key-value mappings.
+     * Returns true if the given object is also a hash table and contains the same
+     * key-value mappings.
      */
     @Override
     public boolean equals(Object o) {
@@ -358,8 +366,8 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
     private boolean containsEntry(HashTable<?, ?> other, Entry<K, V> entry) {
         for (Entry<?, ?> otherEntry : other) {
-            if (Objects.equals(entry.getKey(), otherEntry.getKey()) &&
-                    Objects.equals(entry.getValue(), otherEntry.getValue())) {
+            if (Objects.equals(entry.getKey(), otherEntry.getKey())
+                    && Objects.equals(entry.getValue(), otherEntry.getValue())) {
                 return true;
             }
         }
