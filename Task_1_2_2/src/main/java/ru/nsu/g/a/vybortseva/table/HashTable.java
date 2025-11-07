@@ -1,8 +1,5 @@
 package ru.nsu.g.a.vybortseva.table;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * A generic hash table implementation that maps keys to values using separate
@@ -11,7 +8,7 @@ import java.util.Objects;
  * performance on average.
  * Implements Iterable to allow iteration over key-value pairs.
  */
-public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
+public class HashTable<K, V> implements Map<K, V>, Iterable<HashTable.Entry<K, V>> {
     private static final int DEFAULT_CAPACITY = 16;
     private static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
@@ -25,7 +22,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      * Represents a key-value pair entry in the hash table.
      * Stores the key, value, hash code, and reference to next entry in collision chain.
      */
-    static class Entry<K, V> {
+    static class Entry<K, V> implements Map.Entry<K, V> {
         final K key;
         V value;
         Entry<K, V> next;
@@ -58,6 +55,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         /**
          * Replaces the value corresponding to this entry with the specified value.
          */
+        @Override
         public V setValue(V value) {
             V oldValue = this.value;
             this.value = value;
@@ -135,7 +133,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         this.modCount = 0;
     }
 
-    private int hash(K key) {
+    private int hash(Object key) {
         if (key == null) {
             return 0;
         }
@@ -165,7 +163,8 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      * Associates the specified value with the specified key in this hash table.
      * If the key already exists, the existing value is replaced.
      */
-    public void put(K key, V value) {
+    @Override
+    public V put(K key, V value) {
         if (size >= capacity * loadFactor) {
             resize();
         }
@@ -177,7 +176,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
             if (Objects.equals(current.key, key)) {
                 current.value = value;
                 modCount++;
-                return;
+                return null;
             }
             prev = current;
             current = current.next;
@@ -192,12 +191,77 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
         size++;
         modCount++;
+        return null;
+    }
+
+    /**
+     * Copies all the mappings from the specified map to this hash table.
+     * These mappings will replace any mappings that this hash table had for any of the keys
+     * currently in the specified map.
+     */
+    @Override
+    public void putAll(Map<? extends K, ? extends V> m) {
+        for (Map.Entry<? extends K, ? extends V> entry : m.entrySet()) {
+            put(entry.getKey(), entry.getValue());
+        }
+    }
+
+    /**
+     * Removes all the mappings from this hash table.
+     * The hash table will be empty after this call returns.
+     */
+    @Override
+    public void clear() {
+        Arrays.fill(table, null);
+        size = 0;
+        modCount++;
+    }
+
+    /**
+     * Returns a Set view of the keys contained in this hash table.
+     * The set is backed by the hash table, so changes to the hash table
+     */
+    @Override
+    public Set<K> keySet() {
+        Set<K> keys = new HashSet<>();
+        for (Entry<K, V> entry : this) {
+            keys.add(entry.getKey());
+        }
+        return keys;
+    }
+
+    /**
+     * Returns a Collection view of the values contained in this hash table.
+     * The collection is backed by the hash table, so changes to the hash table are reflected in the collection,
+     */
+    @Override
+    public Collection<V> values() {
+        List<V> values = new ArrayList<>();
+        for (Entry<K, V> entry : this) {
+            values.add(entry.getValue());
+        }
+        return values;
+    }
+
+    /**
+     * Returns a Set view of the mappings contained in this hash table.
+     * The set is backed by the hash table, so changes to the hash table are reflected in the set,
+     */
+    @Override
+    public Set<Map.Entry<K, V>> entrySet() {
+        Set<Map.Entry<K, V>> entrySet = new HashSet<>();
+        for (Entry<K, V> entry : this) {
+            entrySet.add(entry);
+        }
+        return entrySet;
     }
 
     /**
      * Removes the mapping for the specified key from this hash table if present.
      */
-    public void remove(K key) {
+    @Override
+    public V remove(Object key) {
+        V oldValue = get((K) key);
         int hash = hash(key);
         Entry<K, V> current = table[hash];
         Entry<K, V> prev = null;
@@ -211,17 +275,19 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
                 }
                 size--;
                 modCount++;
-                return;
+                return oldValue;
             }
             prev = current;
             current = current.next;
         }
+        return oldValue;
     }
 
     /**
      * Returns the value to which the specified key is mapped, or null if no mapping exists.
      */
-    public V get(K key) {
+    @Override
+    public V get(Object key) {
         int hash = hash(key);
         Entry<K, V> current = table[hash];
 
@@ -253,10 +319,11 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     }
 
     /**
-     * Returns true if this hash table contains a mapping for the specified key.
+     * Returns the number of key-value mappings in this hash table.
      */
-    public boolean containsKey(K key) {
-        return get(key) != null;
+    @Override
+    public int size() {
+        return size;
     }
 
     /**
@@ -264,6 +331,27 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      */
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    /**
+     * Returns true if this hash table contains a mapping for the specified key.
+     */
+    @Override
+    public boolean containsKey(Object key) {
+        return get(key) != null;
+    }
+
+    /**
+     * Returns true if this hash table maps one or more keys to the specified value.
+     */
+    @Override
+    public boolean containsValue(Object value) {
+        for (Entry<K, V> entry : this) {
+            if (Objects.equals(entry.value, value)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
