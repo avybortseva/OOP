@@ -1,5 +1,17 @@
 package ru.nsu.g.a.vybortseva.table;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.Set;
+
 
 /**
  * A generic hash table implementation that maps keys to values using separate
@@ -232,7 +244,8 @@ public class HashTable<K, V> implements Map<K, V>, Iterable<HashTable.Entry<K, V
 
     /**
      * Returns a Collection view of the values contained in this hash table.
-     * The collection is backed by the hash table, so changes to the hash table are reflected in the collection,
+     * The collection is backed by the hash table, so changes to the hash
+     * table are reflected in the collection,
      */
     @Override
     public Collection<V> values() {
