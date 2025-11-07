@@ -8,8 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -257,4 +260,91 @@ class HashTableTest {
     void testMainMethod() {
         assertDoesNotThrow(() -> HashTable.main(new String[]{}));
     }
+
+    @Test
+    void testContainsValue() {
+        assertFalse(hashTable.containsValue(1));
+
+        hashTable.put("one", 1);
+        hashTable.put("two", 2);
+        hashTable.put("three", 3);
+
+        assertTrue(hashTable.containsValue(1));
+        assertTrue(hashTable.containsValue(2));
+        assertTrue(hashTable.containsValue(3));
+        assertFalse(hashTable.containsValue(4));
+
+        hashTable.put("nullValue", null);
+        assertTrue(hashTable.containsValue(null));
+    }
+
+    @Test
+    void testPutAll() {
+        HashTable<String, Integer> source = new HashTable<>();
+        source.put("a", 1);
+        source.put("b", 2);
+        source.put("c", 3);
+
+        hashTable.putAll(source);
+
+        assertEquals(3, hashTable.size());
+        assertEquals(1, hashTable.get("a"));
+        assertEquals(2, hashTable.get("b"));
+        assertEquals(3, hashTable.get("c"));
+    }
+
+    @Test
+    void testClear() {
+        hashTable.put("one", 1);
+        hashTable.put("two", 2);
+        hashTable.put("three", 3);
+
+        assertFalse(hashTable.isEmpty());
+        hashTable.clear();
+        assertTrue(hashTable.isEmpty());
+        assertNull(hashTable.get("one"));
+    }
+
+    @Test
+    void testKeySet() {
+        hashTable.put("one", 1);
+        hashTable.put("two", 2);
+        hashTable.put("three", 3);
+
+        Set<String> keys = hashTable.keySet();
+        assertEquals(3, keys.size());
+        assertTrue(keys.contains("one"));
+        assertTrue(keys.contains("two"));
+        assertTrue(keys.contains("three"));
+        assertFalse(keys.contains("four"));
+    }
+
+    @Test
+    void testValues() {
+        hashTable.put("one", 1);
+        hashTable.put("two", 2);
+        hashTable.put("three", 3);
+
+        Collection<Integer> values = hashTable.values();
+        assertEquals(3, values.size());
+        assertTrue(values.contains(1));
+        assertTrue(values.contains(2));
+        assertTrue(values.contains(3));
+        assertFalse(values.contains(4));
+    }
+
+    @Test
+    void testEntrySet() {
+        hashTable.put("one", 1);
+        hashTable.put("two", 2);
+
+        Set<Map.Entry<String, Integer>> entrySet = hashTable.entrySet();
+        assertEquals(2, entrySet.size());
+
+        for (Map.Entry<String, Integer> entry : entrySet) {
+            assertTrue(entry.getKey().equals("one") || entry.getKey().equals("two"));
+            assertTrue(entry.getValue() == 1 || entry.getValue() == 2);
+        }
+    }
 }
+

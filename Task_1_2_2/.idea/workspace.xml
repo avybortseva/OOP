@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ada3ad43-577a-44e1-bb0e-4b43aa45c29d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/g/a/vybortseva/table/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/g/a/vybortseva/table/HashTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/nsu/g/a/vybortseva/table/HashTableTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/nsu/g/a/vybortseva/table/HashTableTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.HashTableTest.testContainsValue.executor": "Run",
     "Gradle.Task_1_2_2 [:ru.nsu.g.a.vybortseva.table.HashTable.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -60,6 +60,37 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="ru.nsu.g.a.vybortseva.table" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="HashTableTest.testContainsValue" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.nsu.g.a.vybortseva.table.HashTableTest.testContainsValue&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.HashTableTest.testContainsValue" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
