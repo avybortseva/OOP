@@ -12,7 +12,6 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
 
-
 /**
  * A generic hash table implementation that maps keys to values using separate
  * chaining for collision resolution.
@@ -160,7 +159,7 @@ public class HashTable<K, V> implements Map<K, V>, Iterable<HashTable.Entry<K, V
             Entry<K, V> entry = table[i];
             while (entry != null) {
                 Entry<K, V> next = entry.next;
-                int newIndex = Math.abs(entry.hash) % newCapacity;
+                int newIndex = Math.abs(entry.key.hashCode()) % newCapacity;
                 entry.next = newTable[newIndex];
                 newTable[newIndex] = entry;
                 entry = next;
@@ -236,9 +235,7 @@ public class HashTable<K, V> implements Map<K, V>, Iterable<HashTable.Entry<K, V
     @Override
     public Set<K> keySet() {
         Set<K> keys = new HashSet<>();
-        for (Entry<K, V> entry : this) {
-            keys.add(entry.getKey());
-        }
+        forEach(entry -> keys.add(entry.getKey()));
         return keys;
     }
 
