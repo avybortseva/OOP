@@ -41,11 +41,14 @@ public class SubstringSearcher {
         }
     }
 
-    private static List<Integer> rabinKarpSearch(BufferedReader reader, String pattern) throws IOException {
+    private static List<Integer> rabinKarpSearch(BufferedReader reader, String pattern)
+            throws IOException {
         List<Integer> indices = new ArrayList<>();
         int m = pattern.length();
 
-        if (m == 0) return indices;
+        if (m == 0) {
+            return indices;
+        }
 
         long patternHash = computeHash(pattern, 0, m);
         long h = computePower(m);
@@ -62,7 +65,9 @@ public class SubstringSearcher {
         while (true) {
             if (bufferPos >= bufferLength) {
                 bufferLength = reader.read(readBuffer);
-                if (bufferLength == -1) break;
+                if (bufferLength == -1) {
+                    break;
+                }
                 bufferPos = 0;
             }
 
