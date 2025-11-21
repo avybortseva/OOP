@@ -20,11 +20,10 @@ public class SubstringSearcher {
     /**
      * Finds all occurrences of a substring in a file using Rabin-Karp algorithm.
      */
-    public static List<Integer> find(String filename, String substring) {
-        List<Integer> indices = new ArrayList<>();
+    public static List<Long> find(String filename, String substring) {
+        List<Long> indices = new ArrayList<>();
 
         if (substring.isEmpty()) {
-            System.out.print("Substring is empty: ");
             return indices;
         }
 
@@ -41,9 +40,9 @@ public class SubstringSearcher {
         }
     }
 
-    private static List<Integer> rabinKarpSearch(BufferedReader reader, String pattern)
+    private static List<Long> rabinKarpSearch(BufferedReader reader, String pattern)
             throws IOException {
-        List<Integer> indices = new ArrayList<>();
+        List<Long> indices = new ArrayList<>();
         int m = pattern.length();
 
         if (m == 0) {
@@ -54,7 +53,7 @@ public class SubstringSearcher {
         long h = computePower(m);
 
         char[] window = new char[m];
-        int totalCharsRead = 0;
+        long totalCharsRead = 0;
         int charsInWindow = 0;
         long windowHash = 0;
 
@@ -142,7 +141,7 @@ public class SubstringSearcher {
      * Main method for testing the substring search functionality.
      */
     public static void main(String[] args) {
-        List<Integer> result = SubstringSearcher.find("input.txt", "бра");
+        List<Long> result = SubstringSearcher.find("input.txt", "бра");
         System.out.println(result);
 
         System.out.println(SubstringSearcher.find("input.txt", "абра"));

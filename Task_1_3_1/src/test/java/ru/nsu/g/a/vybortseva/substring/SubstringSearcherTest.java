@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -22,8 +24,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test1.txt");
         Files.writeString(testFile, "hello world");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "world");
-        assertEquals(List.of(6), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "world");
+        assertEquals(List.of(6L), result);
     }
 
     @Test
@@ -31,8 +33,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test2.txt");
         Files.writeString(testFile, "abracadabra");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "bra");
-        assertEquals(List.of(1, 8), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "bra");
+        assertEquals(List.of(1L, 8L), result);
     }
 
     @Test
@@ -40,8 +42,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test3.txt");
         Files.writeString(testFile, "aaaaaa");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "aaa");
-        assertEquals(List.of(0, 1, 2, 3), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "aaa");
+        assertEquals(List.of(0L, 1L, 2L, 3L), result);
     }
 
     @Test
@@ -49,8 +51,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test4.txt");
         Files.writeString(testFile, "start of the text");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "start");
-        assertEquals(List.of(0), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "start");
+        assertEquals(List.of(0L), result);
     }
 
     @Test
@@ -59,8 +61,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test5.txt");
         Files.writeString(testFile, "this is the end");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "end");
-        assertEquals(List.of(12), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "end");
+        assertEquals(List.of(12L), result);
     }
 
     @Test
@@ -68,7 +70,7 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test6.txt");
         Files.writeString(testFile, "some text content");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "xyz");
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "xyz");
         assertTrue(result.isEmpty());
     }
 
@@ -77,7 +79,7 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test7.txt");
         Files.writeString(testFile, "some text");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "");
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "");
         assertTrue(result.isEmpty());
     }
 
@@ -86,7 +88,7 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test8.txt");
         Files.writeString(testFile, "short");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "very long substring");
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "very long substring");
         assertTrue(result.isEmpty());
     }
 
@@ -96,8 +98,8 @@ class SubstringSearcherTest {
         String content = "exact content";
         Files.writeString(testFile, content);
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), content);
-        assertEquals(List.of(0), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), content);
+        assertEquals(List.of(0L), result);
     }
 
     @Test
@@ -106,8 +108,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test11.txt");
         Files.writeString(testFile, "абракадабра");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "бра");
-        assertEquals(List.of(1, 8), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "бра");
+        assertEquals(List.of(1L, 8L), result);
     }
 
     @Test
@@ -115,8 +117,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test12.txt");
         Files.writeString(testFile, "Hello HELLO hello");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "Hello");
-        assertEquals(List.of(0), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "Hello");
+        assertEquals(List.of(0L), result);
     }
 
     @Test
@@ -124,8 +126,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test13.txt");
         Files.writeString(testFile, "line1\nline2\tline3\r\nline4");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "line");
-        assertEquals(List.of(0, 6, 12, 19), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "line");
+        assertEquals(List.of(0L, 6L, 12L, 19L), result);
     }
 
     @Test
@@ -133,7 +135,7 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test14.txt");
         Files.writeString(testFile, "");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "text");
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "text");
         assertTrue(result.isEmpty());
     }
 
@@ -142,8 +144,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test15.txt");
         Files.writeString(testFile, "a");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "a");
-        assertEquals(List.of(0), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "a");
+        assertEquals(List.of(0L), result);
     }
 
     @Test
@@ -151,8 +153,8 @@ class SubstringSearcherTest {
         Path testFile = tempDir.resolve("test16.txt");
         Files.writeString(testFile, "abcabcabc");
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "abc");
-        assertEquals(List.of(0, 3, 6), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "abc");
+        assertEquals(List.of(0L, 3L, 6L), result);
     }
 
     @Test
@@ -170,7 +172,40 @@ class SubstringSearcherTest {
                 + "the pattern we are looking for in this specific test case";
         Files.writeString(testFile, longText);
 
-        List<Integer> result = SubstringSearcher.find(testFile.toString(), "relatively long text");
-        assertEquals(List.of(10), result);
+        List<Long> result = SubstringSearcher.find(testFile.toString(), "relatively long text");
+        assertEquals(List.of(10L), result);
+    }
+
+    @Test
+    void testNonAsciiCharacters() throws IOException {
+        Path tempFile = tempDir.resolve("unicode-test.txt");
+
+        try (BufferedWriter writer = Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8)) {
+            writer.write("Привет мир! Hello world!");
+        }
+
+        List<Long> result = SubstringSearcher.find(tempFile.toString(), "мир");
+        assertEquals(List.of(7L), result);
+    }
+
+    @Test
+    void testLargeFile() throws IOException {
+        Path largeFile = tempDir.resolve("largefile.txt");
+
+        try (BufferedWriter writer = Files.newBufferedWriter(largeFile, StandardCharsets.UTF_8)) {
+            String pattern = "TEST_PATTERN";
+            String filler = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+           for (int i = 0; i < 100000; i++) {
+                if (i % 1000 == 0) {
+                    writer.write(pattern);
+                } else {
+                    writer.write(filler);
+                }
+            }
+        }
+
+        List<Long> result = SubstringSearcher.find(largeFile.toString(), "TEST_PATTERN");
+        assertEquals(100, result.size());
     }
 }
