@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -196,7 +196,7 @@ class SubstringSearcherTest {
             String pattern = "TEST_PATTERN";
             String filler = "abcdefghijklmnopqrstuvwxyz0123456789";
 
-           for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 100000; i++) {
                 if (i % 1000 == 0) {
                     writer.write(pattern);
                 } else {
