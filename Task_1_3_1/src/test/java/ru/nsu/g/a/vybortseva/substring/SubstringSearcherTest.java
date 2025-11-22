@@ -211,7 +211,8 @@ class SubstringSearcherTest {
                 lineCount++;
 
                 if (lineCount % 100000 == 0) {
-                    System.out.printf("Written: %.2f GB%n", (double)bytesWritten / (1024*1024*1024));
+                    System.out.printf("Written: %.2f GB%n",
+                            (double) bytesWritten / (1024 * 1024 * 1024));
                 }
             }
         }
