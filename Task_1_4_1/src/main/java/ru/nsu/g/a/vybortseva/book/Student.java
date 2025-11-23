@@ -7,7 +7,8 @@ import java.util.Map;
 
 /**
  * Represents a student's electronic grade book.
- * Manages academic records, calculates statistics, and checks eligibility for various academic benefits.
+ * Manages academic records, calculates statistics, and checks
+ * eligibility for various academic benefits.
  */
 public class Student {
     private final String firstName;
@@ -228,7 +229,7 @@ public class Student {
 
         List<Semester> allSemesters = academicHistory.stream()
                 .filter(record -> record.getRecordType() == RecordType.EXAM)
-                .map(AcademicRecord :: getSemester)
+                .map(AcademicRecord::getSemester)
                 .distinct()
                 .sorted((s1, s2) -> Integer.compare(s2.getNumber(), s1.getNumber()))
                 .toList();
