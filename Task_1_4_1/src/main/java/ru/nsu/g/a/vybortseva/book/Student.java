@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a student's electronic grade book.
+ * Manages academic records, calculates statistics, and checks eligibility for various academic benefits.
+ */
 public class Student {
     private final String firstName;
     private final String lastName;
@@ -15,6 +19,9 @@ public class Student {
     private Grade thesisGrade;
     private List<AcademicRecord> academicHistory;
 
+    /**
+     * Creates a new student with basic information and initializes academic history.
+     */
     public Student(String firstName, String lastName, Integer studentId,
                    EducationForm form) {
         this.firstName = firstName;
@@ -26,46 +33,79 @@ public class Student {
         this.academicHistory = new ArrayList<>();
     }
 
+    /**
+     * Returns the student's first name.
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Returns the student's last name.
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Returns the student's unique identifier.
+     */
     public Integer getStudentId() {
         return studentId;
     }
 
+    /**
+     * Returns the current semester of the student.
+     */
     public Semester getCurrentSemester() {
         return curSemester;
     }
 
+    /**
+     * Returns the current education form of the student.
+     */
     public EducationForm getEducationForm() {
         return form;
     }
 
+    /**
+     * Returns the thesis grade or undefined if not yet assessed.
+     */
     public Grade getThesisGrade() {
         return thesisGrade;
     }
 
+    /**
+     * Returns a copy of the student's academic history.
+     */
     public List<AcademicRecord> getAcademicHistory() {
         return new ArrayList<>(academicHistory);
     }
 
+    /**
+     * Updates the student's education form.
+     */
     public void setForm(EducationForm form) {
         this.form = form;
     }
 
+    /**
+     * Adds a new academic record to the student's history.
+     */
     public void addAcademicRecord(AcademicRecord record) {
         this.academicHistory.add(record);
     }
 
+    /**
+     * Sets the grade for the student's qualification thesis.
+     */
     public void setThesisGrade(Grade thesisGrade) {
         this.thesisGrade = thesisGrade;
     }
 
+    /**
+     * Advances the student to the next semester in sequence.
+     */
     public void moveToNextSemester() {
         int nextNumber = curSemester.getNumber() + 1;
         Semester nextSemester = getSemesterByNumber(nextNumber);
@@ -83,6 +123,9 @@ public class Student {
         return null;
     }
 
+    /**
+     * Calculates the average score across all academic records.
+     */
     public float getAverageScore() {
         float averageScore = 0;
         float disciplineCount = 0;
@@ -96,6 +139,9 @@ public class Student {
         return disciplineCount != 0 ? averageScore/disciplineCount : 0;
     }
 
+    /**
+     * Calculates the average score for a specific semester.
+     */
     public float getAverageScore(Semester semester) {
         float averageScore = 0;
         float disciplineCount = 0;
@@ -109,6 +155,9 @@ public class Student {
         return disciplineCount != 0 ? averageScore / disciplineCount : 0;
     }
 
+    /**
+     * Checks eligibility for increased scholarship in the current semester.
+     */
     public boolean increasedScholarshipPossibility() {
         if (form != EducationForm.BUDGET) {
             return false;
@@ -116,8 +165,8 @@ public class Student {
 
         List<AcademicRecord> currentSemesterRecords = academicHistory.stream()
                 .filter(record -> record.getSemester() == curSemester)
-                .filter(record -> record.getRecordType() == RecordType.EXAM ||
-                        record.getRecordType() == RecordType.DIFF_CREDIT)
+                .filter(record -> record.getRecordType() == RecordType.EXAM
+                        || record.getRecordType() == RecordType.DIFF_CREDIT)
                 .collect(Collectors.toList());
 
         if (currentSemesterRecords.isEmpty()) {
@@ -128,6 +177,9 @@ public class Student {
                 .allMatch(record -> record.getGrade() == Grade.EXCELLENT);
     }
 
+    /**
+     * Determines if the student can potentially receive a honors diploma.
+     */
     public boolean redDiplomaPossibility() {
         if (thesisGrade != Grade.UNDEFINED && thesisGrade != Grade.EXCELLENT) {
             return false;
@@ -135,16 +187,16 @@ public class Student {
 
         Map<String, AcademicRecord> finalGrades = new HashMap<>();
         for (AcademicRecord record : academicHistory) {
-            if (!finalGrades.containsKey(record.getDisciplineName()) ||
-                    isLaterSemester(record.getSemester(),
+            if (!finalGrades.containsKey(record.getDisciplineName())
+                    || isLaterSemester(record.getSemester(),
                             finalGrades.get(record.getDisciplineName()).getSemester())) {
                 finalGrades.put(record.getDisciplineName(), record);
             }
         }
 
         List<AcademicRecord> gradedRecords = finalGrades.values().stream()
-                .filter(record -> record.getRecordType() == RecordType.EXAM ||
-                        record.getRecordType() == RecordType.DIFF_CREDIT)
+                .filter(record -> record.getRecordType() == RecordType.EXAM
+                        || record.getRecordType() == RecordType.DIFF_CREDIT)
                 .toList();
 
         if (gradedRecords.isEmpty()) {
@@ -167,6 +219,9 @@ public class Student {
         return sem1.getNumber() > sem2.getNumber();
     }
 
+    /**
+     * Checks if the student is eligible to transfer from paid to budget education form.
+     */
     public boolean budgetPossibility() {
         if (form != EducationForm.PAID) {
             return false;
