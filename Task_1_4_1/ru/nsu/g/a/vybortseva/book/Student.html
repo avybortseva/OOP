@@ -76,6 +76,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Student</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents a student's electronic grade book.
+ Manages academic records, calculates statistics, and checks eligibility for various academic benefits.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -91,7 +93,9 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;lastName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;studentId,
  <a href="EducationForm.html" title="enum class in ru.nsu.g.a.vybortseva.book">EducationForm</a>&nbsp;form)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new student with basic information and initializes academic history.</div>
+</div>
 </div>
 </section>
 </li>
@@ -108,52 +112,84 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addAcademicRecord(ru.nsu.g.a.vybortseva.book.AcademicRecord)" class="member-name-link">addAcademicRecord</a><wbr>(<a href="AcademicRecord.html" title="class in ru.nsu.g.a.vybortseva.book">AcademicRecord</a>&nbsp;record)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds a new academic record to the student's history.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#budgetPossibility()" class="member-name-link">budgetPossibility</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if the student is eligible to transfer from paid to budget education form.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AcademicRecord.html" title="class in ru.nsu.g.a.vybortseva.book">AcademicRecord</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAcademicHistory()" class="member-name-link">getAcademicHistory</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a copy of the student's academic history.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>float</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAverageScore()" class="member-name-link">getAverageScore</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Calculates the average score across all academic records.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>float</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAverageScore(ru.nsu.g.a.vybortseva.book.Semester)" class="member-name-link">getAverageScore</a><wbr>(<a href="Semester.html" title="enum class in ru.nsu.g.a.vybortseva.book">Semester</a>&nbsp;semester)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Calculates the average score for a specific semester.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Semester.html" title="enum class in ru.nsu.g.a.vybortseva.book">Semester</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCurrentSemester()" class="member-name-link">getCurrentSemester</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the current semester of the student.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="EducationForm.html" title="enum class in ru.nsu.g.a.vybortseva.book">EducationForm</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEducationForm()" class="member-name-link">getEducationForm</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the current education form of the student.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFirstName()" class="member-name-link">getFirstName</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the student's first name.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLastName()" class="member-name-link">getLastName</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the student's last name.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStudentId()" class="member-name-link">getStudentId</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the student's unique identifier.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Grade.html" title="enum class in ru.nsu.g.a.vybortseva.book">Grade</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getThesisGrade()" class="member-name-link">getThesisGrade</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the thesis grade or undefined if not yet assessed.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#increasedScholarshipPossibility()" class="member-name-link">increasedScholarshipPossibility</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks eligibility for increased scholarship in the current semester.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveToNextSemester()" class="member-name-link">moveToNextSemester</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Advances the student to the next semester in sequence.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#redDiplomaPossibility()" class="member-name-link">redDiplomaPossibility</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Determines if the student can potentially receive a honors diploma.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setForm(ru.nsu.g.a.vybortseva.book.EducationForm)" class="member-name-link">setForm</a><wbr>(<a href="EducationForm.html" title="enum class in ru.nsu.g.a.vybortseva.book">EducationForm</a>&nbsp;form)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Updates the student's education form.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setThesisGrade(ru.nsu.g.a.vybortseva.book.Grade)" class="member-name-link">setThesisGrade</a><wbr>(<a href="Grade.html" title="enum class in ru.nsu.g.a.vybortseva.book">Grade</a>&nbsp;thesisGrade)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the grade for the student's qualification thesis.</div>
+</div>
 </div>
 </div>
 </div>
@@ -178,6 +214,7 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;lastName,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;studentId,
  <a href="EducationForm.html" title="enum class in ru.nsu.g.a.vybortseva.book">EducationForm</a>&nbsp;form)</span></div>
+<div class="block">Creates a new student with basic information and initializes academic history.</div>
 </section>
 </li>
 </ul>
@@ -192,96 +229,112 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getFirstName()">
 <h3>getFirstName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getFirstName</span>()</div>
+<div class="block">Returns the student's first name.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getLastName()">
 <h3>getLastName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getLastName</span>()</div>
+<div class="block">Returns the student's last name.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getStudentId()">
 <h3>getStudentId</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></span>&nbsp;<span class="element-name">getStudentId</span>()</div>
+<div class="block">Returns the student's unique identifier.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getCurrentSemester()">
 <h3>getCurrentSemester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Semester.html" title="enum class in ru.nsu.g.a.vybortseva.book">Semester</a></span>&nbsp;<span class="element-name">getCurrentSemester</span>()</div>
+<div class="block">Returns the current semester of the student.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getEducationForm()">
 <h3>getEducationForm</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="EducationForm.html" title="enum class in ru.nsu.g.a.vybortseva.book">EducationForm</a></span>&nbsp;<span class="element-name">getEducationForm</span>()</div>
+<div class="block">Returns the current education form of the student.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getThesisGrade()">
 <h3>getThesisGrade</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Grade.html" title="enum class in ru.nsu.g.a.vybortseva.book">Grade</a></span>&nbsp;<span class="element-name">getThesisGrade</span>()</div>
+<div class="block">Returns the thesis grade or undefined if not yet assessed.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getAcademicHistory()">
 <h3>getAcademicHistory</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AcademicRecord.html" title="class in ru.nsu.g.a.vybortseva.book">AcademicRecord</a>&gt;</span>&nbsp;<span class="element-name">getAcademicHistory</span>()</div>
+<div class="block">Returns a copy of the student's academic history.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="setForm(ru.nsu.g.a.vybortseva.book.EducationForm)">
 <h3>setForm</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setForm</span><wbr><span class="parameters">(<a href="EducationForm.html" title="enum class in ru.nsu.g.a.vybortseva.book">EducationForm</a>&nbsp;form)</span></div>
+<div class="block">Updates the student's education form.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="addAcademicRecord(ru.nsu.g.a.vybortseva.book.AcademicRecord)">
 <h3>addAcademicRecord</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addAcademicRecord</span><wbr><span class="parameters">(<a href="AcademicRecord.html" title="class in ru.nsu.g.a.vybortseva.book">AcademicRecord</a>&nbsp;record)</span></div>
+<div class="block">Adds a new academic record to the student's history.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="setThesisGrade(ru.nsu.g.a.vybortseva.book.Grade)">
 <h3>setThesisGrade</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setThesisGrade</span><wbr><span class="parameters">(<a href="Grade.html" title="enum class in ru.nsu.g.a.vybortseva.book">Grade</a>&nbsp;thesisGrade)</span></div>
+<div class="block">Sets the grade for the student's qualification thesis.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="moveToNextSemester()">
 <h3>moveToNextSemester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveToNextSemester</span>()</div>
+<div class="block">Advances the student to the next semester in sequence.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getAverageScore()">
 <h3>getAverageScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">getAverageScore</span>()</div>
+<div class="block">Calculates the average score across all academic records.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getAverageScore(ru.nsu.g.a.vybortseva.book.Semester)">
 <h3>getAverageScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">getAverageScore</span><wbr><span class="parameters">(<a href="Semester.html" title="enum class in ru.nsu.g.a.vybortseva.book">Semester</a>&nbsp;semester)</span></div>
+<div class="block">Calculates the average score for a specific semester.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="increasedScholarshipPossibility()">
 <h3>increasedScholarshipPossibility</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">increasedScholarshipPossibility</span>()</div>
+<div class="block">Checks eligibility for increased scholarship in the current semester.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="redDiplomaPossibility()">
 <h3>redDiplomaPossibility</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">redDiplomaPossibility</span>()</div>
+<div class="block">Determines if the student can potentially receive a honors diploma.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="budgetPossibility()">
 <h3>budgetPossibility</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">budgetPossibility</span>()</div>
+<div class="block">Checks if the student is eligible to transfer from paid to budget education form.</div>
 </section>
 </li>
 </ul>

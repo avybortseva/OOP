@@ -76,6 +76,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AcademicRecord</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents an academic record for a student in a specific semester.
+ Contains information about the discipline, type of assessment, and grade.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -91,7 +93,9 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;disciplineName,
  <a href="RecordType.html" title="enum class in ru.nsu.g.a.vybortseva.book">RecordType</a>&nbsp;recordType,
  <a href="Grade.html" title="enum class in ru.nsu.g.a.vybortseva.book">Grade</a>&nbsp;grade)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new academic record with all required information.</div>
+</div>
 </div>
 </section>
 </li>
@@ -108,16 +112,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDisciplineName()" class="member-name-link">getDisciplineName</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the name of the academic discipline.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Grade.html" title="enum class in ru.nsu.g.a.vybortseva.book">Grade</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGrade()" class="member-name-link">getGrade</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the grade received for the assessment.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="RecordType.html" title="enum class in ru.nsu.g.a.vybortseva.book">RecordType</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRecordType()" class="member-name-link">getRecordType</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the type of academic assessment.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Semester.html" title="enum class in ru.nsu.g.a.vybortseva.book">Semester</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSemester()" class="member-name-link">getSemester</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the semester when the assessment was taken.</div>
+</div>
 </div>
 </div>
 </div>
@@ -142,6 +154,7 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;disciplineName,
  <a href="RecordType.html" title="enum class in ru.nsu.g.a.vybortseva.book">RecordType</a>&nbsp;recordType,
  <a href="Grade.html" title="enum class in ru.nsu.g.a.vybortseva.book">Grade</a>&nbsp;grade)</span></div>
+<div class="block">Creates a new academic record with all required information.</div>
 </section>
 </li>
 </ul>
@@ -156,24 +169,28 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getDisciplineName()">
 <h3>getDisciplineName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getDisciplineName</span>()</div>
+<div class="block">Returns the name of the academic discipline.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getSemester()">
 <h3>getSemester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Semester.html" title="enum class in ru.nsu.g.a.vybortseva.book">Semester</a></span>&nbsp;<span class="element-name">getSemester</span>()</div>
+<div class="block">Returns the semester when the assessment was taken.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getRecordType()">
 <h3>getRecordType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="RecordType.html" title="enum class in ru.nsu.g.a.vybortseva.book">RecordType</a></span>&nbsp;<span class="element-name">getRecordType</span>()</div>
+<div class="block">Returns the type of academic assessment.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getGrade()">
 <h3>getGrade</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Grade.html" title="enum class in ru.nsu.g.a.vybortseva.book">Grade</a></span>&nbsp;<span class="element-name">getGrade</span>()</div>
+<div class="block">Returns the grade received for the assessment.</div>
 </section>
 </li>
 </ul>
