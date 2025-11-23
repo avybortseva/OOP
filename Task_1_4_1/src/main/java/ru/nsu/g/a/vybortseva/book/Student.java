@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Represents a student's electronic grade book.
@@ -17,7 +16,7 @@ public class Student {
     private Semester curSemester;
     private EducationForm form;
     private Grade thesisGrade;
-    private List<AcademicRecord> academicHistory;
+    private final List<AcademicRecord> academicHistory;
 
     /**
      * Creates a new student with basic information and initializes academic history.
@@ -129,14 +128,14 @@ public class Student {
     public float getAverageScore() {
         float averageScore = 0;
         float disciplineCount = 0;
-        for (AcademicRecord discipline: academicHistory) {
+        for (AcademicRecord discipline : academicHistory) {
             float curGrade = discipline.getGrade().getNumericValue();
             if (curGrade != -1) {
                 averageScore += curGrade;
                 disciplineCount += 1;
             }
         }
-        return disciplineCount != 0 ? averageScore/disciplineCount : 0;
+        return disciplineCount != 0 ? averageScore / disciplineCount : 0;
     }
 
     /**
@@ -145,7 +144,7 @@ public class Student {
     public float getAverageScore(Semester semester) {
         float averageScore = 0;
         float disciplineCount = 0;
-        for (AcademicRecord discipline: academicHistory) {
+        for (AcademicRecord discipline : academicHistory) {
             float curGrade = discipline.getGrade().getNumericValue();
             if (semester == discipline.getSemester() && curGrade != -1) {
                 averageScore += curGrade;
@@ -167,7 +166,7 @@ public class Student {
                 .filter(record -> record.getSemester() == curSemester)
                 .filter(record -> record.getRecordType() == RecordType.EXAM
                         || record.getRecordType() == RecordType.DIFF_CREDIT)
-                .collect(Collectors.toList());
+                .toList();
 
         if (currentSemesterRecords.isEmpty()) {
             return false;
@@ -229,7 +228,7 @@ public class Student {
 
         List<Semester> allSemesters = academicHistory.stream()
                 .filter(record -> record.getRecordType() == RecordType.EXAM)
-                .map(AcademicRecord::getSemester)
+                .map(AcademicRecord :: getSemester)
                 .distinct()
                 .sorted((s1, s2) -> Integer.compare(s2.getNumber(), s1.getNumber()))
                 .toList();
