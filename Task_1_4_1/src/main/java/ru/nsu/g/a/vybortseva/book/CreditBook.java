@@ -180,7 +180,8 @@ public class CreditBook {
                 .collect(Collectors.toMap(
                         AcademicRecord::getDisciplineName,
                         record -> record,
-                        (existing, current) -> isLaterSemester(current.getSemester(), existing.getSemester())
+                        (existing, current) ->
+                                isLaterSemester(current.getSemester(), existing.getSemester())
                                 ? current
                                 : existing
                 ));
