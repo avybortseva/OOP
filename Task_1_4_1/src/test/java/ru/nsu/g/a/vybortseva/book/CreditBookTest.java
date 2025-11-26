@@ -8,15 +8,15 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class StudentTest {
+class CreditBookTest {
 
-    private Student student;
-    private Student paidStudent;
+    private CreditBook student;
+    private CreditBook paidStudent;
 
     @BeforeEach
     void setUp() {
-        student = new Student("Иван", "Иванов", 12345, EducationForm.BUDGET);
-        paidStudent = new Student("Петр", "Петров", 54321, EducationForm.PAID);
+        student = new CreditBook("Иван", "Иванов", 12345, EducationForm.BUDGET);
+        paidStudent = new CreditBook("Петр", "Петров", 54321, EducationForm.PAID);
     }
 
     @Test

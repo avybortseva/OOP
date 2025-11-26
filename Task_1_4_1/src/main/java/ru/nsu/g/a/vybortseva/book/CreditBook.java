@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Represents a student's electronic grade book.
  * Manages academic records, calculates statistics, and checks
  * eligibility for various academic benefits.
  */
-public class Student {
+public class CreditBook {
     private final String firstName;
     private final String lastName;
     private final Integer studentId;
@@ -22,8 +23,8 @@ public class Student {
     /**
      * Creates a new student with basic information and initializes academic history.
      */
-    public Student(String firstName, String lastName, Integer studentId,
-                   EducationForm form) {
+    public CreditBook(String firstName, String lastName, Integer studentId,
+                      EducationForm form) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentId = studentId;
@@ -127,32 +128,24 @@ public class Student {
      * Calculates the average score across all academic records.
      */
     public float getAverageScore() {
-        float averageScore = 0;
-        float disciplineCount = 0;
-        for (AcademicRecord discipline : academicHistory) {
-            float curGrade = discipline.getGrade().getNumericValue();
-            if (curGrade != -1) {
-                averageScore += curGrade;
-                disciplineCount += 1;
-            }
-        }
-        return disciplineCount != 0 ? averageScore / disciplineCount : 0;
+        return (float) academicHistory.stream()
+                .map(discipline -> discipline.getGrade().getNumericValue())
+                .filter(grade -> grade != -1)
+                .mapToDouble(grade -> grade)
+                .average()
+                .orElse(0.0);
     }
 
     /**
      * Calculates the average score for a specific semester.
      */
     public float getAverageScore(Semester semester) {
-        float averageScore = 0;
-        float disciplineCount = 0;
-        for (AcademicRecord discipline : academicHistory) {
-            float curGrade = discipline.getGrade().getNumericValue();
-            if (semester == discipline.getSemester() && curGrade != -1) {
-                averageScore += curGrade;
-                disciplineCount += 1;
-            }
-        }
-        return disciplineCount != 0 ? averageScore / disciplineCount : 0;
+        return (float) academicHistory.stream()
+                .filter(discipline -> discipline.getSemester() == semester)
+                .mapToDouble(discipline -> discipline.getGrade().getNumericValue())
+                .filter(grade -> grade != -1)
+                .average()
+                .orElse(0.0);
     }
 
     /**
@@ -162,7 +155,6 @@ public class Student {
         if (form != EducationForm.BUDGET) {
             return false;
         }
-
         List<AcademicRecord> currentSemesterRecords = academicHistory.stream()
                 .filter(record -> record.getSemester() == curSemester)
                 .filter(record -> record.getRecordType() == RecordType.EXAM
@@ -172,7 +164,6 @@ public class Student {
         if (currentSemesterRecords.isEmpty()) {
             return false;
         }
-
         return currentSemesterRecords.stream()
                 .allMatch(record -> record.getGrade() == Grade.EXCELLENT);
     }
@@ -185,14 +176,14 @@ public class Student {
             return false;
         }
 
-        Map<String, AcademicRecord> finalGrades = new HashMap<>();
-        for (AcademicRecord record : academicHistory) {
-            if (!finalGrades.containsKey(record.getDisciplineName())
-                    || isLaterSemester(record.getSemester(),
-                            finalGrades.get(record.getDisciplineName()).getSemester())) {
-                finalGrades.put(record.getDisciplineName(), record);
-            }
-        }
+        Map<String, AcademicRecord> finalGrades = academicHistory.stream()
+                .collect(Collectors.toMap(
+                        AcademicRecord::getDisciplineName,
+                        record -> record,
+                        (existing, current) -> isLaterSemester(current.getSemester(), existing.getSemester())
+                                ? current
+                                : existing
+                ));
 
         List<AcademicRecord> gradedRecords = finalGrades.values().stream()
                 .filter(record -> record.getRecordType() == RecordType.EXAM
@@ -240,18 +231,17 @@ public class Student {
 
         List<Semester> lastTwoSessions = allSemesters.subList(0, Math.min(2, allSemesters.size()));
 
-        for (Semester semester : lastTwoSessions) {
-            boolean hasSatisfactoryInExams = academicHistory.stream()
-                    .filter(record -> record.getSemester() == semester)
-                    .filter(record -> record.getRecordType() == RecordType.EXAM)
-                    .anyMatch(record -> record.getGrade() == Grade.SATISFACTORY);
+        boolean hasSatisfactoryInLastTwoSessions = lastTwoSessions.stream()
+                .anyMatch(semester -> academicHistory.stream()
+                        .filter(record -> record.getSemester() == semester)
+                        .filter(record -> record.getRecordType() == RecordType.EXAM)
+                        .anyMatch(record -> record.getGrade() == Grade.SATISFACTORY)
+                );
 
-            if (hasSatisfactoryInExams) {
-                return false;
-            }
+        if (hasSatisfactoryInLastTwoSessions) {
+            return false;
         }
 
         return true;
     }
 }
-
