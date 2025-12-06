@@ -13,6 +13,11 @@ public class Number extends Expression {
         this.number = number;
     }
 
+    // Геттер для доступа к значению
+    public int getValue() {
+        return number;
+    }
+
     /**
      * Method for evaluating of a number is the number itself.
      */
@@ -36,6 +41,11 @@ public class Number extends Expression {
     @Override
     public Expression derivative(String variableStr) {
         return new Number(0);
+    }
+
+    @Override
+    public Expression simplify() {
+        return this;
     }
 
     /**

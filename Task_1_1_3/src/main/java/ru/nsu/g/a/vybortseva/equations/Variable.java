@@ -18,6 +18,11 @@ public class Variable extends Expression {
         this.name = name;
     }
 
+    // Геттер для имени переменной
+    public String getName() {
+        return name;
+    }
+
     /**
      * Method for evaluating of a variable is the variable itself.
      */
@@ -74,6 +79,11 @@ public class Variable extends Expression {
         } else {
             return new Number(0);
         }
+    }
+
+    @Override
+    public Expression simplify() {
+        return this;
     }
 
     /**

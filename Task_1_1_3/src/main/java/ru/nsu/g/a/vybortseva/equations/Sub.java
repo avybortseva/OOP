@@ -26,4 +26,31 @@ public class Sub extends Operations {
     public Expression differentiate(Expression leftDeriv, Expression rightDeriv) {
         return new Sub(leftDeriv, rightDeriv);
     }
+
+    /**
+     * Упрощение вычитания
+     */
+    @Override
+    public Expression simplify() {
+        Expression simpleLeft = left.simplify();
+        Expression simpleRight = right.simplify();
+
+        if (simpleLeft instanceof Number && simpleRight instanceof Number) {
+            return new Number(((Number) simpleLeft).getValue() - ((Number) simpleRight).getValue());
+        }
+
+        if (isZero(simpleRight)) {
+            return simpleLeft;
+        }
+
+        if (areExpressionsEqual(simpleLeft, simpleRight)) {
+            return new Number(0);
+        }
+
+        if (simpleLeft != left || simpleRight != right) {
+            return new Sub(simpleLeft, simpleRight);
+        }
+
+        return this;
+    }
 }

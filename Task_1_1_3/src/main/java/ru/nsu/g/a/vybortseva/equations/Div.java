@@ -32,4 +32,35 @@ public class Div extends Operations {
         Expression bot = new Mul(right, right);
         return new Div(new Sub(top1, top2), bot);
     }
+
+    /**
+     * Упрощение деления
+     */
+    @Override
+    public Expression simplify() {
+        Expression simpleLeft = left.simplify();
+        Expression simpleRight = right.simplify();
+
+        if (simpleLeft instanceof Number && simpleRight instanceof Number) {
+            int divisor = ((Number) simpleRight).getValue();
+            if (divisor == 0) {
+                throw new DivisionByZeroException();
+            }
+            return new Number(((Number) simpleLeft).getValue() / divisor);
+        }
+
+        if (isZero(simpleLeft)) {
+            return new Number(0);
+        }
+
+        if (isOne(simpleRight)) {
+            return simpleLeft;
+        }
+
+        if (simpleLeft != left || simpleRight != right) {
+            return new Div(simpleLeft, simpleRight);
+        }
+
+        return this;
+    }
 }
