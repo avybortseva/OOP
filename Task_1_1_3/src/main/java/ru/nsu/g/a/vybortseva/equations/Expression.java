@@ -53,7 +53,8 @@ public abstract class Expression {
                     } else {
                         char prevChar = expression.charAt(i - 1);
                         if (prevChar == '+' || prevChar == '-' || prevChar == '*'
-                                || prevChar == '/' || prevChar == '(' || Character.isWhitespace(prevChar)) {
+                                || prevChar == '/' || prevChar == '('
+                                || Character.isWhitespace(prevChar)) {
 
                             if (!tokens.isEmpty()) {
                                 String lastToken = tokens.get(tokens.size() - 1);
@@ -114,8 +115,7 @@ public abstract class Expression {
         for (String token : tokens) {
             if (token.matches("-?\\d+") || token.matches("[a-zA-Z_][a-zA-Z_0-9]*")) {
                 output.add(token);
-            }
-            else if (precedence.containsKey(token)) {
+            } else if (precedence.containsKey(token)) {
                 if (token.equals("~")) {
                     operators.push(token);
                 } else {
@@ -127,11 +127,9 @@ public abstract class Expression {
                     }
                     operators.push(token);
                 }
-            }
-            else if (token.equals("(")) {
+            } else if (token.equals("(")) {
                 operators.push(token);
-            }
-            else if (token.equals(")")) {
+            } else if (token.equals(")")) {
                 while (!operators.isEmpty() && !operators.peek().equals("(")) {
                     output.add(operators.pop());
                 }

@@ -1,6 +1,7 @@
 package ru.nsu.g.a.vybortseva.equations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -140,7 +141,6 @@ class ExpressionSimplifyTest {
 
     @Test
     void testNestedSimplify() {
-        // (x - x) * 5
         Variable var = new Variable("x");
         Expression nested = new Mul(
                 new Sub(var, var),
@@ -221,7 +221,7 @@ class ExpressionSimplifyTest {
     }
 
     @Test
-    void testSimplifyIdentity() {
+    void testSimplifyIdentity2() {
         Variable var = new Variable("x");
         Expression simplified = var.simplify();
         assertTrue(var == simplified);
@@ -229,5 +229,123 @@ class ExpressionSimplifyTest {
         Number num = new Number(42);
         Expression simplifiedNum = num.simplify();
         assertTrue(num == simplifiedNum);
+    }
+
+    @Test
+    void testSimplifyWithComplexExpressions() {
+        Expression inner1 = new Add(new Number(3), new Number(2));
+        Expression inner2 = new Add(new Number(0), new Variable("x"));
+        Add add = new Add(inner1, inner2);
+        Expression simplified = add.simplify();
+
+        // Должно упроститься до (5+x)
+        assertEquals("(5+x)", simplified.toString());
+        assertEquals(15, simplified.evaluate("x=10"));
+    }
+
+    @Test
+    void testSimplifyWithNegativeNumbers() {
+        Add add = new Add(new Number(-5), new Number(3));
+        Expression simplified = add.simplify();
+        assertEquals("-2", simplified.toString());
+        assertEquals(-2, simplified.evaluate(""));
+    }
+
+    @Test
+    void testSimplifyChainAddition() {
+        Expression add1 = new Add(new Variable("x"), new Number(0));
+        Expression add2 = new Add(add1, new Variable("y"));
+        Expression add3 = new Add(add2, new Number(0));
+        Expression simplified = add3.simplify();
+
+        assertEquals("(((x+0)+y)+0)", add3.toString());
+        assertEquals("(x+y)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyIdentity() {
+        Add add = new Add(new Variable("x"), new Variable("y"));
+        Expression simplified = add.simplify();
+        assertSame(add, simplified);
+    }
+
+    @Test
+    void testSimplifyWithZeroBothSides() {
+        Add add = new Add(new Number(0), new Number(0));
+        Expression simplified = add.simplify();
+        assertEquals("0", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyEvaluationAfterSimplify() {
+        Add add = new Add(new Number(3), new Number(2));
+        Expression simplified = add.simplify();
+
+        assertEquals(5, simplified.evaluate(""));
+        assertEquals(5, add.evaluate(""));
+    }
+
+    @Test
+    void testSimplifyComplexNested() {
+        Expression sub1 = new Sub(new Variable("x"), new Variable("x"));
+        Expression sub2 = new Sub(new Variable("y"), new Number(0));
+        Expression add = new Add(sub1, sub2);
+        Expression simplified = add.simplify();
+
+        assertEquals("y", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyWithNegativeResult() {
+        Sub sub = new Sub(new Number(3), new Number(10));
+        Expression simplified = sub.simplify();
+        assertEquals("-7", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyNestedSubtraction() {
+        Expression inner = new Sub(new Number(5), new Number(3));
+        Sub outer = new Sub(new Number(10), inner);
+        Expression simplified = outer.simplify();
+
+        assertEquals("8", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyZeroMinusSomething() {
+        Sub sub = new Sub(new Number(0), new Variable("x"));
+        Expression simplified = sub.simplify();
+
+        assertEquals("(0-x)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifySameComplexExpressions() {
+        Expression expr = new Add(new Variable("x"), new Number(1));
+        Sub sub = new Sub(expr, expr);
+        Expression simplified = sub.simplify();
+
+        assertEquals("0", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyChainSubtraction() {
+        Expression sub1 = new Sub(new Variable("x"), new Number(0));
+        Expression sub2 = new Sub(sub1, new Variable("y"));
+        Expression sub3 = new Sub(sub2, new Number(0));
+        Expression simplified = sub3.simplify();
+
+        assertEquals("(x-y)", simplified.toString());
+    }
+
+    @Test
+    void testSimplifyBoundaryCases() {
+        Sub sub1 = new Sub(new Number(Integer.MAX_VALUE), new Number(Integer.MAX_VALUE));
+        Expression simplified1 = sub1.simplify();
+        assertEquals("0", simplified1.toString());
+
+        Sub sub2 = new Sub(new Number(Integer.MIN_VALUE), new Number(Integer.MIN_VALUE));
+        Expression simplified2 = sub2.simplify();
+        assertEquals("0", simplified2.toString());
     }
 }
