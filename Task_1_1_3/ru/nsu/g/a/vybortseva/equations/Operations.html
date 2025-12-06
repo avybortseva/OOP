@@ -83,7 +83,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">Operations</span>
 <span class="extends-implements">extends <a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a></span></div>
-<div class="block">The method for the operarions.</div>
+<div class="block">The method for the operations.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -133,20 +133,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#derivative(java.lang.String)" class="member-name-link">derivative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;variable)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#areExpressionsEqual(ru.nsu.g.a.vybortseva.equations.Expression,ru.nsu.g.a.vybortseva.equations.Expression)" class="member-name-link">areExpressionsEqual</a><wbr>(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr1,
+ <a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr2)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#derivative(java.lang.String)" class="member-name-link">derivative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;variable)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Method for derivative of an expressions.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#differentiate(ru.nsu.g.a.vybortseva.equations.Expression,ru.nsu.g.a.vybortseva.equations.Expression)" class="member-name-link">differentiate</a><wbr>(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;leftDeriv,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#differentiate(ru.nsu.g.a.vybortseva.equations.Expression,ru.nsu.g.a.vybortseva.equations.Expression)" class="member-name-link">differentiate</a><wbr>(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;leftDeriv,
  <a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;rightDeriv)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#evaluate(java.lang.String)" class="member-name-link">evaluate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;variablesStr)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#evaluate(java.lang.String)" class="member-name-link">evaluate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;variablesStr)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Method for evaluating of an expression.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNumber(ru.nsu.g.a.vybortseva.equations.Expression,int)" class="member-name-link">isNumber</a><wbr>(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr,
+ int&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isOne(ru.nsu.g.a.vybortseva.equations.Expression)" class="member-name-link">isOne</a><wbr>(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isZero(ru.nsu.g.a.vybortseva.equations.Expression)" class="member-name-link">isZero</a><wbr>(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#operate(int,int)" class="member-name-link">operate</a><wbr>(int&nbsp;leftValue,
  int&nbsp;rightValue)</code></div>
@@ -156,9 +170,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Method for printing of an expression.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#simplify()" class="member-name-link">simplify</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Общий метод упрощения для операций</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Method toString.</div>
 </div>
 </div>
@@ -166,7 +185,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-ru.nsu.g.a.vybortseva.equations.Expression">Methods inherited from class&nbsp;ru.nsu.g.a.vybortseva.equations.<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a></h3>
-<code><a href="Expression.html#clearCache()">clearCache</a>, <a href="Expression.html#getCachedVariables(java.lang.String)">getCachedVariables</a></code></div>
+<code><a href="Expression.html#clearCache()">clearCache</a>, <a href="Expression.html#getCachedVariables(java.lang.String)">getCachedVariables</a>, <a href="Expression.html#parseNoParentheses(java.lang.String)">parseNoParentheses</a>, <a href="Expression.html#parseWithParentheses(java.lang.String)">parseWithParentheses</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -274,6 +293,43 @@ loadScripts(document, 'script');</script>
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="simplify()">
+<h3>simplify</h3>
+<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a></span>&nbsp;<span class="element-name">simplify</span>()</div>
+<div class="block">Общий метод упрощения для операций</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Expression.html#simplify()">simplify</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isNumber(ru.nsu.g.a.vybortseva.equations.Expression,int)">
+<h3>isNumber</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isNumber</span><wbr><span class="parameters">(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr,
+ int&nbsp;value)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="isZero(ru.nsu.g.a.vybortseva.equations.Expression)">
+<h3>isZero</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isZero</span><wbr><span class="parameters">(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="isOne(ru.nsu.g.a.vybortseva.equations.Expression)">
+<h3>isOne</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isOne</span><wbr><span class="parameters">(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="areExpressionsEqual(ru.nsu.g.a.vybortseva.equations.Expression,ru.nsu.g.a.vybortseva.equations.Expression)">
+<h3>areExpressionsEqual</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">areExpressionsEqual</span><wbr><span class="parameters">(<a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr1,
+ <a href="Expression.html" title="class in ru.nsu.g.a.vybortseva.equations">Expression</a>&nbsp;expr2)</span></div>
 </section>
 </li>
 </ul>
