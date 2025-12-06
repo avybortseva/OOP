@@ -29,7 +29,7 @@ public class Add extends Operations {
     }
 
     /**
-     * Упрощение сложения
+     * Упрощение сложения.
      */
     @Override
     public Expression simplify() {

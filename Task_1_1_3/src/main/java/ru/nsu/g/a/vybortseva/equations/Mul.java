@@ -25,7 +25,7 @@ public class Mul extends Operations {
     }
 
     /**
-     * Упрощение умножения
+     * Упрощение умножения.
      */
     @Override
     public Expression simplify() {

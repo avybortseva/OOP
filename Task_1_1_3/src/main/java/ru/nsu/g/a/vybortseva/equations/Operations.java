@@ -65,7 +65,7 @@ public abstract class Operations extends Expression {
     }
 
     /**
-     * Общий метод упрощения для операций
+     * Общий метод упрощения для операций.
      */
     @Override
     public abstract Expression simplify();
@@ -83,8 +83,12 @@ public abstract class Operations extends Expression {
     }
 
     protected boolean areExpressionsEqual(Expression expr1, Expression expr2) {
-        if (expr1 == expr2) return true;
-        if (expr1 == null || expr2 == null) return false;
+        if (expr1 == expr2) {
+            return true;
+        }
+        if (expr1 == null || expr2 == null) {
+            return false;
+        }
         return expr1.toString().equals(expr2.toString());
     }
 }

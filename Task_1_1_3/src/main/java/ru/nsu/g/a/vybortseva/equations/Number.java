@@ -43,6 +43,9 @@ public class Number extends Expression {
         return new Number(0);
     }
 
+    /**
+     * Упрощение числа.
+     */
     @Override
     public Expression simplify() {
         return this;

@@ -1,6 +1,10 @@
 package ru.nsu.g.a.vybortseva.equations;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 
 /**
  * The class for expressions.
@@ -17,7 +21,7 @@ public abstract class Expression {
     public abstract Expression simplify();
 
     /**
-     * Статический метод для парсинга выражения из строки (без скобок)
+     * Статический метод для парсинга выражения из строки (без скобок).
      */
     public static Expression parseNoParentheses(String expression) {
         expression = expression.trim();
@@ -32,7 +36,7 @@ public abstract class Expression {
     }
 
     /**
-     * Токенизация выражения
+     * Токенизация выражения.
      */
     private static List<String> tokenize(String expression) {
         List<String> tokens = new ArrayList<>();
@@ -48,14 +52,14 @@ public abstract class Expression {
                         isUnaryMinus = true;
                     } else {
                         char prevChar = expression.charAt(i - 1);
-                        if (prevChar == '+' || prevChar == '-' || prevChar == '*' ||
-                                prevChar == '/' || prevChar == '(' || Character.isWhitespace(prevChar)) {
+                        if (prevChar == '+' || prevChar == '-' || prevChar == '*'
+                                || prevChar == '/' || prevChar == '(' || Character.isWhitespace(prevChar)) {
 
                             if (!tokens.isEmpty()) {
                                 String lastToken = tokens.get(tokens.size() - 1);
-                                if (lastToken.equals("+") || lastToken.equals("-") ||
-                                        lastToken.equals("*") || lastToken.equals("/") ||
-                                        lastToken.equals("(")) {
+                                if (lastToken.equals("+") || lastToken.equals("-")
+                                        || lastToken.equals("*") || lastToken.equals("/")
+                                        || lastToken.equals("(")) {
                                     isUnaryMinus = true;
                                 }
                             } else {
@@ -78,14 +82,12 @@ public abstract class Expression {
                     currentToken = new StringBuilder();
                 }
                 tokens.add(String.valueOf(c));
-            }
-            else if (Character.isWhitespace(c)) {
+            } else if (Character.isWhitespace(c)) {
                 if (!currentToken.isEmpty()) {
                     tokens.add(currentToken.toString());
                     currentToken = new StringBuilder();
                 }
-            }
-            else {
+            } else {
                 currentToken.append(c);
             }
         }
@@ -96,7 +98,7 @@ public abstract class Expression {
     }
 
     /**
-     * Преобразование инфиксной записи в постфиксную (обратную польскую нотацию)
+     * Преобразование инфиксной записи в постфиксную (обратную польскую нотацию).
      */
     private static List<String> postfixConverting(List<String> tokens) {
         List<String> output = new ArrayList<>();
@@ -119,7 +121,8 @@ public abstract class Expression {
                 } else {
 
                     while (!operators.isEmpty() && !operators.peek().equals("(")
-                            && precedence.getOrDefault(operators.peek(), 0) >= precedence.get(token)) {
+                            && precedence.getOrDefault(operators.peek(), 0)
+                            >= precedence.get(token)) {
                         output.add(operators.pop());
                     }
                     operators.push(token);
@@ -150,7 +153,7 @@ public abstract class Expression {
     }
 
     /**
-     * Построение дерева выражений из постфиксной записи
+     * Построение дерева выражений из постфиксной записи.
      */
     private static Expression evaluatePostfix(List<String> postfix) {
         Stack<Expression> stack = new Stack<>();
@@ -199,7 +202,7 @@ public abstract class Expression {
     }
 
     /**
-     * Статический метод для парсинга выражения из строки (со скобками)
+     * Статический метод для парсинга выражения из строки (со скобками).
      */
     public static Expression parseWithParentheses(String expression) {
         Parser parser = new Parser();

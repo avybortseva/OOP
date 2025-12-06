@@ -34,7 +34,7 @@ public class Div extends Operations {
     }
 
     /**
-     * Упрощение деления
+     * Упрощение деления.
      */
     @Override
     public Expression simplify() {

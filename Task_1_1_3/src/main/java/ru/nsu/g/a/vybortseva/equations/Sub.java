@@ -28,7 +28,7 @@ public class Sub extends Operations {
     }
 
     /**
-     * Упрощение вычитания
+     * Упрощение вычитания.
      */
     @Override
     public Expression simplify() {
