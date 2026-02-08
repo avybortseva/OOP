@@ -1,5 +1,8 @@
 package ru.nsu.g.a.vybortseva.lab;
 
+/**
+ * Интерфейс для операций с простыми числами.
+ */
 public interface Operation {
 
     /**

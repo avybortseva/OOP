@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /**
- * Интерфейс для реализаций работы с простыми числами.
+ * Тесты для функции проверки числа на простоту.
  */
 public class OperationTest {
     @Test
