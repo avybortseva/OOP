@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.g.a.vybortseva.lab","l":"Main"},{"p":"ru.nsu.g.a.vybortseva.lab","l":"Operation"},{"p":"ru.nsu.g.a.vybortseva.lab","l":"ParallelStream"},{"p":"ru.nsu.g.a.vybortseva.lab","l":"Sequential"},{"p":"ru.nsu.g.a.vybortseva.lab","l":"Threaded"}];updateSearchResults();
