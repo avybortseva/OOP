@@ -3,7 +3,7 @@ package ru.nsu.g.a.vybortseva.lab;
 public interface Operation {
 
     /**
-     * Проверяет, является ли число простым
+     * Проверяет, является ли число простым.
      */
     default boolean isPrime(long number) {
         if (number <= 1) {
@@ -13,7 +13,7 @@ public interface Operation {
             return false;
         }
 
-        for (long i = 3; i * i <= number ; i++) {
+        for (long i = 3; i * i <= number; i++) {
             if (number % i == 0) {
                 return false;
             }
@@ -23,7 +23,7 @@ public interface Operation {
 
 
     /**
-     * Проверяет, есть ли в массиве хотя бы одно составное число
+     * Проверяет, есть ли в массиве хотя бы одно составное число.
      */
     boolean hasCompositeNumber(long[] numbers);
 }

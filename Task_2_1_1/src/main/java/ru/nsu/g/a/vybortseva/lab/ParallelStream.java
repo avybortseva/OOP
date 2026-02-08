@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Класс, реализующий параллельную проверку наличия составных чисел в массиве.
  */
-public class ParallelStream implements Operation{
+public class ParallelStream implements Operation {
     /**
      * Проверяет, содержит ли массив целых чисел хотя бы одно составное число.
      */

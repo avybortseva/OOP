@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Интерфейс для реализаций работы с простыми числами.
+ */
 public class OperationTest {
     @Test
     void testIsPrime_withNegativeNumber() {

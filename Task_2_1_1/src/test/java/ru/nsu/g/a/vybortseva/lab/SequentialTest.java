@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Тесты для последовательной реализации.
+ */
 public class SequentialTest {
     @Test
     void testHasCompositeNumber_allPrimes() {

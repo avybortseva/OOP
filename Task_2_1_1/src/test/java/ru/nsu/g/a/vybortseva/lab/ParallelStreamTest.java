@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Тесты для реализации с помощью ParallelStream.
+ */
 public class ParallelStreamTest {
     @Test
     void testHasCompositeNumber_allPrimes() {
