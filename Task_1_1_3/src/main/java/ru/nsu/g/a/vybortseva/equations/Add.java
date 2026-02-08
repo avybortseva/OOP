@@ -27,4 +27,31 @@ public class Add extends Operations {
     public Expression differentiate(Expression leftDeriv, Expression rightDeriv) {
         return new Add(leftDeriv, rightDeriv);
     }
+
+    /**
+     * Упрощение сложения.
+     */
+    @Override
+    public Expression simplify() {
+        Expression simpleLeft = left.simplify();
+        Expression simpleRight = right.simplify();
+
+        if (simpleLeft instanceof Number && simpleRight instanceof Number) {
+            return new Number(((Number) simpleLeft).getValue() + ((Number) simpleRight).getValue());
+        }
+
+        if (isZero(simpleLeft)) {
+            return simpleRight;
+        }
+
+        if (isZero(simpleRight)) {
+            return simpleLeft;
+        }
+
+        if (simpleLeft != left || simpleRight != right) {
+            return new Add(simpleLeft, simpleRight);
+        }
+
+        return this;
+    }
 }

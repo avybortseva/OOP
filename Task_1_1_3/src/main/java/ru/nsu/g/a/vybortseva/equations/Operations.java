@@ -3,7 +3,7 @@ package ru.nsu.g.a.vybortseva.equations;
 import ru.nsu.g.a.vybortseva.equations.exceptions.MathCalculationException;
 
 /**
- * The method for the operarions.
+ * The method for the operations.
  */
 public abstract class Operations extends Expression {
     protected final Expression left;
@@ -62,5 +62,33 @@ public abstract class Operations extends Expression {
     @Override
     public String toString() {
         return "(" + left.toString() + operator + right.toString() + ")";
+    }
+
+    /**
+     * Общий метод упрощения для операций.
+     */
+    @Override
+    public abstract Expression simplify();
+
+    protected boolean isNumber(Expression expr, int value) {
+        return expr instanceof Number && ((Number) expr).getValue() == value;
+    }
+
+    protected boolean isZero(Expression expr) {
+        return isNumber(expr, 0);
+    }
+
+    protected boolean isOne(Expression expr) {
+        return isNumber(expr, 1);
+    }
+
+    protected boolean areExpressionsEqual(Expression expr1, Expression expr2) {
+        if (expr1 == expr2) {
+            return true;
+        }
+        if (expr1 == null || expr2 == null) {
+            return false;
+        }
+        return expr1.toString().equals(expr2.toString());
     }
 }
