@@ -34,7 +34,7 @@ public class Threaded implements Operation {
 
             threads[i] = new Thread(() -> {
                 for (int j = start; j < end && !compositeIs.get(); j++) {
-                    if (!isPrime(numbers[j])) {
+                    if (!Operation.isPrime(numbers[j])) {
                         compositeIs.set(true);
                         break;
                     }

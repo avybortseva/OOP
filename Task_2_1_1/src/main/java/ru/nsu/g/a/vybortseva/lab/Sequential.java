@@ -10,7 +10,7 @@ public class Sequential implements Operation {
     @Override
     public boolean hasCompositeNumber(long[] numbers) {
         for (long number : numbers) {
-            if (!isPrime(number)) {
+            if (!Operation.isPrime(number)) {
                 return true;
             }
         }

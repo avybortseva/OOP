@@ -11,60 +11,55 @@ import org.junit.jupiter.api.Test;
 public class OperationTest {
     @Test
     void testIsPrime_withNegativeNumber() {
-        Operation checker = new Sequential();
-        assertFalse(checker.isPrime(-1));
-        assertFalse(checker.isPrime(-10));
-        assertFalse(checker.isPrime(-10000));
+        assertFalse(Operation.isPrime(-1));
+        assertFalse(Operation.isPrime(-10));
+        assertFalse(Operation.isPrime(-10000));
     }
 
     @Test
     void testIsPrime_withPrimes() {
-        Operation checker = new Sequential();
-
-        assertTrue(checker.isPrime(2));
-        assertTrue(checker.isPrime(3));
-        assertTrue(checker.isPrime(5));
-        assertTrue(checker.isPrime(7));
-        assertTrue(checker.isPrime(11));
-        assertTrue(checker.isPrime(13));
-        assertTrue(checker.isPrime(17));
-        assertTrue(checker.isPrime(19));
-        assertTrue(checker.isPrime(23));
+        assertTrue(Operation.isPrime(2));
+        assertTrue(Operation.isPrime(3));
+        assertTrue(Operation.isPrime(5));
+        assertTrue(Operation.isPrime(7));
+        assertTrue(Operation.isPrime(11));
+        assertTrue(Operation.isPrime(13));
+        assertTrue(Operation.isPrime(17));
+        assertTrue(Operation.isPrime(19));
+        assertTrue(Operation.isPrime(23));
     }
 
     @Test
     void testIsPrime_withComposites() {
-        Operation checker = new Sequential();
+        assertFalse(Operation.isPrime(0));
+        assertFalse(Operation.isPrime(1));
 
-        assertFalse(checker.isPrime(0));
-        assertFalse(checker.isPrime(1));
-
-        assertFalse(checker.isPrime(4));
-        assertFalse(checker.isPrime(6));
-        assertFalse(checker.isPrime(8));
-        assertFalse(checker.isPrime(9));
-        assertFalse(checker.isPrime(10));
-        assertFalse(checker.isPrime(12));
-        assertFalse(checker.isPrime(14));
-        assertFalse(checker.isPrime(15));
-        assertFalse(checker.isPrime(16));
-        assertFalse(checker.isPrime(18));
-        assertFalse(checker.isPrime(20));
+        assertFalse(Operation.isPrime(4));
+        assertFalse(Operation.isPrime(6));
+        assertFalse(Operation.isPrime(8));
+        assertFalse(Operation.isPrime(9));
+        assertFalse(Operation.isPrime(10));
+        assertFalse(Operation.isPrime(12));
+        assertFalse(Operation.isPrime(14));
+        assertFalse(Operation.isPrime(15));
+        assertFalse(Operation.isPrime(16));
+        assertFalse(Operation.isPrime(18));
+        assertFalse(Operation.isPrime(20));
     }
 
     @Test
     void testIsPrime_withLargePrimes() {
-        Operation checker = new Sequential();
-        assertTrue(checker.isPrime(7919));
-        assertTrue(checker.isPrime(104729));
-        assertTrue(checker.isPrime(1299709));
+        assertTrue(Operation.isPrime(7919));
+        assertTrue(Operation.isPrime(104729));
+        assertTrue(Operation.isPrime(1299709));
     }
 
     @Test
     void testIsPrime_withLargeComposites() {
-        Operation checker = new Sequential();
-        assertFalse(checker.isPrime(1000000));
-        assertFalse(checker.isPrime(999999));
-        assertFalse(checker.isPrime(104730));
+        assertFalse(Operation.isPrime(1000000));
+        assertFalse(Operation.isPrime(999999));
+        assertFalse(Operation.isPrime(104730));
+        // 999983 * 999979 = 999962000117
+        assertFalse(Operation.isPrime(999962000117L));
     }
 }

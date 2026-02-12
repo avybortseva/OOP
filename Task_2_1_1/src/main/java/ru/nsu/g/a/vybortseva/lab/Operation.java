@@ -8,7 +8,7 @@ public interface Operation {
     /**
      * Проверяет, является ли число простым.
      */
-    default boolean isPrime(long number) {
+    static boolean isPrime(long number) {
         if (number <= 1) {
             return false;
         }
@@ -16,7 +16,7 @@ public interface Operation {
             return false;
         }
 
-        for (long i = 3; i * i <= number; i++) {
+        for (long i = 3; i * i <= number; i += 2) {
             if (number % i == 0) {
                 return false;
             }

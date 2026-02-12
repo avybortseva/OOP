@@ -13,6 +13,6 @@ public class ParallelStream implements Operation {
     public boolean hasCompositeNumber(long[] numbers) {
         return Arrays.stream(numbers)
                 .parallel()
-                .anyMatch(x -> !isPrime(x));
+                .anyMatch(x -> !Operation.isPrime(x));
     }
 }

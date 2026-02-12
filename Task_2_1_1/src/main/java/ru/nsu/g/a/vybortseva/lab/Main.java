@@ -24,7 +24,7 @@ public class Main {
         time = System.currentTimeMillis() - start;
         System.out.println("Последовательная: " + time + " мс");
 
-        // 1, 2, 5, 10, 15, 20 потоков
+        // разное количество потоков
         int[] threads = {1, 2, 5, 8, 10, 12, 15, 20};
 
         for (int t : threads) {
