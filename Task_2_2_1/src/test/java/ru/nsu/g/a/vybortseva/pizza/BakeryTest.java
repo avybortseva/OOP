@@ -1,9 +1,12 @@
 package ru.nsu.g.a.vybortseva.pizza;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BakeryTest {
     private Bakery bakery;
@@ -34,5 +37,20 @@ class BakeryTest {
         bakery.start();
         bakery.stop();
         assertDoesNotThrow(() -> bakery.placeOrder(999));
+    }
+
+    @Test
+    void testLoadNonExistentConfig() {
+        assertThrows(Exception.class, () -> bakery.loadConfig("non_existent.json"));
+    }
+
+    @Test
+    void testMainMethod() {
+        assertDoesNotThrow(() -> Bakery.main(new String[]{"config.json"}));
+    }
+
+    @Test
+    void testStopWithoutStart() {
+        assertDoesNotThrow(() -> bakery.stop());
     }
 }
