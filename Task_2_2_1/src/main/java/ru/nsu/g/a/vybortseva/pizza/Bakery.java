@@ -1,6 +1,8 @@
 package ru.nsu.g.a.vybortseva.pizza;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +19,19 @@ public class Bakery {
     private OrderQueue orderQueue;
     private Warehouse warehouse;
     private volatile boolean isOpened = true;
+    private static final long WORKING_TIME_MS = 10000;
+    private static final long ORDER_DELAY_MS = 1000;
 
     /**
      * Загружает конфигурацию пиццерии из файла в ресурсах.
      */
     public void loadConfig(String fileName) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        this.config = mapper.readValue(
-                getClass().getClassLoader().getResourceAsStream(fileName),
-                PizzeriaConfig.class
-        );
+        File configFile = new File(fileName);
+        if (!configFile.exists()) {
+            throw new IOException("Файл конфигурации не найден: " + configFile.getAbsolutePath());
+        }
+        this.config = mapper.readValue(configFile, PizzeriaConfig.class);
     }
 
     /**
@@ -68,17 +73,23 @@ public class Bakery {
         System.out.println("--- Закрываем прием заказов. Доделываем остатки... ---");
         isOpened = false;
 
+        List<Thread> allWorkers = new ArrayList<>();
+        allWorkers.addAll(bakerThreads);
+        allWorkers.addAll(courierThreads);
+
+        for (Thread t : allWorkers) {
+            t.interrupt();
+        }
+
         try {
-            while (orderQueue.getCurrentSize() > 0 || warehouse.getCurrentSize() > 0) {
-                Thread.sleep(500);
+            for (Thread t : allWorkers) {
+               t.join();
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
 
-        System.out.println("--- Все заказы выполнены. Останавливаем потоки. ---");
-        for (Thread t : bakerThreads) t.interrupt();
-        for (Thread t : courierThreads) t.interrupt();
+        System.out.println("--- Пиццерия закрыта. Все работали параллельно до конца. ---");
     }
 
     /**
@@ -86,16 +97,18 @@ public class Bakery {
      */
     public static void main(String[] args) {
         Bakery bakery = new Bakery();
+
+        String configPath = (args.length > 0) ? args[0] : "config.json";
         try {
-            bakery.loadConfig("config.json");
+            bakery.loadConfig(configPath);
             bakery.start();
 
             long startTime = System.currentTimeMillis();
             int orderCounter = 1;
 
-            while (System.currentTimeMillis() - startTime < 10000) {
+            while (System.currentTimeMillis() - startTime < WORKING_TIME_MS) {
                 bakery.placeOrder(orderCounter++);
-                Thread.sleep(1000);
+                Thread.sleep(ORDER_DELAY_MS);
             }
 
             bakery.stop();

@@ -55,4 +55,22 @@ class CourierTest {
         courierThread.interrupt();
         courierThread.join(500);
     }
+
+    @Test
+    void testCourierFinishesDeliveryAfterInterrupt() throws InterruptedException {
+        Warehouse warehouse = new Warehouse(5);
+        warehouse.add(new Pizza(1));
+        warehouse.add(new Pizza(2));
+
+        Courier courier = new Courier(1, 10000, 2, warehouse); // Медленный курьер
+        Thread courierThread = new Thread(courier);
+        courierThread.start();
+
+        Thread.sleep(2000);
+        courierThread.interrupt();
+        courierThread.join(2000);
+
+        assertFalse(courierThread.isAlive());
+        assertEquals(0, warehouse.getCurrentSize());
+    }
 }

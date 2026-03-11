@@ -34,22 +34,30 @@ public class Courier implements Runnable {
     @Override
     public void run() {
         try {
-            while (!Thread.currentThread().isInterrupted()) {
-                pizzas = warehouse.take(capacity);
+            while (!Thread.currentThread().isInterrupted() || warehouse.getCurrentSize() > 0) {
+                try {
+                    pizzas = warehouse.take(capacity);
+                } catch (InterruptedException e) {
+                    break;
+                }
 
                 for (Pizza p : pizzas) {
                     System.out.println("[" + p.getId() + "] [is delivering]");
                 }
-                Thread.sleep(speed);
+
+                try {
+                    Thread.sleep(speed);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
 
                 for (Pizza p : pizzas) {
                     System.out.println("[" + p.getId() + "] [delivered]");
                 }
                 pizzas = null;
             }
-        } catch (InterruptedException e) {
+        } finally {
             System.out.println("Курьер " + id + " закончил смену.");
-            Thread.currentThread().interrupt();
         }
     }
 }

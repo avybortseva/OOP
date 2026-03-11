@@ -43,24 +43,41 @@ public class Baker implements Runnable {
     @Override
     public void run() {
         try {
-            while (!Thread.currentThread().isInterrupted()) {
-                curPizza = queue.take();
+            while (!Thread.currentThread().isInterrupted() || queue.getCurrentSize() > 0) {
+                try {
+                    curPizza = queue.take();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
 
                 this.state = State.COOK;
                 System.out.println("[" + curPizza.getId() + "] [is cooking]");
 
-                Thread.sleep(speed);
+                try {
+                    Thread.sleep(speed);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
 
                 this.state = State.WAIT;
-                warehouse.add(curPizza);
+                boolean added = false;
+                while (!added) {
+                    try {
+                        warehouse.add(curPizza);
+                        added = true;
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+
                 System.out.println("[" + curPizza.getId() + "] [on warehouse]");
 
                 this.state = State.FREE;
                 curPizza = null;
             }
-        } catch (InterruptedException e) {
-            System.out.println("Пекарь закончил смену.");
-            Thread.currentThread().interrupt();
+        } finally {
+            System.out.println("Пекарь " + id + " закончил работу.");
         }
     }
 }

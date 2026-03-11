@@ -1,7 +1,7 @@
 {
   "bakers": [
     {"id": 1, "speed": 2000},
-    {"id": 2, "speed": 3500}
+    {"id": 2, "speed": 3050}
   ],
   "couriers": [
     {"id": 1, "speed": 4000, "capacity": 2},

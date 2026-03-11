@@ -55,4 +55,23 @@ class BakerTest {
         bakerThread.interrupt();
         bakerThread.join(500);
     }
+
+    @Test
+    void testBakerFinishesPizzaAfterInterrupt() throws InterruptedException {
+        OrderQueue queue = new OrderQueue();
+        Warehouse warehouse = new Warehouse(1);
+        Baker baker = new Baker(1, 100000, queue, warehouse);
+
+        queue.add(new Pizza(1));
+        Thread bakerThread = new Thread(baker);
+        bakerThread.start();
+
+        Thread.sleep(2000);
+        bakerThread.interrupt();
+        bakerThread.join(2000);
+
+        assertFalse(bakerThread.isAlive());
+        assertEquals(0, queue.getCurrentSize());
+        assertEquals(1, warehouse.getCurrentSize());
+    }
 }
