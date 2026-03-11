@@ -5,7 +5,7 @@ package ru.nsu.g.a.vybortseva.pizza;
  * Пекарь берет заказы из очереди, готовит пиццу в течение заданного времени
  * и передает ее на склад готовой продукции.
  */
-public class Baker implements IBaker {
+public class Baker implements BakerInt {
     private final int id;
     private final int speed;
     private Pizza curPizza;
