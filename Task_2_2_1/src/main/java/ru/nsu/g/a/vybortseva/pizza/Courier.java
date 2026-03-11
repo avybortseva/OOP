@@ -7,17 +7,17 @@ import java.util.List;
  * Курьер забирает одну или несколько пицц со склада (не более объема багажника)
  * и осуществляет их доставку заказчикам.
  */
-public class Courier implements Runnable {
+public class Courier implements ICourier {
     private final int id;
     private final int speed;
     private final int capacity;
     private List<Pizza> pizzas;
-    private final Warehouse warehouse;
+    private final IWarehouse warehouse;
 
     /**
      * Создает экземпляр курьера.
      */
-    public Courier(int id, int speed, int capacity, Warehouse warehouse) {
+    public Courier(int id, int speed, int capacity, IWarehouse warehouse) {
         if (speed <= 0) {
             throw new IllegalArgumentException("Speed can't be negative");
         }
@@ -25,6 +25,20 @@ public class Courier implements Runnable {
         this.speed = speed;
         this.capacity = capacity;
         this.warehouse = warehouse;
+    }
+
+    /**
+     * Возвращает уникальный идентификатор курьера.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Возвращает вместимость багажника курьера.
+     */
+    public int getCapacity() {
+        return capacity;
     }
 
     /**

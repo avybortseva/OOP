@@ -15,8 +15,8 @@ public class Bakery {
     private PizzeriaConfig config;
     private final List<Thread> bakerThreads = new ArrayList<>();
     private final List<Thread> courierThreads = new ArrayList<>();
-    private OrderQueue orderQueue;
-    private Warehouse warehouse;
+    private IOrderQueue orderQueue;
+    private IWarehouse warehouse;
     private volatile boolean isOpened = true;
     private static final long WORKING_TIME_MS = 10000;
     private static final long ORDER_DELAY_MS = 1000;

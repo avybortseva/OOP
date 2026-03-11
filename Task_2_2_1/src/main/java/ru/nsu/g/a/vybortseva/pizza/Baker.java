@@ -5,13 +5,13 @@ package ru.nsu.g.a.vybortseva.pizza;
  * Пекарь берет заказы из очереди, готовит пиццу в течение заданного времени
  * и передает ее на склад готовой продукции.
  */
-public class Baker implements Runnable {
+public class Baker implements IBaker {
     private final int id;
     private final int speed;
     private Pizza curPizza;
     private State state;
-    private final OrderQueue queue;
-    private final Warehouse warehouse;
+    private final IOrderQueue queue;
+    private final IWarehouse warehouse;
 
     /**
      * Возможные состояния пекаря.
@@ -25,7 +25,7 @@ public class Baker implements Runnable {
     /**
      * Создает экземпляр пекаря.
      */
-    public Baker(int id, int speed, OrderQueue queue, Warehouse warehouse) {
+    public Baker(int id, int speed, IOrderQueue queue, IWarehouse warehouse) {
         if (speed <= 0) {
             throw new IllegalArgumentException("Speed can't be negative");
         }
@@ -34,6 +34,22 @@ public class Baker implements Runnable {
         this.state = State.FREE;
         this.queue = queue;
         this.warehouse = warehouse;
+    }
+
+    /**
+     * Возвращает текущее состояние пекаря.
+     */
+    @Override
+    public State getState() {
+        return state;
+    }
+
+    /**
+     * Возвращает уникальный идентификатор пекаря.
+     */
+    @Override
+    public int getId() {
+        return id;
     }
 
     /**

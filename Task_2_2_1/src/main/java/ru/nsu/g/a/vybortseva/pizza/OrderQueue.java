@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * Общая очередь заказов на пиццу.
  * Обеспечивает передачу заказов от системы к свободным пекарям.
  */
-public class OrderQueue {
+public class OrderQueue implements IOrderQueue {
     private final LinkedList<Pizza> queue;
 
     /**

@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 
 class WarehouseTest {
     private Warehouse warehouse;
-    private final int Capacity = 2;
+    private final int capacity = 2;
 
     @BeforeEach
     void setUp() {
-        warehouse = new Warehouse(Capacity);
+        warehouse = new Warehouse(capacity);
     }
 
     @Test
