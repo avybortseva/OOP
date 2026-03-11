@@ -75,12 +75,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></code></dd>
+<dd><code><a href="WarehouseInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">WarehouseInt</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Warehouse</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></span></div>
+implements <a href="WarehouseInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">WarehouseInt</a></span></div>
 <div class="block">Склад готовой продукции.
  Служит буфером между пекарями и курьерами с ограниченной вместимостью.</div>
 </section>
@@ -166,7 +166,7 @@ implements <a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.p
 <div class="block">Возвращает текущее количество пицц на складе.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="IWarehouse.html#getCurrentSize()">getCurrentSize</a></code>&nbsp;in interface&nbsp;<code><a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></code></dd>
+<dd><code><a href="WarehouseInt.html#getCurrentSize()">getCurrentSize</a></code>&nbsp;in interface&nbsp;<code><a href="WarehouseInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">WarehouseInt</a></code></dd>
 </dl>
 </section>
 </li>
@@ -179,7 +179,7 @@ implements <a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.p
  Если склад заполнен, вызывающий поток переходит в состояние ожидания.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="IWarehouse.html#add(ru.nsu.g.a.vybortseva.pizza.Pizza)">add</a></code>&nbsp;in interface&nbsp;<code><a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></code></dd>
+<dd><code><a href="WarehouseInt.html#add(ru.nsu.g.a.vybortseva.pizza.Pizza)">add</a></code>&nbsp;in interface&nbsp;<code><a href="WarehouseInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">WarehouseInt</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
@@ -194,7 +194,7 @@ implements <a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.p
  Если склад пуст, поток ожидает появления хотя бы одной пиццы.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="IWarehouse.html#take(int)">take</a></code>&nbsp;in interface&nbsp;<code><a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></code></dd>
+<dd><code><a href="WarehouseInt.html#take(int)">take</a></code>&nbsp;in interface&nbsp;<code><a href="WarehouseInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">WarehouseInt</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>

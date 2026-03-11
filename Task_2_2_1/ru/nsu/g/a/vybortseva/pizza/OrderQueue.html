@@ -75,12 +75,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></code></dd>
+<dd><code><a href="OrderQueueInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">OrderQueueInt</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">OrderQueue</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></span></div>
+implements <a href="OrderQueueInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">OrderQueueInt</a></span></div>
 <div class="block">Общая очередь заказов на пиццу.
  Обеспечивает передачу заказов от системы к свободным пекарям.</div>
 </section>
@@ -166,7 +166,7 @@ implements <a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.
 <div class="block">Возвращает текущее количество заказов в очереди.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="IOrderQueue.html#getCurrentSize()">getCurrentSize</a></code>&nbsp;in interface&nbsp;<code><a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></code></dd>
+<dd><code><a href="OrderQueueInt.html#getCurrentSize()">getCurrentSize</a></code>&nbsp;in interface&nbsp;<code><a href="OrderQueueInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">OrderQueueInt</a></code></dd>
 </dl>
 </section>
 </li>
@@ -178,7 +178,7 @@ implements <a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.
 <div class="block">Добавляет новый заказ в очередь.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="IOrderQueue.html#add(ru.nsu.g.a.vybortseva.pizza.Pizza)">add</a></code>&nbsp;in interface&nbsp;<code><a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></code></dd>
+<dd><code><a href="OrderQueueInt.html#add(ru.nsu.g.a.vybortseva.pizza.Pizza)">add</a></code>&nbsp;in interface&nbsp;<code><a href="OrderQueueInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">OrderQueueInt</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
@@ -193,7 +193,7 @@ implements <a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.
  Если заказов нет, поток переходит в состояние ожидания.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="IOrderQueue.html#take()">take</a></code>&nbsp;in interface&nbsp;<code><a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></code></dd>
+<dd><code><a href="OrderQueueInt.html#take()">take</a></code>&nbsp;in interface&nbsp;<code><a href="OrderQueueInt.html" title="interface in ru.nsu.g.a.vybortseva.pizza">OrderQueueInt</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
