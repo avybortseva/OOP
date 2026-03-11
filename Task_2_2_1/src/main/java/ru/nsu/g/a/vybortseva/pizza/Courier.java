@@ -7,17 +7,17 @@ import java.util.List;
  * Курьер забирает одну или несколько пицц со склада (не более объема багажника)
  * и осуществляет их доставку заказчикам.
  */
-public class Courier implements ICourier {
+public class Courier implements CourierInt {
     private final int id;
     private final int speed;
     private final int capacity;
     private List<Pizza> pizzas;
-    private final IWarehouse warehouse;
+    private final WarehouseInt warehouse;
 
     /**
      * Создает экземпляр курьера.
      */
-    public Courier(int id, int speed, int capacity, IWarehouse warehouse) {
+    public Courier(int id, int speed, int capacity, WarehouseInt warehouse) {
         if (speed <= 0) {
             throw new IllegalArgumentException("Speed can't be negative");
         }

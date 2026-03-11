@@ -8,7 +8,7 @@ import java.util.List;
  * Склад готовой продукции.
  * Служит буфером между пекарями и курьерами с ограниченной вместимостью.
  */
-public class Warehouse implements IWarehouse {
+public class Warehouse implements WarehouseInt {
     private final LinkedList<Pizza> queue;
     private final int capacity;
 

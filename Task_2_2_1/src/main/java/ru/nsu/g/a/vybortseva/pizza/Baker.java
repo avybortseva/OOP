@@ -10,8 +10,8 @@ public class Baker implements IBaker {
     private final int speed;
     private Pizza curPizza;
     private State state;
-    private final IOrderQueue queue;
-    private final IWarehouse warehouse;
+    private final OrderQueueInt queue;
+    private final WarehouseInt warehouse;
 
     /**
      * Возможные состояния пекаря.
@@ -25,7 +25,7 @@ public class Baker implements IBaker {
     /**
      * Создает экземпляр пекаря.
      */
-    public Baker(int id, int speed, IOrderQueue queue, IWarehouse warehouse) {
+    public Baker(int id, int speed, OrderQueueInt queue, WarehouseInt warehouse) {
         if (speed <= 0) {
             throw new IllegalArgumentException("Speed can't be negative");
         }

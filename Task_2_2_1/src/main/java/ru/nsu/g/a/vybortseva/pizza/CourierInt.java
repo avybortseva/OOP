@@ -3,7 +3,7 @@ package ru.nsu.g.a.vybortseva.pizza;
 /**
  * Интерфейс, описывающий поведение курьера.
  */
-public interface ICourier extends Runnable {
+public interface CourierInt extends Runnable {
     /**
      * Возвращает уникальный идентификатор курьера.
      */

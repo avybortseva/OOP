@@ -3,7 +3,7 @@ package ru.nsu.g.a.vybortseva.pizza;
 /**
  * Интерфейс, описывающий поведение пекаря.
  */
-public interface IBaker extends Runnable {
+public interface BakerInt extends Runnable {
     /**
      * Возвращает текущее состояние пекаря.
      */

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Интерфейс склада готовой продукции.
  */
-public interface IWarehouse {
+public interface WarehouseInt {
     /**
      * Добавляет готовую пиццу на склад.
      */

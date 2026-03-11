@@ -4,7 +4,7 @@ package ru.nsu.g.a.vybortseva.pizza;
  * Интерфейс очереди заказов.
  * Описывает контракт взаимодействия между системой приема заказов и пекарями.
  */
-public interface IOrderQueue {
+public interface OrderQueueInt {
     /**
      * Добавляет новый заказ в очередь.
      */
