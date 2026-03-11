@@ -73,9 +73,14 @@ loadScripts(document, 'script');</script>
 <div class="inheritance">ru.nsu.g.a.vybortseva.pizza.Warehouse</div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Warehouse</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
+implements <a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></span></div>
 <div class="block">Склад готовой продукции.
  Служит буфером между пекарями и курьерами с ограниченной вместимостью.</div>
 </section>
@@ -159,6 +164,10 @@ loadScripts(document, 'script');</script>
 <h3>getCurrentSize</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCurrentSize</span>()</div>
 <div class="block">Возвращает текущее количество пицц на складе.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="IWarehouse.html#getCurrentSize()">getCurrentSize</a></code>&nbsp;in interface&nbsp;<code><a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -169,6 +178,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Добавляет готовую пиццу на склад.
  Если склад заполнен, вызывающий поток переходит в состояние ожидания.</div>
 <dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="IWarehouse.html#add(ru.nsu.g.a.vybortseva.pizza.Pizza)">add</a></code>&nbsp;in interface&nbsp;<code><a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
@@ -182,6 +193,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Забирает со склада несколько пицц (не более указанного количества).
  Если склад пуст, поток ожидает появления хотя бы одной пиццы.</div>
 <dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="IWarehouse.html#take(int)">take</a></code>&nbsp;in interface&nbsp;<code><a href="IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>

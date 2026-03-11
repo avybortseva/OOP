@@ -51,6 +51,14 @@ loadScripts(document, 'script');</script>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IOrderQueue.html#add(ru.nsu.g.a.vybortseva.pizza.Pizza)" class="member-name-link">add(Pizza)</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></dt>
+<dd>
+<div class="block">Добавляет новый заказ в очередь.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IWarehouse.html#add(ru.nsu.g.a.vybortseva.pizza.Pizza)" class="member-name-link">add(Pizza)</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></dt>
+<dd>
+<div class="block">Добавляет готовую пиццу на склад.</div>
+</dd>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/OrderQueue.html#add(ru.nsu.g.a.vybortseva.pizza.Pizza)" class="member-name-link">add(Pizza)</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/OrderQueue.html" title="class in ru.nsu.g.a.vybortseva.pizza">OrderQueue</a></dt>
 <dd>
 <div class="block">Добавляет новый заказ в очередь.</div>
@@ -66,7 +74,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Класс, представляющий пекаря.</div>
 </dd>
-<dt><a href="ru/nsu/g/a/vybortseva/pizza/Baker.html#%3Cinit%3E(int,int,ru.nsu.g.a.vybortseva.pizza.OrderQueue,ru.nsu.g.a.vybortseva.pizza.Warehouse)" class="member-name-link">Baker(int, int, OrderQueue, Warehouse)</a> - Constructor for class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Baker.html" title="class in ru.nsu.g.a.vybortseva.pizza">Baker</a></dt>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/Baker.html#%3Cinit%3E(int,int,ru.nsu.g.a.vybortseva.pizza.IOrderQueue,ru.nsu.g.a.vybortseva.pizza.IWarehouse)" class="member-name-link">Baker(int, int, IOrderQueue, IWarehouse)</a> - Constructor for class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Baker.html" title="class in ru.nsu.g.a.vybortseva.pizza">Baker</a></dt>
 <dd>
 <div class="block">Создает экземпляр пекаря.</div>
 </dd>
@@ -87,7 +95,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Класс, представляющий курьера.</div>
 </dd>
-<dt><a href="ru/nsu/g/a/vybortseva/pizza/Courier.html#%3Cinit%3E(int,int,int,ru.nsu.g.a.vybortseva.pizza.Warehouse)" class="member-name-link">Courier(int, int, int, Warehouse)</a> - Constructor for class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Courier.html" title="class in ru.nsu.g.a.vybortseva.pizza">Courier</a></dt>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/Courier.html#%3Cinit%3E(int,int,int,ru.nsu.g.a.vybortseva.pizza.IWarehouse)" class="member-name-link">Courier(int, int, int, IWarehouse)</a> - Constructor for class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Courier.html" title="class in ru.nsu.g.a.vybortseva.pizza">Courier</a></dt>
 <dd>
 <div class="block">Создает экземпляр курьера.</div>
 </dd>
@@ -100,6 +108,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Список конфигураций пекарей.</div>
 </dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/Courier.html#getCapacity()" class="member-name-link">getCapacity()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Courier.html" title="class in ru.nsu.g.a.vybortseva.pizza">Courier</a></dt>
+<dd>
+<div class="block">Возвращает вместимость багажника курьера.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/ICourier.html#getCapacity()" class="member-name-link">getCapacity()</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/ICourier.html" title="interface in ru.nsu.g.a.vybortseva.pizza">ICourier</a></dt>
+<dd>
+<div class="block">Возвращает вместимость багажника курьера.</div>
+</dd>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/PizzeriaConfig.CourierConfig.html#getCapacity()" class="member-name-link">getCapacity()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/PizzeriaConfig.CourierConfig.html" title="class in ru.nsu.g.a.vybortseva.pizza">PizzeriaConfig.CourierConfig</a></dt>
 <dd>
 <div class="block">Вместимость багажника.</div>
@@ -108,6 +124,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Список конфигураций курьеров.</div>
 </dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IOrderQueue.html#getCurrentSize()" class="member-name-link">getCurrentSize()</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></dt>
+<dd>
+<div class="block">Возвращает текущее количество заказов.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IWarehouse.html#getCurrentSize()" class="member-name-link">getCurrentSize()</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></dt>
+<dd>
+<div class="block">Возвращает текущее количество пицц на складе.</div>
+</dd>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/OrderQueue.html#getCurrentSize()" class="member-name-link">getCurrentSize()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/OrderQueue.html" title="class in ru.nsu.g.a.vybortseva.pizza">OrderQueue</a></dt>
 <dd>
 <div class="block">Возвращает текущее количество заказов в очереди.</div>
@@ -115,6 +139,22 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/Warehouse.html#getCurrentSize()" class="member-name-link">getCurrentSize()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Warehouse.html" title="class in ru.nsu.g.a.vybortseva.pizza">Warehouse</a></dt>
 <dd>
 <div class="block">Возвращает текущее количество пицц на складе.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/Baker.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Baker.html" title="class in ru.nsu.g.a.vybortseva.pizza">Baker</a></dt>
+<dd>
+<div class="block">Возвращает уникальный идентификатор пекаря.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/Courier.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Courier.html" title="class in ru.nsu.g.a.vybortseva.pizza">Courier</a></dt>
+<dd>
+<div class="block">Возвращает уникальный идентификатор курьера.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IBaker.html#getId()" class="member-name-link">getId()</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/IBaker.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IBaker</a></dt>
+<dd>
+<div class="block">Возвращает уникальный идентификатор пекаря.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/ICourier.html#getId()" class="member-name-link">getId()</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/ICourier.html" title="interface in ru.nsu.g.a.vybortseva.pizza">ICourier</a></dt>
+<dd>
+<div class="block">Возвращает уникальный идентификатор курьера.</div>
 </dd>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/Pizza.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Pizza.html" title="class in ru.nsu.g.a.vybortseva.pizza">Pizza</a></dt>
 <dd>
@@ -136,6 +176,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Скорость курьера.</div>
 </dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/Baker.html#getState()" class="member-name-link">getState()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Baker.html" title="class in ru.nsu.g.a.vybortseva.pizza">Baker</a></dt>
+<dd>
+<div class="block">Возвращает текущее состояние пекаря.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IBaker.html#getState()" class="member-name-link">getState()</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/IBaker.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IBaker</a></dt>
+<dd>
+<div class="block">Возвращает текущее состояние пекаря.</div>
+</dd>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/PizzeriaConfig.html#getWarehouseCapacity()" class="member-name-link">getWarehouseCapacity()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/PizzeriaConfig.html" title="class in ru.nsu.g.a.vybortseva.pizza">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Вместимость склада.</div>
@@ -143,10 +191,26 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IBaker.html" class="type-name-link" title="interface in ru.nsu.g.a.vybortseva.pizza">IBaker</a> - Interface in <a href="ru/nsu/g/a/vybortseva/pizza/package-summary.html">ru.nsu.g.a.vybortseva.pizza</a></dt>
+<dd>
+<div class="block">Интерфейс, описывающий поведение пекаря.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/ICourier.html" class="type-name-link" title="interface in ru.nsu.g.a.vybortseva.pizza">ICourier</a> - Interface in <a href="ru/nsu/g/a/vybortseva/pizza/package-summary.html">ru.nsu.g.a.vybortseva.pizza</a></dt>
+<dd>
+<div class="block">Интерфейс, описывающий поведение курьера.</div>
+</dd>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/PizzeriaConfig.BakerConfig.html#id" class="member-name-link">id</a> - Variable in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/PizzeriaConfig.BakerConfig.html" title="class in ru.nsu.g.a.vybortseva.pizza">PizzeriaConfig.BakerConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/PizzeriaConfig.CourierConfig.html#id" class="member-name-link">id</a> - Variable in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/PizzeriaConfig.CourierConfig.html" title="class in ru.nsu.g.a.vybortseva.pizza">PizzeriaConfig.CourierConfig</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IOrderQueue.html" class="type-name-link" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a> - Interface in <a href="ru/nsu/g/a/vybortseva/pizza/package-summary.html">ru.nsu.g.a.vybortseva.pizza</a></dt>
+<dd>
+<div class="block">Интерфейс очереди заказов.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IWarehouse.html" class="type-name-link" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a> - Interface in <a href="ru/nsu/g/a/vybortseva/pizza/package-summary.html">ru.nsu.g.a.vybortseva.pizza</a></dt>
+<dd>
+<div class="block">Интерфейс склада готовой продукции.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
@@ -264,9 +328,17 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IOrderQueue.html#take()" class="member-name-link">take()</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></dt>
+<dd>
+<div class="block">Извлекает заказ из очереди.</div>
+</dd>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/OrderQueue.html#take()" class="member-name-link">take()</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/OrderQueue.html" title="class in ru.nsu.g.a.vybortseva.pizza">OrderQueue</a></dt>
 <dd>
 <div class="block">Извлекает заказ из очереди для исполнения пекарем.</div>
+</dd>
+<dt><a href="ru/nsu/g/a/vybortseva/pizza/IWarehouse.html#take(int)" class="member-name-link">take(int)</a> - Method in interface ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/IWarehouse.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IWarehouse</a></dt>
+<dd>
+<div class="block">Забирает со склада пиццы в соответствии с вместимостью курьера.</div>
 </dd>
 <dt><a href="ru/nsu/g/a/vybortseva/pizza/Warehouse.html#take(int)" class="member-name-link">take(int)</a> - Method in class ru.nsu.g.a.vybortseva.pizza.<a href="ru/nsu/g/a/vybortseva/pizza/Warehouse.html" title="class in ru.nsu.g.a.vybortseva.pizza">Warehouse</a></dt>
 <dd>

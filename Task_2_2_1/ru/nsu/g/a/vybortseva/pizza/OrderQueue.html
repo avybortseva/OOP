@@ -73,9 +73,14 @@ loadScripts(document, 'script');</script>
 <div class="inheritance">ru.nsu.g.a.vybortseva.pizza.OrderQueue</div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">OrderQueue</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
+implements <a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></span></div>
 <div class="block">Общая очередь заказов на пиццу.
  Обеспечивает передачу заказов от системы к свободным пекарям.</div>
 </section>
@@ -159,6 +164,10 @@ loadScripts(document, 'script');</script>
 <h3>getCurrentSize</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCurrentSize</span>()</div>
 <div class="block">Возвращает текущее количество заказов в очереди.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="IOrderQueue.html#getCurrentSize()">getCurrentSize</a></code>&nbsp;in interface&nbsp;<code><a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -168,6 +177,8 @@ loadScripts(document, 'script');</script>
          throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <div class="block">Добавляет новый заказ в очередь.</div>
 <dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="IOrderQueue.html#add(ru.nsu.g.a.vybortseva.pizza.Pizza)">add</a></code>&nbsp;in interface&nbsp;<code><a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
@@ -181,6 +192,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Извлекает заказ из очереди для исполнения пекарем.
  Если заказов нет, поток переходит в состояние ожидания.</div>
 <dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="IOrderQueue.html#take()">take</a></code>&nbsp;in interface&nbsp;<code><a href="IOrderQueue.html" title="interface in ru.nsu.g.a.vybortseva.pizza">IOrderQueue</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
