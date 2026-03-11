@@ -2,14 +2,11 @@ package ru.nsu.g.a.vybortseva.pizza;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import org.junit.jupiter.api.Test;
 
 class PizzeriaConfigTest {
-
     @Test
     void testGettersAndSetters() {
         PizzeriaConfig config = new PizzeriaConfig();

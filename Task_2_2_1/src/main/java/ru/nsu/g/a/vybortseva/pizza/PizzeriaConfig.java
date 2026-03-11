@@ -82,7 +82,7 @@ public class PizzeriaConfig {
     }
 
     /**
-     * Конфигурация отдельного курьера
+     * Конфигурация отдельного курьера.
      */
     public static class CourierConfig {
         public int id;

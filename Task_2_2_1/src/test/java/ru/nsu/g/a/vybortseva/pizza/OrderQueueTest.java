@@ -29,6 +29,7 @@ class OrderQueueTest {
             try {
                 orderQueue.take();
             } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
             }
         });
         consumerThread.start();
@@ -44,6 +45,7 @@ class OrderQueueTest {
             try {
                 result[0] = orderQueue.take();
             } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
             }
         });
         consumerThread.start();

@@ -1,7 +1,6 @@
 package ru.nsu.g.a.vybortseva.pizza;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,13 +41,15 @@ public class Bakery {
         this.orderQueue = new OrderQueue();
 
         for (PizzeriaConfig.BakerConfig bc : config.getBakers()) {
-            Thread t = new Thread(new Baker(bc.id, bc.speed, orderQueue, warehouse), "Baker-" + bc.id);
+            Thread t = new Thread(new Baker(bc.id, bc.speed, orderQueue, warehouse),
+                    "Baker-" + bc.id);
             bakerThreads.add(t);
             t.start();
         }
 
         for (PizzeriaConfig.CourierConfig cc : config.getCouriers()) {
-            Thread t = new Thread(new Courier(cc.id, cc.speed, cc.capacity, warehouse), "Courier-" + cc.id);
+            Thread t = new Thread(new Courier(cc.id, cc.speed, cc.capacity, warehouse),
+                    "Courier-" + cc.id);
             courierThreads.add(t);
             t.start();
         }

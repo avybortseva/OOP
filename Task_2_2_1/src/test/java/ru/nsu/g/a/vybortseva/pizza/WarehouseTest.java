@@ -2,18 +2,17 @@ package ru.nsu.g.a.vybortseva.pizza;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 class WarehouseTest {
     private Warehouse warehouse;
-    private final int CAPACITY = 2;
+    private final int Capacity = 2;
 
     @BeforeEach
     void setUp() {
-        warehouse = new Warehouse(CAPACITY);
+        warehouse = new Warehouse(Capacity);
     }
 
     @Test
@@ -37,7 +36,9 @@ class WarehouseTest {
         Thread bakerThread = new Thread(() -> {
             try {
                 warehouse.add(new Pizza(3));
-            } catch (InterruptedException ignored) {}
+            } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
+            }
         });
 
         bakerThread.start();
@@ -56,7 +57,9 @@ class WarehouseTest {
         Thread courierThread = new Thread(() -> {
             try {
                 warehouse.take(1);
-            } catch (InterruptedException ignored) {}
+            } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
+            }
         });
 
         courierThread.start();
