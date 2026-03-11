@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 class BakerTest {
     private OrderQueue orderQueue;
     private Warehouse warehouse;
-    private final int BakerId = 1;
-    private final int Speed = 100;
+    private final int bakerId = 1;
+    private final int speed = 100;
 
     @BeforeEach
     void setUp() {
@@ -20,9 +20,9 @@ class BakerTest {
     }
 
     @Test
-    void testInvalidBakerSpeed() {
+    void testInvalidBakerspeed() {
         assertThrows(IllegalArgumentException.class, () ->
-                        new Baker(BakerId, 0, orderQueue, warehouse));
+                        new Baker(bakerId, 0, orderQueue, warehouse));
     }
 
     @Test
@@ -30,12 +30,12 @@ class BakerTest {
         Pizza pizza = new Pizza(777);
         orderQueue.add(pizza);
 
-        Baker baker = new Baker(BakerId, Speed, orderQueue, warehouse);
+        Baker baker = new Baker(bakerId, speed, orderQueue, warehouse);
         Thread bakerThread = new Thread(baker);
 
         bakerThread.start();
 
-        Thread.sleep(Speed + 200);
+        Thread.sleep(speed + 200);
         assertEquals(0, orderQueue.getCurrentSize());
         assertEquals(1, warehouse.getCurrentSize());
 
@@ -46,7 +46,7 @@ class BakerTest {
 
     @Test
     void testBakerWaitingForOrder() throws InterruptedException {
-        Baker baker = new Baker(BakerId, Speed, orderQueue, warehouse);
+        Baker baker = new Baker(bakerId, speed, orderQueue, warehouse);
         Thread bakerThread = new Thread(baker);
 
         bakerThread.start();

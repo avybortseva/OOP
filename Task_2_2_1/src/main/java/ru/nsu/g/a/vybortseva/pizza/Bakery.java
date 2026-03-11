@@ -84,7 +84,7 @@ public class Bakery {
 
         try {
             for (Thread t : allWorkers) {
-               t.join();
+                t.join();
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

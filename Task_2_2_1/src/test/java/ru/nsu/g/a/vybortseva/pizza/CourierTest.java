@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 
 class CourierTest {
     private Warehouse warehouse;
-    private final int COURIER_ID = 1;
-    private final int SPEED = 100;
-    private final int CAPACITY = 2;
+    private final int courierId = 1;
+    private final int speed = 100;
+    private final int capacity = 2;
 
     @BeforeEach
     void setUp() {
@@ -28,11 +28,11 @@ class CourierTest {
     void testCourierDeliveryCycle() throws InterruptedException {
         warehouse.add(new Pizza(101));
         warehouse.add(new Pizza(102));
-        Courier courier = new Courier(COURIER_ID, SPEED, CAPACITY, warehouse);
+        Courier courier = new Courier(courierId, speed, capacity, warehouse);
         Thread courierThread = new Thread(courier);
 
         courierThread.start();
-        Thread.sleep(SPEED + 200);
+        Thread.sleep(speed + 200);
 
         assertEquals(0, warehouse.getCurrentSize());
 
@@ -47,11 +47,11 @@ class CourierTest {
         warehouse.add(new Pizza(2));
         warehouse.add(new Pizza(3));
 
-        Courier courier = new Courier(COURIER_ID, SPEED, 2, warehouse);
+        Courier courier = new Courier(courierId, speed, 2, warehouse);
         Thread courierThread = new Thread(courier);
 
         courierThread.start();
-        Thread.sleep(SPEED / 2);
+        Thread.sleep(speed / 2);
         assertEquals(1, warehouse.getCurrentSize(), "На складе должна остаться одна пицца из трех");
 
         courierThread.interrupt();

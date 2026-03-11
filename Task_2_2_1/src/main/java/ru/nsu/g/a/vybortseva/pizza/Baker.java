@@ -14,7 +14,7 @@ public class Baker implements Runnable {
     private final Warehouse warehouse;
 
     /**
-     * Возможные состояния пекаря
+     * Возможные состояния пекаря.
      */
     enum State {
         FREE,
