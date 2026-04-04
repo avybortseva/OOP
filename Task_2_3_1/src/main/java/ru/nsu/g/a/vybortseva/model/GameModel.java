@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Main game logic.
+ */
 public class GameModel {
     private final int width;
     private final int height;
@@ -15,6 +18,9 @@ public class GameModel {
     private boolean gameWin = false;
     private boolean gameOver = false;
 
+    /**
+     * Initializes game world.
+     */
     public GameModel(int width, int height, int foodCount, int targetLength) {
         this.width = width;
         this.height = height;
@@ -28,6 +34,9 @@ public class GameModel {
         }
     }
 
+    /**
+     * Updates game state.
+     */
     public void update() {
         if (gameOver || gameWin) {
             return;
@@ -52,6 +61,9 @@ public class GameModel {
         }
     }
 
+    /**
+     * Generates food randomly.
+     */
     private void generateFood() {
         Random random = new Random();
         Point foodPoint;
@@ -62,6 +74,9 @@ public class GameModel {
         foods.add(foodPoint);
     }
 
+    /**
+     * Checks for collisions.
+     */
     private boolean isCollision(Point p) {
         if (p.getX() < 0 || p.getX() >= width || p.getY() < 0 || p.getY() >= height) {
             return true;
@@ -69,18 +84,30 @@ public class GameModel {
         return snake.getBody().contains(p);
     }
 
+    /**
+     * Returns lose status.
+     */
     public boolean isGameOver() {
         return gameOver;
     }
 
+    /**
+     * Returns win status.
+     */
     public boolean isGameWin() {
         return gameWin;
     }
 
+    /**
+     * Gets snake instance.
+     */
     public Snake getSnake() {
         return snake;
     }
 
+    /**
+     * Gets food list.
+     */
     public List<Point> getFoods() {
         return foods;
     }
