@@ -1,13 +1,19 @@
 package ru.nsu.g.a.vybortseva;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 
+/**
+ * Main application class.
+ */
 public class HelloApplication extends Application {
+    /**
+     * Sets up game window.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(

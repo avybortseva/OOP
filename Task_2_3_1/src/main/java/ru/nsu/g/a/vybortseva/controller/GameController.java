@@ -13,7 +13,9 @@ import ru.nsu.g.a.vybortseva.model.Direction;
 import ru.nsu.g.a.vybortseva.model.GameModel;
 import ru.nsu.g.a.vybortseva.model.Point;
 
-
+/**
+ * Game UI controller.
+ */
 public class GameController {
     @FXML
     private Canvas gameCanvas;
@@ -33,6 +35,9 @@ public class GameController {
     private GameModel model;
     private double tileSize;
 
+    /**
+     * Initializes controller and listeners.
+     */
     @FXML
     public void initialize() {
         setupGame();
@@ -43,6 +48,9 @@ public class GameController {
         Platform.runLater(this::layoutCanvas);
     }
 
+    /**
+     * Aligns canvas within container.
+     */
     private void layoutCanvas() {
         double w = canvasContainer.getWidth();
         double h = canvasContainer.getHeight();
@@ -61,6 +69,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Resets game state.
+     */
     private void setupGame() {
         model = new GameModel(16, 16, 10, 50);
         targetLabel.setText("Target: ");
@@ -73,26 +84,18 @@ public class GameController {
         startGameLoop();
     }
 
-    private void resizeCanvas() {
-        double availableWidth = canvasContainer.getWidth();
-        double availableHeight = canvasContainer.getHeight();
-
-        double size = Math.min(availableWidth, availableHeight);
-
-        if (size > 0) {
-            gameCanvas.setWidth(size);
-            gameCanvas.setHeight(size);
-            this.tileSize = size / 16;
-            draw();
-        }
-    }
-
+    /**
+     * Handles restart button.
+     */
     @FXML
     private void handleRestart() {
         setupGame();
         gameCanvas.requestFocus();
     }
 
+    /**
+     * Processes keyboard input.
+     */
     private void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
             case W, UP -> model.getSnake().setDirection(Direction.UP);
@@ -102,6 +105,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Runs game animation timer.
+     */
     private void startGameLoop() {
         AnimationTimer timer = new AnimationTimer() {
             private long lastUpdate = 0;
@@ -128,6 +134,9 @@ public class GameController {
         timer.start();
     }
 
+    /**
+     * Renders game objects.
+     */
     private void draw() {
         GraphicsContext gc = gameCanvas.getGraphicsContext2D();
         gc.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
@@ -157,6 +166,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Updates labels.
+     */
     private void updateUi() {
         int currentScore = model.getSnake().getBody().size();
         scoreLabel.setText("Current Length: " + currentScore);
@@ -167,6 +179,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Displays game over text.
+     */
     private void showGameOver() {
         GraphicsContext gc = gameCanvas.getGraphicsContext2D();
         gc.setFill(Color.RED);
@@ -174,6 +189,9 @@ public class GameController {
         gc.fillText("GAME OVER", gameCanvas.getWidth() / 4, gameCanvas.getHeight() / 2);
     }
 
+    /**
+     * Displays win text.
+     */
     private void showWin() {
         GraphicsContext gc = gameCanvas.getGraphicsContext2D();
         gc.setFill(Color.GOLD);
