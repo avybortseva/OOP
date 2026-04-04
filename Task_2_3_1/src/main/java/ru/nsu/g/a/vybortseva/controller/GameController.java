@@ -102,6 +102,9 @@ public class GameController {
             case S, DOWN -> model.getSnake().setDirection(Direction.DOWN);
             case A, LEFT -> model.getSnake().setDirection(Direction.LEFT);
             case D, RIGHT -> model.getSnake().setDirection(Direction.RIGHT);
+            default -> {
+                // ничего не делаем
+            }
         }
     }
 
