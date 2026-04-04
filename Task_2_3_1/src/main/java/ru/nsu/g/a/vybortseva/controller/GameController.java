@@ -67,7 +67,9 @@ public class GameController {
         gameCanvas.setFocusTraversable(true);
         gameCanvas.setOnKeyPressed(this::handleKeyPress);
 
-        if (gameTimer != null) gameTimer.stop();
+        if (gameTimer != null) {
+            gameTimer.stop();
+        }
         startGameLoop();
     }
 
@@ -106,10 +108,10 @@ public class GameController {
 
             @Override
             public void handle(long now) {
-                if (now - lastUpdate >= 150000000) {// 150 мс
+                if (now - lastUpdate >= 150000000) {  // 150 мс
                     model.update();
                     draw();
-                    updateUI();
+                    updateUi();
                     lastUpdate = now;
 
                     if (model.isGameOver()) {
@@ -155,7 +157,7 @@ public class GameController {
         }
     }
 
-    private void updateUI() {
+    private void updateUi() {
         int currentScore = model.getSnake().getBody().size();
         scoreLabel.setText("Current Length: " + currentScore);
 

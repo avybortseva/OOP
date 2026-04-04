@@ -9,32 +9,32 @@ public enum Direction {
     LEFT(-1, 0),
     RIGHT(1, 0);
 
-    private final int dx, dy;
+    private final int deltaX, deltaY;
 
-    Direction(int dx, int dy) {
-        this.dx = dx;
-        this.dy = dy;
+    Direction(int deltaX, int deltaY) {
+        this.deltaX = deltaX;
+        this.deltaY = deltaY;
     }
 
     /**
      * Gets Y axis delta.
      */
     public int getDy() {
-        return dy;
+        return deltaY;
     }
 
     /**
      * Gets X axis delta.
      */
     public int getDx() {
-        return dx;
+        return deltaX;
     }
 
     /**
      * Checks if direction is opposite.
      */
     public boolean isOpposite(Direction newDirection) {
-        return (this.dx + newDirection.dx == 0)
-                && (this.dy + newDirection.dy == 0);
+        return (this.deltaX + newDirection.deltaX == 0)
+                && (this.deltaY + newDirection.deltaY == 0);
     }
 }
