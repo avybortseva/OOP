@@ -1,5 +1,6 @@
 package ru.nsu.g.a.vybortseva.controller;
 
+import java.util.Map;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -11,11 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import java.util.Map;
 import ru.nsu.g.a.vybortseva.config.GameConfig;
-import ru.nsu.g.a.vybortseva.model.GameModel;
 import ru.nsu.g.a.vybortseva.model.Direction;
 import ru.nsu.g.a.vybortseva.model.Food;
+import ru.nsu.g.a.vybortseva.model.GameModel;
 import ru.nsu.g.a.vybortseva.view.GameRenderer;
 
 /**

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
-import ru.nsu.g.a.vybortseva.model.Food;
 import java.util.Map;
+import ru.nsu.g.a.vybortseva.model.Food;
 
 class GameConfigTest {
 
