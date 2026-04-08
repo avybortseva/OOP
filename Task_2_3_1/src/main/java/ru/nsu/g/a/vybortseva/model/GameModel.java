@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Collections;
-
 import ru.nsu.g.a.vybortseva.config.GameConfig;
 
 /**
@@ -24,6 +23,7 @@ public class GameModel {
     private Map<Food.FoodType, Integer> eatenCount = new EnumMap<>(Food.FoodType.class);
 
     private boolean canChangeDirection = true;
+
     /**
      * Initializes game world.
      */
@@ -144,8 +144,6 @@ public class GameModel {
     /**
      * Tries to create and add a single obstacle of specific length to the game.
      * Uses a while loop to keep trying until a valid obstacle shape is formed.
-     *
-     * @param targetLen desired number of points in the obstacle.
      */
     private void createAndAddObstacle(int targetLen) {
         Random random = new Random();

@@ -1,7 +1,6 @@
 package ru.nsu.g.a.vybortseva.config;
 
 import java.util.Map;
-
 import ru.nsu.g.a.vybortseva.model.Food;
 
 /**

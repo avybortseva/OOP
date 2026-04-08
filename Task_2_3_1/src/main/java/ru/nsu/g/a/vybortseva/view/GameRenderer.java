@@ -3,9 +3,8 @@ package ru.nsu.g.a.vybortseva.view;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import ru.nsu.g.a.vybortseva.model.Food;
 import java.util.List;
-
+import ru.nsu.g.a.vybortseva.model.Food;
 import ru.nsu.g.a.vybortseva.model.GameModel;
 import ru.nsu.g.a.vybortseva.model.Obstacle;
 import ru.nsu.g.a.vybortseva.model.Point;
@@ -49,7 +48,7 @@ public class GameRenderer {
         double s = tileSize * 0.15;
         gc.fillOval(head.getX() * tileSize + tileSize / 4,
                 head.getY() * tileSize + tileSize / 4, s, s);
-        gc.fillOval(head.getX() * tileSize + tileSize*0.6,
+        gc.fillOval(head.getX() * tileSize + tileSize * 0.6,
                 head.getY() * tileSize + tileSize / 4, s, s);
     }
 

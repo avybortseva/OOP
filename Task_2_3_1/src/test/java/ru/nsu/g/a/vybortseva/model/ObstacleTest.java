@@ -1,13 +1,13 @@
 package ru.nsu.g.a.vybortseva.model;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class ObstacleTest {
     private List<Obstacle> existingObstacles;
@@ -41,7 +41,7 @@ class ObstacleTest {
     }
 
     @Test
-    void testXZeroRestriction() {
+    void testZeroRestriction() {
         Point p = new Point(0, 10);
         assertFalse(Obstacle.isValidPoint(p, width, height, existingObstacles, currentPoints));
     }
@@ -60,6 +60,7 @@ class ObstacleTest {
         existing.addPoint(new Point(10, 10));
         existingObstacles.add(existing);
         Point nearPoint = new Point(10, 11);
-        assertFalse(Obstacle.isValidPoint(nearPoint, width, height, existingObstacles, currentPoints));
+        assertFalse(Obstacle.isValidPoint(nearPoint, width, height,
+                existingObstacles, currentPoints));
     }
 }
