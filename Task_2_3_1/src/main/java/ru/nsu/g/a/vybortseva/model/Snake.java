@@ -32,12 +32,7 @@ public class Snake {
      * Moves snake forward.
      */
     public void move() {
-        Point head = body.getFirst();
-        Point newHead = new Point(
-                head.getX() + direction.getDx(),
-                head.getY() + direction.getDy()
-        );
-        body.addFirst(newHead);
+        grow();
         body.removeLast();
     }
 
@@ -68,5 +63,12 @@ public class Snake {
         int y = body.getFirst().getY();
 
         return new Point(x + direction.getDx(), y + direction.getDy());
+    }
+
+    /**
+     * Validates proposed direction change.
+     */
+    public boolean canSetDirection(Direction newDir) {
+        return !this.direction.isOpposite(newDir);
     }
 }

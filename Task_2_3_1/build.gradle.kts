@@ -26,7 +26,7 @@ javafx {
 }
 
 application {
-    mainClass.set("ru.nsu.g.a.vybortseva.HelloApplication")
+    mainClass.set("ru.nsu.g.a.vybortseva.SnakeApplication")
 }
 
 dependencies {

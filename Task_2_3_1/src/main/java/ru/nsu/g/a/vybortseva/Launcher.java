@@ -10,6 +10,6 @@ public class Launcher {
      * Starts the application.
      */
     public static void main(String[] args) {
-        Application.launch(HelloApplication.class, args);
+        Application.launch(SnakeApplication.class, args);
     }
 }

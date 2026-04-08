@@ -2,6 +2,8 @@ package ru.nsu.g.a.vybortseva.controller;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -9,9 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import ru.nsu.g.a.vybortseva.model.Direction;
-import ru.nsu.g.a.vybortseva.model.GameModel;
-import ru.nsu.g.a.vybortseva.model.Point;
+import ru.nsu.g.a.vybortseva.config.GameConfig;
+import ru.nsu.g.a.vybortseva.model.*;
+import ru.nsu.g.a.vybortseva.view.GameRenderer;
+import java.util.Map;
 
 /**
  * Game UI controller.
@@ -23,29 +26,32 @@ public class GameController {
     private Pane canvasContainer;
     @FXML
     private Label scoreLabel;
-
-    @FXML
-    private Label bestScoreLabel;
     @FXML
     private Label targetLabel;
 
-    private int bestScore = 0;
     private AnimationTimer gameTimer;
-
     private GameModel model;
+    private GameRenderer renderer;
     private double tileSize;
+    private final IntegerProperty currentScore = new SimpleIntegerProperty(0);
 
     /**
      * Initializes controller and listeners.
      */
     @FXML
     public void initialize() {
+        this.renderer = new GameRenderer(gameCanvas);
+        scoreLabel.textProperty().bind(currentScore.asString("TOTAL LENGTH: %d"));
+
         setupGame();
 
         canvasContainer.widthProperty().addListener((obs, old, val) -> layoutCanvas());
         canvasContainer.heightProperty().addListener((obs, old, val) -> layoutCanvas());
 
-        Platform.runLater(this::layoutCanvas);
+        Platform.runLater(() -> {
+            layoutCanvas();
+            gameCanvas.requestFocus();
+        });
     }
 
     /**
@@ -64,7 +70,7 @@ public class GameController {
             gameCanvas.setLayoutX((w - size) / 2);
             gameCanvas.setLayoutY((h - size) / 2);
 
-            this.tileSize = size / 16;
+            this.tileSize = size / model.getConfig().getWidth();
             draw();
         }
     }
@@ -73,10 +79,16 @@ public class GameController {
      * Resets game state.
      */
     private void setupGame() {
-        model = new GameModel(16, 16, 10, 50);
-        targetLabel.setText("Target: ");
+        GameConfig config = GameConfig.createEasyLevel();
+        model = new GameModel(config);
+
+        currentScore.set(model.getSnake().getBody().size());
+
+        updateUi();
+
         gameCanvas.setFocusTraversable(true);
         gameCanvas.setOnKeyPressed(this::handleKeyPress);
+        gameCanvas.requestFocus();
 
         if (gameTimer != null) {
             gameTimer.stop();
@@ -98,10 +110,10 @@ public class GameController {
      */
     private void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
-            case W, UP -> model.getSnake().setDirection(Direction.UP);
-            case S, DOWN -> model.getSnake().setDirection(Direction.DOWN);
-            case A, LEFT -> model.getSnake().setDirection(Direction.LEFT);
-            case D, RIGHT -> model.getSnake().setDirection(Direction.RIGHT);
+            case W, UP -> model.handleDirectionChange(Direction.UP);
+            case S, DOWN -> model.handleDirectionChange(Direction.DOWN);
+            case A, LEFT -> model.handleDirectionChange(Direction.LEFT);
+            case D, RIGHT -> model.handleDirectionChange(Direction.RIGHT);
             default -> {
                 // ничего не делаем
             }
@@ -112,12 +124,12 @@ public class GameController {
      * Runs game animation timer.
      */
     private void startGameLoop() {
-        AnimationTimer timer = new AnimationTimer() {
+        this.gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
 
             @Override
             public void handle(long now) {
-                if (now - lastUpdate >= 150000000) {  // 150 мс
+                if (now - lastUpdate >= model.getConfig().getTickDelayNanos()) {
                     model.update();
                     draw();
                     updateUi();
@@ -134,38 +146,15 @@ public class GameController {
                 }
             }
         };
-        timer.start();
+        this.gameTimer.start();
     }
 
     /**
      * Renders game objects.
      */
     private void draw() {
-        GraphicsContext gc = gameCanvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
-
-        for (int x = 0; x < 16; x++) {
-            for (int y = 0; y < 16; y++) {
-                if ((x + y) % 2 == 0) {
-                    gc.setFill(Color.web("#2c3e50"));
-                } else {
-                    gc.setFill(Color.web("#34495e"));
-                }
-                gc.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-            }
-        }
-
-        gc.setFill(Color.PINK);
-        for (Point p : model.getFoods()) {
-            gc.fillOval(p.getX() * tileSize + (tileSize * 0.1),
-                    p.getY() * tileSize + (tileSize * 0.1),
-                    tileSize * 0.8, tileSize * 0.8);
-        }
-
-        gc.setFill(Color.GREEN);
-        for (Point p : model.getSnake().getBody()) {
-            gc.fillRect(p.getX() * tileSize + 1, p.getY() * tileSize + 1,
-                    tileSize - 2, tileSize - 2);
+        if (model != null && renderer != null) {
+            renderer.render(model, tileSize);
         }
     }
 
@@ -173,13 +162,19 @@ public class GameController {
      * Updates labels.
      */
     private void updateUi() {
-        int currentScore = model.getSnake().getBody().size();
-        scoreLabel.setText("Current Length: " + currentScore);
+        targetLabel.setTextFill(Color.WHITE);
+        scoreLabel.setTextFill(Color.WHITE);
+        currentScore.set(model.getSnake().getBody().size());
 
-        if (currentScore > bestScore) {
-            bestScore = currentScore;
-            bestScoreLabel.setText("Best Length: " + bestScore);
-        }
+        StringBuilder targetsText = new StringBuilder("NECESSARY FOOD:\n");
+        Map<Food.FoodType, Integer> targets = model.getConfig().getTargetFoodCounts();
+        Map<Food.FoodType, Integer> eaten = model.getEatenCount();
+
+        targets.forEach((type, target) -> {
+            targetsText.append(String.format("%s: %d / %d\n", type, eaten.get(type), target));
+        });
+
+        targetLabel.setText(targetsText.toString());
     }
 
     /**
