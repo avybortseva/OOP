@@ -1,4 +1,6 @@
 module:ru.nsu.g.a.vybortseva
 ru.nsu.g.a.vybortseva
+ru.nsu.g.a.vybortseva.config
 ru.nsu.g.a.vybortseva.controller
 ru.nsu.g.a.vybortseva.model
+ru.nsu.g.a.vybortseva.view
