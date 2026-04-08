@@ -41,7 +41,7 @@ public class Obstacle {
 
         for (Obstacle obs : existingObstacles) {
             for (Point op : obs.getPoints()) {
-                if (Math.abs(op.getX() - p.getY()) <= 1 && Math.abs(op.getY() - p.getY()) <= 1) {
+                if (Math.abs(p.getX() - p.getY()) <= 1 && Math.abs(op.getY() - p.getY()) <= 1) {
                     return false;
                 }
             }

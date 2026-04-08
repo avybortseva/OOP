@@ -4,10 +4,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import ru.nsu.g.a.vybortseva.model.Food;
+import java.util.List;
+
 import ru.nsu.g.a.vybortseva.model.GameModel;
 import ru.nsu.g.a.vybortseva.model.Obstacle;
 import ru.nsu.g.a.vybortseva.model.Point;
-import java.util.List;
 
 /**
  * Handles graphical rendering of game components.
@@ -46,10 +47,10 @@ public class GameRenderer {
     private void drawEyes(GraphicsContext gc, Point head, double tileSize) {
         gc.setFill(Color.WHITE);
         double s = tileSize * 0.15;
-        gc.fillOval(head.getX() * tileSize + tileSize/4,
-                head.getY() * tileSize + tileSize/4, s, s);
+        gc.fillOval(head.getX() * tileSize + tileSize / 4,
+                head.getY() * tileSize + tileSize / 4, s, s);
         gc.fillOval(head.getX() * tileSize + tileSize*0.6,
-                head.getY() * tileSize + tileSize/4, s, s);
+                head.getY() * tileSize + tileSize / 4, s, s);
     }
 
     /**

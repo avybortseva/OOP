@@ -29,8 +29,8 @@ class GameModelTest {
 
     @Test
     void testInitialization() {
-        assertFalse(model.isGameOver(), "Game should not be over at start");
-        assertFalse(model.isGameWin(), "Game should not be won at start");
+        assertFalse(model.isGameOver());
+        assertFalse(model.isGameWin());
 
         assertEquals(3, model.getFoods().size());
 
@@ -48,17 +48,17 @@ class GameModelTest {
         model.update();
 
         int eatenRed = model.getEatenCount().get(Food.FoodType.RED);
-        assertEquals(1, eatenRed, "Red food counter should increment");
+        assertEquals(1, eatenRed);
         assertEquals(2, model.getSnake().getBody().size());
     }
 
     @Test
     void testGameWinConditionByColors() {
         feedSnakeWithColor(model, Food.FoodType.RED);
-        assertFalse(model.isGameWin(), "Should not win after only 1/2 apples");
+        assertFalse(model.isGameWin());
 
         feedSnakeWithColor(model, Food.FoodType.RED);
-        assertTrue(model.isGameWin(), "Should win after reaching color targets");
+        assertTrue(model.isGameWin());
     }
 
     @Test
@@ -79,7 +79,7 @@ class GameModelTest {
         }
 
         smallModel.update();
-        assertTrue(smallModel.isGameOver(), "Should be game over on wall collision");
+        assertTrue(smallModel.isGameOver());
     }
 
     @Test
@@ -94,7 +94,7 @@ class GameModelTest {
                 model.getSnake().setDirection(Direction.UP);
 
                 model.update();
-                assertTrue(model.isGameOver(), "Should be game over on obstacle collision");
+                assertTrue(model.isGameOver());
             }
         }
     }

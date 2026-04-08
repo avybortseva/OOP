@@ -1,7 +1,8 @@
 package ru.nsu.g.a.vybortseva.config;
 
-import ru.nsu.g.a.vybortseva.model.Food;
 import java.util.Map;
+
+import ru.nsu.g.a.vybortseva.model.Food;
 
 /**
  * Game configuration and level settings.

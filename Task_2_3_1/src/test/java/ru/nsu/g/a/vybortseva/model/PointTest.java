@@ -62,7 +62,7 @@ class PointTest {
     @Test
     void testToString() {
         Point p = new Point(-3, 15);
-        String expectedString = "Point{x=-3, y=15}";
+        String expectedString = "Point{coordX=-3, coordY=15}";
         assertEquals(expectedString, p.toString());
     }
 }
