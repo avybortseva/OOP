@@ -189,6 +189,6 @@ public class GameModel {
      * Get the snake's size.
      */
     public int getCurrentScore() {
-       return getSnake().getBody().size();
+        return getSnake().getBody().size();
     }
 }
