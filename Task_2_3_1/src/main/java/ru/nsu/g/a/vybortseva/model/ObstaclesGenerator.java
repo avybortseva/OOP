@@ -1,9 +1,15 @@
 package ru.nsu.g.a.vybortseva.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import ru.nsu.g.a.vybortseva.config.GameConfig;
 
-import java.util.*;
-
+/**
+ * Generation of the obstacles.
+ */
 public class ObstaclesGenerator {
 
     /**
@@ -18,7 +24,6 @@ public class ObstaclesGenerator {
                 createAndAddObstacle(length, config, obstacles);
             }
         });
-
         return obstacles;
     }
 
@@ -26,7 +31,9 @@ public class ObstaclesGenerator {
      * Tries to create and add a single obstacle of specific length to the game.
      * Uses a while loop to keep trying until a valid obstacle shape is formed.
      */
-    private static void createAndAddObstacle(int targetLen, GameConfig config, List<Obstacle> obstacles) {
+    private static void createAndAddObstacle(int targetLen,
+                                             GameConfig config,
+                                             List<Obstacle> obstacles) {
         Random random = new Random();
         boolean obstacleCreated = false;
 

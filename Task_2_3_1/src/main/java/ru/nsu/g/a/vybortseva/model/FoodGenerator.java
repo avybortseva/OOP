@@ -1,11 +1,13 @@
 package ru.nsu.g.a.vybortseva.model;
 
-import ru.nsu.g.a.vybortseva.config.GameConfig;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import ru.nsu.g.a.vybortseva.config.GameConfig;
 
+/**
+ * Generation of the food.
+ */
 public class FoodGenerator {
     /**
      * Generate all foods.
@@ -35,7 +37,8 @@ public class FoodGenerator {
         return false;
     }
 
-    private static boolean isPointOccupied(Point p, Snake snake, List<Food> foods, List<Obstacle> obstacles) {
+    private static boolean isPointOccupied(Point p, Snake snake,
+                                           List<Food> foods, List<Obstacle> obstacles) {
         if (snake != null && snake.getBody().contains(p)) {
             return true;
         }
