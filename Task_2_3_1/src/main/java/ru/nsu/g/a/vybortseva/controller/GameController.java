@@ -166,7 +166,7 @@ public class GameController {
     private void updateUi() {
         targetLabel.setTextFill(Color.WHITE);
         scoreLabel.setTextFill(Color.WHITE);
-        currentScore.set(model.getSnake().getBody().size());
+        currentScore.set(model.getCurrentScore());
 
         StringBuilder targetsText = new StringBuilder("NECESSARY FOOD:\n");
         Map<Food.FoodType, Integer> targets = model.getConfig().getTargetFoodCounts();
