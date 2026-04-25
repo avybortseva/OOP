@@ -1,12 +1,18 @@
 package ru.nsu.g.a.vybortseva.service;
-
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Service for executing automated tests within student repositories.
+ */
 public class TestService {
-
+    /**
+     * Executes Gradle tests for the specified student repository directory.
+     */
     public boolean runTests(File studentRepoDir) {
-        if (studentRepoDir == null) return false;
+        if (studentRepoDir == null) {
+            return false;
+        }
 
         String os = System.getProperty("os.name").toLowerCase();
         String gradlewExecutable = "gradlew.bat";
