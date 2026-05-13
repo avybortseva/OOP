@@ -1,8 +1,9 @@
 package ru.nsu.g.a.vybortseva.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
-import static org.junit.jupiter.api.Assertions.*;
 
 class TaskTest {
 

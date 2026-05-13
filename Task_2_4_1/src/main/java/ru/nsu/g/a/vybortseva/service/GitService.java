@@ -156,7 +156,7 @@ public class GitService {
     /**
      * Method for executing command with output.
      */
-    private boolean runCommandWithOutput(File directory, List<String> command, java.util.function.Consumer<String> outputHandler) {
+    public boolean runCommandWithOutput(File directory, List<String> command, java.util.function.Consumer<String> outputHandler) {
         try {
             ProcessBuilder builder = new ProcessBuilder(command);
             builder.directory(directory);

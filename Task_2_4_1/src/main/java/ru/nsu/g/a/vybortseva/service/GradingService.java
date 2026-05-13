@@ -42,7 +42,6 @@ public class GradingService {
                                                       List<Bonus> allBonuses,
                                                       String studentGitName,
                                                       LocalDate commitDate) {
-
         if (!"OK".equals(result.getStatus()) || commitDate == null) {
             return new GradeBreakdown(0, 0, 0, 0);
         }

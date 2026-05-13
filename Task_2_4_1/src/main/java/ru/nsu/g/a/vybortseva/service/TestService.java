@@ -49,7 +49,6 @@ public class TestService {
             command.addAll(List.of(tasks));
 
             ProcessBuilder pb = new ProcessBuilder(command);
-            pb.inheritIO();
             pb.directory(projectDir);
             pb.environment().put("JAVA_HOME", System.getProperty("java.home"));
 
