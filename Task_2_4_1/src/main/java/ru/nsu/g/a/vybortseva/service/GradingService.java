@@ -26,7 +26,8 @@ public class GradingService {
         public final double bonusPoints;
         public final double totalPoints;
 
-        public GradeBreakdown(double basePoints, double softPoints, double hardPoints, double bonusPoints) {
+        public GradeBreakdown(double basePoints, double softPoints,
+                              double hardPoints, double bonusPoints) {
             this.basePoints = basePoints;
             this.softPoints = softPoints;
             this.hardPoints = hardPoints;
@@ -71,7 +72,8 @@ public class GradingService {
      */
     public double calculateScore(TestResult result, Task task, List<Bonus> allBonuses,
                                  String studentGitName, LocalDate commitDate) {
-        GradeBreakdown breakdown = calculateScoreWithBreakdown(result, task, allBonuses, studentGitName, commitDate);
+        GradeBreakdown breakdown = calculateScoreWithBreakdown(result,
+                task, allBonuses, studentGitName, commitDate);
         return breakdown.totalPoints;
     }
 }

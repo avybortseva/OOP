@@ -118,7 +118,8 @@ public class GitService {
     /**
      * Getting list of commits for the period.
      */
-    public List<OffsetDateTime> getCommitHistory(String taskId, Path repoPath, LocalDate from, LocalDate to) {
+    public List<OffsetDateTime> getCommitHistory(String taskId, Path repoPath,
+                                                 LocalDate from, LocalDate to) {
         List<OffsetDateTime> commitDates = new ArrayList<>();
 
         List<String> command = List.of(
@@ -147,16 +148,19 @@ public class GitService {
     /**
      * Check if the student was active in week.
      */
-    public boolean isActiveInWeek(Path repoPath, String taskId, LocalDate startOfWeek) {
+    public boolean isActiveInWeek(Path repoPath, String taskId,
+                                  LocalDate startOfWeek) {
         LocalDate endOfWeek = startOfWeek.plusDays(6);
-        List<OffsetDateTime> commits = getCommitHistory(taskId, repoPath, startOfWeek, endOfWeek);
+        List<OffsetDateTime> commits = getCommitHistory(taskId,
+                repoPath, startOfWeek, endOfWeek);
         return !commits.isEmpty();
     }
 
     /**
      * Method for executing command with output.
      */
-    public boolean runCommandWithOutput(File directory, List<String> command, java.util.function.Consumer<String> outputHandler) {
+    public boolean runCommandWithOutput(File directory, List<String> command,
+                                        java.util.function.Consumer<String> outputHandler) {
         try {
             ProcessBuilder builder = new ProcessBuilder(command);
             builder.directory(directory);

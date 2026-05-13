@@ -13,7 +13,8 @@ public class TestResult {
     /**
      * Constructs a TestResult with comprehensive build and test outcomes.
      */
-    public TestResult(String taskId, boolean buildSuccess, int testPassed, int testsTotal, String status) {
+    public TestResult(String taskId, boolean buildSuccess,
+                      int testPassed, int testsTotal, String status) {
         this.taskId = taskId;
         this.buildSuccess = buildSuccess;
         this.testPassed = testPassed;
