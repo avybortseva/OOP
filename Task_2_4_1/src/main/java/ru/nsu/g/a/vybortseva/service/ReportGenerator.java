@@ -5,8 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 import ru.nsu.g.a.vybortseva.model.CheckPoint;
 import ru.nsu.g.a.vybortseva.model.Config;
@@ -209,14 +209,14 @@ public class ReportGenerator {
                 StudentTaskData data = tasks.get(taskId);
                 double score = (data != null && data.grade != null) ? data.grade.totalPoints : 0;
                 total += score;
-                html.append("            <td>").
-                        append(String.format("%.1f", score)).append("</td>\n");
+                html.append("            <td>")
+                        .append(String.format("%.1f", score)).append("</td>\n");
             }
 
             for (CheckPoint point : config.getPoints()) {
                 double earnedUpToPoint = calculateEarnedUpToPoint(tasks, taskIds, config, point);
-                html.append("            <td>").
-                        append(String.format("%.1f", earnedUpToPoint)).append("</td>\n");
+                html.append("            <td>")
+                        .append(String.format("%.1f", earnedUpToPoint)).append("</td>\n");
             }
 
             html.append("        </tr>\n");

@@ -117,12 +117,11 @@ class ConfigTest {
         config.getAssignments().add(assignment1);
         config.getAssignments().add(assignment2);
 
-        List<String> tasksForGroup24214 = config.getAssignmentsForGroup(24214);
-
         List<String> tasksForGroup24213 = config.getAssignmentsForGroup(24213);
         assertEquals(2, tasksForGroup24213.size());
         assertTrue(tasksForGroup24213.contains("1_1_1"));
         assertTrue(tasksForGroup24213.contains("2_1_1"));
+        List<String> tasksForGroup24214 = config.getAssignmentsForGroup(24214);
 
         assertEquals(1, tasksForGroup24214.size());
         assertTrue(tasksForGroup24214.contains("2_1_1"));

@@ -1,8 +1,8 @@
 package ru.nsu.g.a.vybortseva.service;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
 import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import ru.nsu.g.a.vybortseva.model.TestResult;

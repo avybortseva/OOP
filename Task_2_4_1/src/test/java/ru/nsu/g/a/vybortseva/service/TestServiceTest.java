@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import ru.nsu.g.a.vybortseva.model.TestResult;
 
 class TestServiceTest {
@@ -153,7 +153,8 @@ class TestServiceTest {
                                           boolean javadocOk, boolean testOk) {
         String gradleScript = createGradleScript(classesOk, checkstyleOk, javadocOk, testOk);
 
-        String executable = System.getProperty("os.name").toLowerCase().contains("win") ? "gradlew.bat" : "gradlew";
+        String executable = System.getProperty("os.name").toLowerCase()
+                .contains("win") ? "gradlew.bat" : "gradlew";
         File gradlew = new File(taskDir, executable);
 
         try {
