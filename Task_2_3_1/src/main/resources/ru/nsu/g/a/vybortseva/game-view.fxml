@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Pane?>
+
+<HBox style="-fx-background-color: #2c3e50;"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ru.nsu.g.a.vybortseva.controller.GameController">
+
+    <VBox alignment="TOP_CENTER" spacing="20.0" minWidth="250.0" maxWidth="250.0"
+          style="-fx-background-color: #34495e; -fx-border-color: #1a252f; -fx-border-width: 0 2 0 0;">
+        <padding>
+            <Insets top="40" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Label text="SNAKE GAME" textFill="LIME">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+        <VBox spacing="10" fx:id="scoreBox">
+            <Label fx:id="scoreLabel" textFill="WHITE" />
+            <Label fx:id="bestScoreLabel" textFill="GOLD" />
+            <Label fx:id="targetLabel" textFill="CYAN" />
+        </VBox>
+
+        <Button text="RESTART" onAction="#handleRestart" />
+    </VBox>
+
+    <Pane fx:id="canvasContainer" HBox.hgrow="ALWAYS" style="-fx-background-color: black;">
+        <Canvas fx:id="gameCanvas" focusTraversable="true" />
+    </Pane>
+
+</HBox>
