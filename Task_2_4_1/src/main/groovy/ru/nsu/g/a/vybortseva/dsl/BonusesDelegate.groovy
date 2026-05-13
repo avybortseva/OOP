@@ -14,7 +14,7 @@ class BonusesDelegate {
         Bonus newBonus = new Bonus(
                 params.student as String,
                 params.task as String,
-                params.points as int
+                (params.points as Number).doubleValue()
         )
         config.getBonuses().add(newBonus)
     }

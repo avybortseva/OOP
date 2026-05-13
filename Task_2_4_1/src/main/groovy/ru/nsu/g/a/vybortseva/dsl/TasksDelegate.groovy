@@ -14,7 +14,6 @@ class TasksDelegate {
         Task newTask = new Task(
                 params.id as String,
                 params.title as String,
-                params.maxPoints as Integer,
                 params.soft as String,
                 params.hard as String
         )

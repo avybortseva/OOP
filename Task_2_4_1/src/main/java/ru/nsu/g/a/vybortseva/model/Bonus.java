@@ -6,12 +6,12 @@ package ru.nsu.g.a.vybortseva.model;
 public class Bonus {
     private final String studentGitName;
     private final String taskId;
-    private final int points;
+    private final double points;
 
     /**
      * Constructs a Bonus record.
      */
-    public Bonus(String studentGitName, String taskId, int points) {
+    public Bonus(String studentGitName, String taskId, double points) {
         this.studentGitName = studentGitName;
         this.taskId = taskId;
         this.points = points;
@@ -34,7 +34,7 @@ public class Bonus {
     /**
      * Return the amount of bonus points.
      */
-    public int getPoints() {
+    public double getPoints() {
         return points;
     }
 }

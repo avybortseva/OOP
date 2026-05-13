@@ -1,49 +1,58 @@
-package ru.nsu.g.a.vybortseva.model
+package ru.nsu.g.a.vybortseva.model;
 
 /**
- * Data holder for the execution results of automated tests.
+ * Represents the result of running tests and build checks for a specific task.
  */
-class TestResult {
+public class TestResult {
     private final String taskId;
     private final boolean buildSuccess;
     private final int testPassed;
     private final int testsTotal;
+    private final String status; // "OK", "COMPILE_ERROR", "JAVADOC_ERROR", "TEST_ERROR"
 
     /**
-     * Constructs a TestResult with execution statistics.
+     * Constructs a TestResult with comprehensive build and test outcomes.
      */
-    TestResult(String taskId, boolean buildSuccess, int testPassed, int testsTotal) {
-        this.taskId = taskId
-        this.buildSuccess = buildSuccess
-        this.testPassed = testPassed
-        this.testsTotal = testsTotal
+    public TestResult(String taskId, boolean buildSuccess, int testPassed, int testsTotal, String status) {
+        this.taskId = taskId;
+        this.buildSuccess = buildSuccess;
+        this.testPassed = testPassed;
+        this.testsTotal = testsTotal;
+        this.status = status;
     }
 
     /**
-     * Return the ID of the task.
+     * Returns the overall status of the test run.
      */
-    String getTaskId() {
-        return taskId
+    public String getStatus() {
+        return status;
     }
 
     /**
-     * Return true if the build succeeded.
+     * Returns whether the build (compilation) was successful.
      */
-    boolean getBuildSuccess() {
-        return buildSuccess
+    public boolean isBuildSuccess() {
+        return buildSuccess;
     }
 
     /**
-     * Return number of tests passed.
+     * Returns the number of tests that passed successfully.
      */
-    int getTestPassed() {
-        return testPassed
+    public int getTestPassed() {
+        return testPassed;
     }
 
     /**
-     * Return total number of tests.
+     * Returns the total number of tests that were executed.
      */
-    int getTestsTotal() {
-        return testsTotal
+    public int getTestsTotal() {
+        return testsTotal;
+    }
+
+    /**
+     * Returns the unique identifier of the task this result belongs to.
+     */
+    public String getTaskId() {
+        return taskId;
     }
 }
