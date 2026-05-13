@@ -1,9 +1,5 @@
 package ru.nsu.g.a.vybortseva.service;
 
-import ru.nsu.g.a.vybortseva.model.CheckPoint;
-import ru.nsu.g.a.vybortseva.model.Config;
-import ru.nsu.g.a.vybortseva.model.Task;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,6 +8,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import ru.nsu.g.a.vybortseva.model.CheckPoint;
+import ru.nsu.g.a.vybortseva.model.Config;
+import ru.nsu.g.a.vybortseva.model.Task;
 
 /**
  * Service for generating HTML reports from check results.
@@ -42,7 +41,6 @@ public class ReportGenerator {
     public void generateHtmlReport(Map<Integer, Map<String, Map<String,
             StudentTaskData>>> allData, Config config) throws IOException {
         StringBuilder html = new StringBuilder();
-        LocalDate today = LocalDate.now();
 
         html.append("<!DOCTYPE html>\n");
         html.append("<html>\n");
@@ -67,8 +65,9 @@ public class ReportGenerator {
         html.append("</head>\n");
         html.append("<body>\n");
         html.append("    <h1>Отчет по проверке лабораторных работ</h1>\n");
-        html.append("    <p class='note'>Дата формирования отчета: ").
-                append(today.format(DATE_FORMATTER)).append("</p>\n");
+        LocalDate today = LocalDate.now();
+        html.append("    <p class='note'>Дата формирования отчета: ")
+                        .append(today.format(DATE_FORMATTER)).append("</p>\n");
 
         for (var groupEntry : allData.entrySet()) {
             int groupNumber = groupEntry.getKey();
@@ -108,10 +107,10 @@ public class ReportGenerator {
         String hardDate = task != null && task.getHardDeadline() != null
                 ? task.getHardDeadline().format(DATE_FORMATTER) : "не указан";
 
-        html.append("<h3>Лабораторная ").append(taskId).
-                append(" (").append(taskTitle).append(")</h3>\n");
-        html.append("<p class='note'>Мягкий дедлайн: ").
-                append(softDate).append(" | Жесткий дедлайн: ").append(hardDate).append("</p>\n");
+        html.append("<h3>Лабораторная ").append(taskId)
+                .append(" (").append(taskTitle).append(")</h3>\n");
+        html.append("<p class='note'>Мягкий дедлайн: ")
+                .append(softDate).append(" | Жесткий дедлайн: ").append(hardDate).append("</p>\n");
 
         html.append("<table>\n");
         html.append("    <thead>\n");
@@ -138,21 +137,21 @@ public class ReportGenerator {
             if (data != null && data.grade != null) {
                 String commitDateStr = data.commitDate != null
                         ? data.commitDate.format(DATE_FORMATTER) : "—";
-                String testStr = data.testPassed + "/" + (data.testTotal - data.testPassed);
 
                 html.append("        <tr>\n");
                 html.append("            <td>").append(studentName).append("</td>\n");
-                html.append("            <td class='date'>").append(commitDateStr).
-                        append("</td>\n");
+                html.append("            <td class='date'>").append(commitDateStr)
+                        .append("</td>\n");
                 html.append("            <td class='").append(data.buildSuccess ? "ok"
-                        : "fail").append("'>").append(data.buildSuccess ? "+" : "-").
-                        append("</td>\n");
+                        : "fail").append("'>").append(data.buildSuccess ? "+" : "-")
+                        .append("</td>\n");
                 html.append("            <td class='").append(data.docSuccess ? "ok"
-                        : "fail").append("'>").append(data.docSuccess ? "+" : "-").
-                        append("</td>\n");
+                        : "fail").append("'>").append(data.docSuccess ? "+" : "-")
+                        .append("</td>\n");
                 html.append("            <td class='").append(data.styleSuccess ? "ok"
-                        : "fail").append("'>").append(data.styleSuccess ? "+" : "-").
-                        append("</td>\n");
+                        : "fail").append("'>").append(data.styleSuccess ? "+" : "-")
+                        .append("</td>\n");
+                String testStr = data.testPassed + "/" + (data.testTotal - data.testPassed);
                 html.append("            <td>").append(testStr).append("</td>\n");
                 html.append("            <td>").append(String.format("%.1f",
                         data.grade.basePoints)).append("</td>\n");

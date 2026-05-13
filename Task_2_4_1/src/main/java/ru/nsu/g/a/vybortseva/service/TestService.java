@@ -20,7 +20,8 @@ public class TestService {
         }
 
         File initScript = new File("google_style.gradle");
-        if (!runGradleTask(taskDir, "--init-script", initScript.getAbsolutePath(), "checkstyleMain")) {
+        if (!runGradleTask(taskDir, "--init-script",
+                initScript.getAbsolutePath(), "checkstyleMain")) {
             System.out.println("      [STOP] Нарушение Google Java Style.");
             return new TestResult(taskId, false, 0, 0, "STYLE_ERROR");
         }

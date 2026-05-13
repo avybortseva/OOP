@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.nsu.g.a.vybortseva.model.Bonus;
-import ru.nsu.g.a.vybortseva.model.Task;
-import ru.nsu.g.a.vybortseva.model.TestResult;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.g.a.vybortseva.model.Bonus;
+import ru.nsu.g.a.vybortseva.model.Task;
+import ru.nsu.g.a.vybortseva.model.TestResult;
 
 class GradingServiceTest {
 

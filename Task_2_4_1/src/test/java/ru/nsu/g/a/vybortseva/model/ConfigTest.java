@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 
 class ConfigTest {
 
@@ -117,16 +117,16 @@ class ConfigTest {
         config.getAssignments().add(assignment1);
         config.getAssignments().add(assignment2);
 
-        List<String> tasksForGroup24213 = config.getAssignmentsForGroup(24213);
         List<String> tasksForGroup24214 = config.getAssignmentsForGroup(24214);
-        List<String> tasksForNonExistentGroup = config.getAssignmentsForGroup(99999);
 
+        List<String> tasksForGroup24213 = config.getAssignmentsForGroup(24213);
         assertEquals(2, tasksForGroup24213.size());
         assertTrue(tasksForGroup24213.contains("1_1_1"));
         assertTrue(tasksForGroup24213.contains("2_1_1"));
 
         assertEquals(1, tasksForGroup24214.size());
         assertTrue(tasksForGroup24214.contains("2_1_1"));
+        List<String> tasksForNonExistentGroup = config.getAssignmentsForGroup(99999);
 
         assertTrue(tasksForNonExistentGroup.isEmpty());
     }

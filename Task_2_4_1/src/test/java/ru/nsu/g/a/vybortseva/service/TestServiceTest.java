@@ -8,12 +8,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import ru.nsu.g.a.vybortseva.model.TestResult;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import ru.nsu.g.a.vybortseva.model.TestResult;
 
 class TestServiceTest {
 
@@ -150,7 +149,8 @@ class TestServiceTest {
         createMockGradleBehavior(classesSuccess, checkstyleSuccess, javadocSuccess, testSuccess);
     }
 
-    private void createMockGradleBehavior(boolean classesOk, boolean checkstyleOk, boolean javadocOk, boolean testOk) {
+    private void createMockGradleBehavior(boolean classesOk, boolean checkstyleOk,
+                                          boolean javadocOk, boolean testOk) {
         String gradleScript = createGradleScript(classesOk, checkstyleOk, javadocOk, testOk);
 
         String executable = System.getProperty("os.name").toLowerCase().contains("win") ? "gradlew.bat" : "gradlew";
@@ -164,7 +164,8 @@ class TestServiceTest {
         }
     }
 
-    private String createGradleScript(boolean classesOk, boolean checkstyleOk, boolean javadocOk, boolean testOk) {
+    private String createGradleScript(boolean classesOk, boolean checkstyleOk,
+                                      boolean javadocOk, boolean testOk) {
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
             StringBuilder script = new StringBuilder("@echo off\n");
             if (!classesOk) {

@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 
 class AssignmentTest {
 
@@ -56,11 +56,12 @@ class AssignmentTest {
         Assignment group24213 = new Assignment(24213);
         Assignment group24214 = new Assignment(24214);
         Assignment groupZero = new Assignment(0);
-        Assignment groupNegative = new Assignment(-1);
 
         assertEquals(24213, group24213.getGroupNumber());
         assertEquals(24214, group24214.getGroupNumber());
         assertEquals(0, groupZero.getGroupNumber());
+        Assignment groupNegative = new Assignment(-1);
+
         assertEquals(-1, groupNegative.getGroupNumber());
     }
 

@@ -43,8 +43,6 @@ class ReportGeneratorTest {
     @Test
     void testGenerateHtmlReportCreatesFile() throws IOException {
 
-        Map<String, Map<String, ReportGenerator.StudentTaskData>> groupData = new LinkedHashMap<>();
-
         ReportGenerator.StudentTaskData data = new ReportGenerator.StudentTaskData();
         data.taskId = "2_1_1";
         data.commitDate = LocalDate.of(2026, 2, 15);
@@ -58,6 +56,7 @@ class ReportGeneratorTest {
         Map<String, ReportGenerator.StudentTaskData> studentTasks = new LinkedHashMap<>();
         studentTasks.put("2_1_1", data);
 
+        Map<String, Map<String, ReportGenerator.StudentTaskData>> groupData = new LinkedHashMap<>();
         groupData.put("Test Student", studentTasks);
         allData.put(24213, groupData);
 
@@ -73,7 +72,6 @@ class ReportGeneratorTest {
 
     @Test
     void testGenerateHtmlReportWithMultipleStudents() throws IOException {
-        Map<String, Map<String, ReportGenerator.StudentTaskData>> groupData = new LinkedHashMap<>();
 
         ReportGenerator.StudentTaskData data1 = new ReportGenerator.StudentTaskData();
         data1.taskId = "2_1_1";
@@ -100,6 +98,7 @@ class ReportGeneratorTest {
 
         Map<String, ReportGenerator.StudentTaskData> studentTasks2 = new LinkedHashMap<>();
         studentTasks2.put("2_1_1", data2);
+        Map<String, Map<String, ReportGenerator.StudentTaskData>> groupData = new LinkedHashMap<>();
 
         groupData.put("Student A", studentTasks1);
         groupData.put("Student B", studentTasks2);
@@ -114,7 +113,6 @@ class ReportGeneratorTest {
 
     @Test
     void testGenerateHtmlReportWithStudentWithoutCommit() throws IOException {
-        Map<String, Map<String, ReportGenerator.StudentTaskData>> groupData = new LinkedHashMap<>();
 
         ReportGenerator.StudentTaskData data = new ReportGenerator.StudentTaskData();
         data.taskId = "2_1_1";
@@ -128,6 +126,7 @@ class ReportGeneratorTest {
 
         Map<String, ReportGenerator.StudentTaskData> studentTasks = new LinkedHashMap<>();
         studentTasks.put("2_1_1", data);
+        Map<String, Map<String, ReportGenerator.StudentTaskData>> groupData = new LinkedHashMap<>();
 
         groupData.put("Student Without Commit", studentTasks);
         allData.put(24213, groupData);
@@ -144,7 +143,6 @@ class ReportGeneratorTest {
         Task task2 = new Task("3_1_1", "Second Task", "2026-06-01", "2026-06-10");
         config.getTasks().add(task2);
 
-        Map<String, Map<String, ReportGenerator.StudentTaskData>> groupData = new LinkedHashMap<>();
 
         ReportGenerator.StudentTaskData data1 = new ReportGenerator.StudentTaskData();
         data1.taskId = "2_1_1";
@@ -169,6 +167,7 @@ class ReportGeneratorTest {
         Map<String, ReportGenerator.StudentTaskData> studentTasks = new LinkedHashMap<>();
         studentTasks.put("2_1_1", data1);
         studentTasks.put("3_1_1", data2);
+        Map<String, Map<String, ReportGenerator.StudentTaskData>> groupData = new LinkedHashMap<>();
 
         groupData.put("Student", studentTasks);
         allData.put(24213, groupData);

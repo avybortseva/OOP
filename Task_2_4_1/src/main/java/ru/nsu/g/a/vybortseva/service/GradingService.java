@@ -1,11 +1,10 @@
 package ru.nsu.g.a.vybortseva.service;
 
+import java.time.LocalDate;
+import java.util.List;
 import ru.nsu.g.a.vybortseva.model.Bonus;
 import ru.nsu.g.a.vybortseva.model.Task;
 import ru.nsu.g.a.vybortseva.model.TestResult;
-
-import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Service for grading tasks.
@@ -26,6 +25,9 @@ public class GradingService {
         public final double bonusPoints;
         public final double totalPoints;
 
+        /**
+         * Constructor for grade breakdown.
+         */
         public GradeBreakdown(double basePoints, double softPoints,
                               double hardPoints, double bonusPoints) {
             this.basePoints = basePoints;

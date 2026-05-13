@@ -13,7 +13,6 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import ru.nsu.g.a.vybortseva.model.Config;
 import ru.nsu.g.a.vybortseva.model.Group;
 import ru.nsu.g.a.vybortseva.model.Student;
@@ -80,6 +79,9 @@ public class GitService {
         }
     }
 
+    /**
+     * Method for getting of commit date.
+     */
     public LocalDate getCommitDate(String taskId, Path repoPath) {
         Path taskPath = repoPath.resolve(taskId);
         System.out.println("Task path: " + taskPath.toAbsolutePath());
