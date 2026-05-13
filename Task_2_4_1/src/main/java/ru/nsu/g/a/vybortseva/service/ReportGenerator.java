@@ -174,16 +174,16 @@ public class ReportGenerator {
                                       Map<String, Map<String, StudentTaskData>> groupData,
                                       Set<String> taskIds, Config config, LocalDate today) {
         html.append("<h3>Сводная таблица по группе ").append(groupNumber).append("</h3>\n");
-        html.append("<p class='note'>Дата формирования: ").
-                append(today.format(DATE_FORMATTER)).append("</p>\n");
+        html.append("<p class='note'>Дата формирования: ")
+                .append(today.format(DATE_FORMATTER)).append("</p>\n");
 
         html.append("<table border='1'>\n");
         html.append("    <thead>\n");
 
         html.append("        <tr>\n");
         html.append("            <th rowspan='2'>Студент</th>\n");
-        html.append("            <th colspan='").
-                append(taskIds.size()).append("'>Баллы за задачи</th>\n");
+        html.append("            <th colspan='")
+                .append(taskIds.size()).append("'>Баллы за задачи</th>\n");
         for (CheckPoint point : config.getPoints()) {
             html.append("            <th rowspan='2'>").append(point.getName()).append("</th>\n");
         }
