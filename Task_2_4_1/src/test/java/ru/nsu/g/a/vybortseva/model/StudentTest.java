@@ -69,7 +69,7 @@ class StudentTest {
 
     @Test
     void testStudentWithSpecialCharactersInName() {
-        Student student = new Student("9","Ёжиков Ёж Ёжикович", "ezhik-git", "https://github.com/ezhik/OOP");
+        Student student = new Student("9", "Ёжиков Ёж Ёжикович", "ezhik-git", "https://github.com/ezhik/OOP");
 
         assertEquals("Ёжиков Ёж Ёжикович", student.getName());
         assertEquals("ezhik-git", student.getGitName());

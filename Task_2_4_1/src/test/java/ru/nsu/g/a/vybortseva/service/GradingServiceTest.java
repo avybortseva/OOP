@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.g.a.vybortseva.model.Bonus;
+import ru.nsu.g.a.vybortseva.model.Student;
 import ru.nsu.g.a.vybortseva.model.Task;
 import ru.nsu.g.a.vybortseva.model.TestResult;
 
@@ -198,5 +199,50 @@ class GradingServiceTest {
 
         assertEquals(0.5, breakdown.softPoints);
         assertEquals(2.0, breakdown.totalPoints);
+    }
+
+    @Test
+    void testCreateEmptyTaskDataWithNullTask() {
+        Student student = new Student("1", "Иванов Иван", "ivanov-git", "repo");
+
+        ReportGenerator.StudentTaskData data = gradingService.createEmptyTaskData(student, null);
+
+        assertEquals("Иванов Иван", data.studentName());
+        assertEquals("unknown", data.taskId());
+    }
+
+    @Test
+    void testCreateEmptyTaskDataWithValidTask() {
+        Student student = new Student("1", "Иванов Иван", "ivanov-git", "repo");
+
+        ReportGenerator.StudentTaskData data = gradingService.createEmptyTaskData(student, task);
+
+        assertEquals("2_1_1", data.taskId());
+    }
+
+    @Test
+    void testCalculateScoreExactlyOnHardDeadlineDay() {
+        TestResult result = new TestResult("2_1_1", true, 10, 10, "OK");
+        LocalDate exactlyHardDeadline = LocalDate.parse("2026-05-10");
+
+        GradingService.GradeBreakdown breakdown = gradingService.calculateScoreWithBreakdown(
+                result, task, bonuses, studentGitName, exactlyHardDeadline);
+
+        assertEquals(0.5, breakdown.hardPoints);
+        assertEquals(0.0, breakdown.softPoints); // так как мягкий уже прошел
+        assertEquals(1.5, breakdown.totalPoints);
+    }
+
+    @Test
+    void testCalculateScoreWithNegativeBonus() {
+        TestResult result = new TestResult("2_1_1", true, 10, 10, "OK");
+        LocalDate commitDate = LocalDate.of(2026, 4, 15);
+        bonuses.add(new Bonus(studentGitName, "2_1_1", -1.0));
+
+        GradingService.GradeBreakdown breakdown = gradingService.calculateScoreWithBreakdown(
+                result, task, bonuses, studentGitName, commitDate);
+
+        assertEquals(-1.0, breakdown.bonusPoints);
+        assertEquals(1.0, breakdown.totalPoints);
     }
 }

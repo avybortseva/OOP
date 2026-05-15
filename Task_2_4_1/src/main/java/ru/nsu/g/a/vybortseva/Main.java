@@ -92,7 +92,8 @@ public class Main {
                                         taskId,
                                         taskInfo.getTitle(),
                                         testResult.isBuildSuccess(),
-                                        "OK".equals(testResult.getStatus()) || "STYLE_ERROR".equals(testResult.getStatus()),
+                                        "OK".equals(testResult.getStatus())
+                                                || "STYLE_ERROR".equals(testResult.getStatus()),
                                         !"STYLE_ERROR".equals(testResult.getStatus()),
                                         testResult.getTestPassed(),
                                         testResult.getTestsTotal(),

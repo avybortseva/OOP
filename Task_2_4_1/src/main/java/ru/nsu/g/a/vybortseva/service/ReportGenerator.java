@@ -22,7 +22,7 @@ public class ReportGenerator {
     /**
      * Data container for student task results.
      */
-    public record StudentTaskData (
+    public record StudentTaskData(
             String studentId,
             String studentName,
             String taskId,

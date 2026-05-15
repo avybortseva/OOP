@@ -19,8 +19,8 @@ class GroupTest {
     void setUp() {
         group = new Group(24213);
         student1 = new Student("1", "Иванов Иван", "ivanov-git", "https://github.com/ivanov/OOP");
-        student2 = new Student("11","Петров Петр", "petrov-git", "https://github.com/petrov/OOP");
-        student3 = new Student("111","Сидоров Сидор", "sidorov-git", "https://github.com/sidorov/OOP");
+        student2 = new Student("11", "Петров Петр", "petrov-git", "https://github.com/petrov/OOP");
+        student3 = new Student("111", "Сидоров Сидор", "sidorov-git", "https://github.com/sidorov/OOP");
     }
 
     @Test

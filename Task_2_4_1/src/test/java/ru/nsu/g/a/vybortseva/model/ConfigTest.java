@@ -35,7 +35,8 @@ class ConfigTest {
         group1 = new Group(24213);
         group2 = new Group(24214);
         student1 = new Student("001", "Иванов Иван", "ivanov-git", "https://github.com/ivanov/OOP");
-        student2 = new Student("002", "Петров Петр", "petrov-git", "https://github.com/petrov/OOP");group1.addStudent(student1);
+        student2 = new Student("002", "Петров Петр", "petrov-git", "https://github.com/petrov/OOP");
+        group1.addStudent(student1);
         group2.addStudent(student2);
 
         point1 = new CheckPoint("Первый месяц", "2026-03-01");
