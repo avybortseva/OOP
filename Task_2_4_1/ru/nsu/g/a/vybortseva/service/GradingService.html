@@ -137,7 +137,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculateScore(ru.nsu.g.a.vybortseva.model.TestResult,ru.nsu.g.a.vybortseva.model.Task,java.util.List,java.lang.String,java.time.LocalDate)" class="member-name-link">calculateScore</a><wbr>(ru.nsu.g.a.vybortseva.model.TestResult&nbsp;result,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculateScore(ru.nsu.g.a.vybortseva.model.TestResult,ru.nsu.g.a.vybortseva.model.Task,java.util.List,java.lang.String,java.time.LocalDate)" class="member-name-link">calculateScore</a><wbr>(<a href="../model/TestResult.html" title="class in ru.nsu.g.a.vybortseva.model">TestResult</a>&nbsp;result,
  <a href="../model/Task.html" title="class in ru.nsu.g.a.vybortseva.model">Task</a>&nbsp;task,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../model/Bonus.html" title="class in ru.nsu.g.a.vybortseva.model">Bonus</a>&gt;&nbsp;allBonuses,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentGitName,
@@ -146,13 +146,19 @@ loadScripts(document, 'script');</script>
 <div class="block">Method for backward compatibility.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="GradingService.GradeBreakdown.html" title="class in ru.nsu.g.a.vybortseva.service">GradingService.GradeBreakdown</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculateScoreWithBreakdown(ru.nsu.g.a.vybortseva.model.TestResult,ru.nsu.g.a.vybortseva.model.Task,java.util.List,java.lang.String,java.time.LocalDate)" class="member-name-link">calculateScoreWithBreakdown</a><wbr>(ru.nsu.g.a.vybortseva.model.TestResult&nbsp;result,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculateScoreWithBreakdown(ru.nsu.g.a.vybortseva.model.TestResult,ru.nsu.g.a.vybortseva.model.Task,java.util.List,java.lang.String,java.time.LocalDate)" class="member-name-link">calculateScoreWithBreakdown</a><wbr>(<a href="../model/TestResult.html" title="class in ru.nsu.g.a.vybortseva.model">TestResult</a>&nbsp;result,
  <a href="../model/Task.html" title="class in ru.nsu.g.a.vybortseva.model">Task</a>&nbsp;task,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../model/Bonus.html" title="class in ru.nsu.g.a.vybortseva.model">Bonus</a>&gt;&nbsp;allBonuses,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentGitName,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;commitDate)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Calculate score and return full breakdown.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ReportGenerator.StudentTaskData.html" title="class in ru.nsu.g.a.vybortseva.service">ReportGenerator.StudentTaskData</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createEmptyTaskData(ru.nsu.g.a.vybortseva.model.Student,ru.nsu.g.a.vybortseva.model.Task)" class="member-name-link">createEmptyTaskData</a><wbr>(<a href="../model/Student.html" title="class in ru.nsu.g.a.vybortseva.model">Student</a>&nbsp;student,
+ <a href="../model/Task.html" title="class in ru.nsu.g.a.vybortseva.model">Task</a>&nbsp;task)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method creating empty task data.</div>
 </div>
 </div>
 </div>
@@ -188,7 +194,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="calculateScoreWithBreakdown(ru.nsu.g.a.vybortseva.model.TestResult,ru.nsu.g.a.vybortseva.model.Task,java.util.List,java.lang.String,java.time.LocalDate)">
 <h3>calculateScoreWithBreakdown</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GradingService.GradeBreakdown.html" title="class in ru.nsu.g.a.vybortseva.service">GradingService.GradeBreakdown</a></span>&nbsp;<span class="element-name">calculateScoreWithBreakdown</span><wbr><span class="parameters">(ru.nsu.g.a.vybortseva.model.TestResult&nbsp;result,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GradingService.GradeBreakdown.html" title="class in ru.nsu.g.a.vybortseva.service">GradingService.GradeBreakdown</a></span>&nbsp;<span class="element-name">calculateScoreWithBreakdown</span><wbr><span class="parameters">(<a href="../model/TestResult.html" title="class in ru.nsu.g.a.vybortseva.model">TestResult</a>&nbsp;result,
  <a href="../model/Task.html" title="class in ru.nsu.g.a.vybortseva.model">Task</a>&nbsp;task,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../model/Bonus.html" title="class in ru.nsu.g.a.vybortseva.model">Bonus</a>&gt;&nbsp;allBonuses,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentGitName,
@@ -199,12 +205,20 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="calculateScore(ru.nsu.g.a.vybortseva.model.TestResult,ru.nsu.g.a.vybortseva.model.Task,java.util.List,java.lang.String,java.time.LocalDate)">
 <h3>calculateScore</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculateScore</span><wbr><span class="parameters">(ru.nsu.g.a.vybortseva.model.TestResult&nbsp;result,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculateScore</span><wbr><span class="parameters">(<a href="../model/TestResult.html" title="class in ru.nsu.g.a.vybortseva.model">TestResult</a>&nbsp;result,
  <a href="../model/Task.html" title="class in ru.nsu.g.a.vybortseva.model">Task</a>&nbsp;task,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../model/Bonus.html" title="class in ru.nsu.g.a.vybortseva.model">Bonus</a>&gt;&nbsp;allBonuses,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentGitName,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;commitDate)</span></div>
 <div class="block">Method for backward compatibility.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="createEmptyTaskData(ru.nsu.g.a.vybortseva.model.Student,ru.nsu.g.a.vybortseva.model.Task)">
+<h3>createEmptyTaskData</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReportGenerator.StudentTaskData.html" title="class in ru.nsu.g.a.vybortseva.service">ReportGenerator.StudentTaskData</a></span>&nbsp;<span class="element-name">createEmptyTaskData</span><wbr><span class="parameters">(<a href="../model/Student.html" title="class in ru.nsu.g.a.vybortseva.model">Student</a>&nbsp;student,
+ <a href="../model/Task.html" title="class in ru.nsu.g.a.vybortseva.model">Task</a>&nbsp;task)</span></div>
+<div class="block">Method creating empty task data.</div>
 </section>
 </li>
 </ul>
