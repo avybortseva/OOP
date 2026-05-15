@@ -22,18 +22,19 @@ public class ReportGenerator {
     /**
      * Data container for student task results.
      */
-    public static class StudentTaskData {
-        public String taskId;
-        public LocalDate commitDate;
-        public LocalDate softDeadline;
-        public LocalDate hardDeadline;
-        public boolean buildSuccess;
-        public boolean docSuccess;
-        public boolean styleSuccess;
-        public int testPassed;
-        public int testTotal;
-        public GradingService.GradeBreakdown grade;
-    }
+    public record StudentTaskData (
+            String studentId,
+            String studentName,
+            String taskId,
+            String taskName,
+            boolean buildSuccess,
+            boolean docSuccess,
+            boolean styleSuccess,
+            int testPassed,
+            int testTotal,
+            LocalDate commitDate,
+            GradingService.GradeBreakdown grade
+    ) {}
 
     /**
      * Generates HTML report from collected data.

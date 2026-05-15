@@ -19,9 +19,8 @@ public class TestService {
             return new TestResult(taskId, false, 0, 0, "COMPILE_ERROR");
         }
 
-        File initScript = new File("google_style.gradle");
-        if (!runGradleTask(taskDir, "--init-script",
-                initScript.getAbsolutePath(), "checkstyleMain")) {
+        File initScript = new File("google_style.gradle").getAbsoluteFile();
+        if (!runGradleTask(taskDir, "--init-script", initScript.getAbsolutePath(), "checkstyleMain")) {
             System.out.println("      [STOP] Нарушение Google Java Style.");
             return new TestResult(taskId, false, 0, 0, "STYLE_ERROR");
         }

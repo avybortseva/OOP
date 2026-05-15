@@ -38,7 +38,7 @@ public class TestReportParser {
                         skipped += Integer.parseInt(testsuite.getAttribute("skipped"));
 
                     } catch (Exception e) {
-                        System.err.println("parsing error");
+                        System.err.println("Parsing error for: " + file.getName() + " - " + e.getMessage());
                     }
                 }
             }

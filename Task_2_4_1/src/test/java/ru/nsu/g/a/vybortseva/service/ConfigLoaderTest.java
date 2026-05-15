@@ -26,7 +26,7 @@ class ConfigLoaderTest {
                 
                 groups {
                     group(24213) {
-                        student(name: 'Test Student', gitName: 'test-git', repoUrl: 'https://github.com/test/repo')
+                        student(id: '001', name: 'Test Student', gitName: 'test-git', repoUrl: 'https://github.com/test/repo')
                     }
                 }
                 
@@ -60,6 +60,9 @@ class ConfigLoaderTest {
 
         assertEquals("1_1_1", config.getTasks().get(0).getId());
         assertEquals("Test Task", config.getTasks().get(0).getTitle());
+
+        assertEquals("001", config.getGroups().get(0).getGroup().get(0).getId());
+        assertEquals("Test Student", config.getGroups().get(0).getGroup().get(0).getName());
     }
 
     @Test
@@ -72,8 +75,8 @@ class ConfigLoaderTest {
                 
                 groups {
                     group(24213) {
-                        student(name: 'Student 1', gitName: 'student1', repoUrl: 'https://github.com/student1/repo')
-                        student(name: 'Student 2', gitName: 'student2', repoUrl: 'https://github.com/student2/repo')
+                        student(id: '001', name: 'Student 1', gitName: 'student1', repoUrl: 'https://github.com/student1/repo')
+                        student(id: '002', name: 'Student 2', gitName: 'student2', repoUrl: 'https://github.com/student2/repo')
                     }
                 }
                 
@@ -128,7 +131,7 @@ class ConfigLoaderTest {
                 
                 groups {
                     group(24213) {
-                        student(name: 'Student', gitName: 'student-git', repoUrl: 'https://github.com/student/repo')
+                        student(id: '001', name: 'Student', gitName: 'student-git', repoUrl: 'https://github.com/student/repo')
                     }
                 }
                 
@@ -206,11 +209,11 @@ class ConfigLoaderTest {
         String configContent = """
                 groups {
                     group(24213) {
-                        student(name: 'Student A', gitName: 'studentA', repoUrl: 'https://github.com/A/repo')
+                        student(id: '001', name: 'Student A', gitName: 'studentA', repoUrl: 'https://github.com/A/repo')
                     }
                     group(24214) {
-                        student(name: 'Student B', gitName: 'studentB', repoUrl: 'https://github.com/B/repo')
-                        student(name: 'Student C', gitName: 'studentC', repoUrl: 'https://github.com/C/repo')
+                        student(id: '002', name: 'Student B', gitName: 'studentB', repoUrl: 'https://github.com/B/repo')
+                        student(id: '003', name: 'Student C', gitName: 'studentC', repoUrl: 'https://github.com/C/repo')
                     }
                 }
                 """;
@@ -224,5 +227,9 @@ class ConfigLoaderTest {
         assertEquals(2, config.getGroups().size());
         assertEquals(1, config.getGroups().get(0).getGroup().size());
         assertEquals(2, config.getGroups().get(1).getGroup().size());
+
+        assertEquals("001", config.getGroups().get(0).getGroup().get(0).getId());
+        assertEquals("002", config.getGroups().get(1).getGroup().get(0).getId());
+        assertEquals("003", config.getGroups().get(1).getGroup().get(1).getId());
     }
 }

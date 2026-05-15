@@ -3,6 +3,7 @@ package ru.nsu.g.a.vybortseva.service;
 import java.time.LocalDate;
 import java.util.List;
 import ru.nsu.g.a.vybortseva.model.Bonus;
+import ru.nsu.g.a.vybortseva.model.Student;
 import ru.nsu.g.a.vybortseva.model.Task;
 import ru.nsu.g.a.vybortseva.model.TestResult;
 
@@ -49,7 +50,6 @@ public class GradingService {
             return new GradeBreakdown(0, 0, 0, 0);
         }
 
-        double base = BASE_POINTS;
         double soft = 0.0;
         double hard = 0.0;
 
@@ -66,7 +66,7 @@ public class GradingService {
                 .mapToDouble(Bonus::getPoints)
                 .sum();
 
-        return new GradeBreakdown(base, soft, hard, bonus);
+        return new GradeBreakdown(BASE_POINTS, soft, hard, bonus);
     }
 
     /**
@@ -77,5 +77,34 @@ public class GradingService {
         GradeBreakdown breakdown = calculateScoreWithBreakdown(result,
                 task, allBonuses, studentGitName, commitDate);
         return breakdown.totalPoints;
+    }
+
+    /**
+     * Method creating empty task data.
+     */
+    public ReportGenerator.StudentTaskData createEmptyTaskData(Student student, Task task) {
+        if (task == null) {
+            return new ReportGenerator.StudentTaskData(
+                    student.getId(),
+                    student.getFullName(),
+                    "unknown",
+                    "Unknown Task",
+                    false, false, false,
+                    0, 0,
+                    null,
+                    new GradeBreakdown(0, 0, 0, 0)
+            );
+        }
+
+        return new ReportGenerator.StudentTaskData(
+                student.getId(),
+                student.getFullName(),
+                task.getId(),
+                task.getTitle(),
+                false, false, false,
+                0, 0,
+                null,
+                new GradeBreakdown(0, 0, 0, 0)
+        );
     }
 }

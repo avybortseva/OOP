@@ -66,33 +66,18 @@ public class Main {
                         String folderName = "Task_" + taskId.replace(".", "_");
                         File taskDir = new File(repoPath.toFile(), folderName);
 
-                        ReportGenerator.StudentTaskData data
-                                = new ReportGenerator.StudentTaskData();
-                        data.taskId = taskId;
-
                         Task taskInfo = config.getTasks().stream()
                                 .filter(t -> t.getId().equals(taskId))
                                 .findFirst()
                                 .orElse(null);
 
-                        if (taskInfo != null) {
-                            data.softDeadline = taskInfo.getSoftDeadline();
-                            data.hardDeadline = taskInfo.getHardDeadline();
-                        }
+                        ReportGenerator.StudentTaskData data;
 
                         if (!taskDir.exists()) {
                             System.out.println("папка не найдена");
-                            data.buildSuccess = false;
-                            data.docSuccess = false;
-                            data.styleSuccess = false;
-                            data.testPassed = 0;
-                            data.testTotal = 0;
-                            data.commitDate = null;
-                            data.grade = new GradingService.GradeBreakdown(0, 0, 0, 0);
+                            data = gradingService.createEmptyTaskData(student, taskInfo);
                         } else {
                             LocalDate commitDate = gitService.getCommitDate(folderName, repoPath);
-                            data.commitDate = commitDate;
-
                             TestResult testResult = testService.runTests(taskDir, taskId);
 
                             if (taskInfo != null) {
@@ -101,18 +86,25 @@ public class Main {
                                         testResult, taskInfo, config.getBonuses(),
                                         student.getGitName(), commitDate
                                 );
-                                data.grade = grade;
-
-                                data.buildSuccess = testResult.isBuildSuccess();
-                                data.docSuccess = "OK".equals(testResult.getStatus())
-                                        || "STYLE_ERROR".equals(testResult.getStatus());
-                                data.styleSuccess = !"STYLE_ERROR".equals(testResult.getStatus());
-                                data.testPassed = testResult.getTestPassed();
-                                data.testTotal = testResult.getTestsTotal();
+                                data = new ReportGenerator.StudentTaskData(
+                                        student.getId(),
+                                        student.getFullName(),
+                                        taskId,
+                                        taskInfo.getTitle(),
+                                        testResult.isBuildSuccess(),
+                                        "OK".equals(testResult.getStatus()) || "STYLE_ERROR".equals(testResult.getStatus()),
+                                        !"STYLE_ERROR".equals(testResult.getStatus()),
+                                        testResult.getTestPassed(),
+                                        testResult.getTestsTotal(),
+                                        commitDate,
+                                        grade
+                                );
 
                                 System.out.println("готово (дата сдачи: "
                                         + (commitDate != null ? commitDate.format(DATE_FORMATTER)
                                         : "нет") + ")");
+                            } else {
+                                data = gradingService.createEmptyTaskData(student, null);
                             }
                         }
 
@@ -132,8 +124,8 @@ public class Main {
             reportGenerator.generateHtmlReport(allData, config);
 
         } catch (Exception e) {
-            System.err.println("Критическая ошибка:");
-            e.printStackTrace();
+            System.err.println("Ошибка: " + e.getMessage());
+            System.exit(1);
         }
     }
 }

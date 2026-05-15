@@ -33,14 +33,10 @@ public class GitService {
     /**
      * Iterates through all groups and students to synchronize their repositories.
      */
-    public void updateAll(Config config) {
+    public void updateAll(Config config) throws IOException, InterruptedException {
         for (Group group : config.getGroups()) {
             for (Student student : group.getGroup()) {
-                try {
-                    processStudent(student, group.getNumber());
-                } catch (Exception e) {
-                    System.out.println("updating student error");
-                }
+                processStudent(student, group.getNumber());
             }
         }
     }
@@ -75,7 +71,7 @@ public class GitService {
         int exitCode = process.waitFor();
 
         if (exitCode != 0) {
-            throw new RuntimeException("ran command error");
+            throw new IOException("Command failed with exit code: " + exitCode);
         }
     }
 

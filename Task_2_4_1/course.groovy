@@ -20,11 +20,11 @@ check {
 
 groups {
     group(24213) {
-        student(name: 'Выборцева Анастасия', gitName: 'vybortseva-git', repoUrl: 'https://github.com/avybortseva/OOP')
-        student(name: 'Изместьев Денис', gitName: 'izmestev-git', repoUrl: 'https://github.com/s2kach/OOP')
+        student(id: '001', name: 'Выборцева Анастасия', gitName: 'vybortseva-git', repoUrl: 'https://github.com/avybortseva/OOP')
+        student(id: '002', name: 'Изместьев Денис', gitName: 'izmestev-git', repoUrl: 'https://github.com/s2kach/OOP')
     }
     group(24214) {
-        student(name: 'Маркидонов Владимир', gitName: 'markidonov-git', repoUrl: 'https://github.com/PytoByte/OOP')
+        student(id: '003', name: 'Маркидонов Владимир', gitName: 'markidonov-git', repoUrl: 'https://github.com/PytoByte/OOP')
     }
 }
 
